@@ -1,2 +1,2 @@
 # dashboard
-Local web service for showing URLs
+Local web service for showing bookmarks
