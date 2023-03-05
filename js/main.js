@@ -1,13 +1,14 @@
+
 function genBookmark(data, target) {
-  for (var i = 0; i < data.length; i++) {
+  for (let i = 0; i < data.length; i++) {
     if ('name' in data[i]) {
-      var a = document.createElement('a');
+      const a = document.createElement('a');
       a.href = '' + data[i].link
       a.appendChild(document.createTextNode(data[i].name))
       target.appendChild(a);
-      var s = document.createElement('span');
+      const s = document.createElement('span');
       s.className = 'description'
-      var t = document.createTextNode(' ' + data[i].link)
+      const t = document.createTextNode(' ' + data[i].link)
       s.appendChild(t);
       target.appendChild(s);
       target.appendChild(document.createElement('br'));
@@ -16,9 +17,9 @@ function genBookmark(data, target) {
 }
 
 function genTextForCopy(data, target, className) {
-  for (var i = 0; i < data.length; i++) {
+  for (let i = 0; i < data.length; i++) {
     if ('text' in data[i]) {
-      var button = document.createElement('button');
+      const button = document.createElement('button');
       button.classList.add(className)
       button.appendChild(document.createTextNode(data[i].text))
       target.appendChild(button);
@@ -47,17 +48,37 @@ function installClickHandlerToText(className) {
  *   },
  * ]
  */
+
 fetch('bookmark.json?' + (new Date()).valueOf())
   .then(function (response) {
     return response.json();
   })
   .then(function (data) {
-    var target = document.getElementById("bookmark");
+    const target = document.getElementById("bookmark");
     genBookmark(data, target);
+  })
+  .catch(function (err) {
+    console.log('error: ' + err);
+  });
+
+/*
+ * text.json
+ * [
+ *   {
+ *     "text": "text for copy",
+ *   },
+ * ]
+ */
+
+fetch('text.json?' + (new Date()).valueOf())
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (data) {
+    const target = document.getElementById("textForCopy");
     genTextForCopy(data, target, 'forCopy');
     installClickHandlerToText('forCopy')
   })
   .catch(function (err) {
     console.log('error: ' + err);
   });
-
