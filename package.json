@@ -6,7 +6,7 @@
   "repository": "https://github.com/afrontend/dashboard.git",
   "author": "afrontend <autoscripts@gmail.com>",
   "scripts": {
-    "preserve": "mkdir -p dist && cp bookmark.json ./dist/bookmark.json && cp text.json ./dist/test.json",
+    "preserve": "mkdir -p dist && cp ./json/* dist/",
     "serve": "parcel index.html; yarn run preserve"
   },
   "license": "MIT",
