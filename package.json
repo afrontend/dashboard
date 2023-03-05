@@ -6,7 +6,7 @@
   "repository": "https://github.com/afrontend/dashboard.git",
   "author": "afrontend <autoscripts@gmail.com>",
   "scripts": {
-    "serve": "rm -rf ./.parcel-cache && parcel index.html"
+    "serve": "parcel index.html; cp bookmark.json ./dist/bookmark.json"
   },
   "license": "MIT",
   "private": true,
