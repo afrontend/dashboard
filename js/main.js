@@ -39,7 +39,7 @@ function installClickHandlerToText(className) {
 }
 
 /*
- * bookmar.json
+ * bookmark.json
  * [
  *   {
  *     "name": "afrontend",
