@@ -49,7 +49,7 @@ function installClickHandlerToText(className) {
  * ]
  */
 
-fetch('bookmark.json?' + (new Date()).valueOf())
+fetch('json/bookmark.json?' + (new Date()).valueOf())
   .then(function (response) {
     return response.json();
   })
@@ -70,7 +70,7 @@ fetch('bookmark.json?' + (new Date()).valueOf())
  * ]
  */
 
-fetch('text.json?' + (new Date()).valueOf())
+fetch('json/text.json?' + (new Date()).valueOf())
   .then(function (response) {
     return response.json();
   })
