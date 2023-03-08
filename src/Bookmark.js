@@ -13,8 +13,10 @@ export function Bookmark() {
     fetchData();
   }, []);
 
+  if (bookmarks.length === 0) return 'loading'
+
   return bookmarks.map(
-    (bookmark, index)  => <>
+    (bookmark)  => <>
       <a href={bookmark.link}>{bookmark.name}</a>
       <span className="description">{bookmark.link}</span>
       <br />
