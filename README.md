@@ -1,4 +1,4 @@
-# dashboard
+# Dashboard
 Local web service to show bookmarks
 
 ```
