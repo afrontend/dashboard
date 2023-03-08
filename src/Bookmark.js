@@ -1,22 +1,22 @@
 import {useEffect, useState} from "react";
 
 export function Bookmark() {
-  const [list, setList] = useState([])
+  const [bookmarks, setList] = useState([])
 
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch('json/bookmark.json?');
-      const bookmarkList = await response.json();
-      console.log(bookmarkList)
-      setList(bookmarkList)
+      const bList = await response.json();
+      console.log(bList)
+      setList(bList)
     };
     fetchData();
-  });
+  }, []);
 
-  return list.map(
-    b => <>
-      <a href="{b.link}">{b.name}</a>
-      <span className="description">{b.link}</span>
+  return bookmarks.map(
+    (bookmark, index)  => <>
+      <a href={bookmark.link}>{bookmark.name}</a>
+      <span className="description">{bookmark.link}</span>
       <br />
     </>
   )
