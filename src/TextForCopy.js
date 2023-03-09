@@ -15,10 +15,9 @@ export function TextForCopy() {
   if (textAry.length === 0) return 'Loading...'
 
   return textAry.map(
-    (text)  => <>
+    (text) => <div key={text.text}>
       <button>{text.text}</button>
-      <br />
-    </>
+    </div>
   )
 }
 
