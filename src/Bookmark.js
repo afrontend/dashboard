@@ -7,20 +7,18 @@ export function Bookmark() {
     const fetchData = async () => {
       const response = await fetch('json/bookmark.json?');
       const bList = await response.json();
-      console.log(bList)
       setList(bList)
     };
     fetchData();
   }, []);
 
-  if (bookmarks.length === 0) return 'loading'
+  if (bookmarks.length === 0) return 'Loading...'
 
   return bookmarks.map(
-    (bookmark)  => <>
+    (bookmark)  => <div key={bookmark.link}>
       <a href={bookmark.link}>{bookmark.name}</a>
       <span className="description">{bookmark.link}</span>
-      <br />
-    </>
+    </div>
   )
 }
 
