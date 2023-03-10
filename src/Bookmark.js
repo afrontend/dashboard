@@ -1,4 +1,5 @@
 import {useEffect, useState} from "react";
+import '../css/bookmark.css';
 
 export function Bookmark() {
   const [bookmarks, setList] = useState([])
