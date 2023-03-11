@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from "react";
+import '../css/button.css'
 
 export function TextForCopy() {
   const [textAry, setText] = useState([])
