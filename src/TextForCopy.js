@@ -13,12 +13,17 @@ export function TextForCopy() {
     fetchData();
   }, []);
 
+  function toClipboard(e) {
+    const text = e.target.innerText
+    console.log('apple', text)
+    navigator.clipboard.writeText(text)
+      .then(()=>{})
+  }
+
   if (textAry.length === 0) return 'Loading...'
 
   return textAry.map(
-    (text) => <div key={text.text}>
-      <button>{text.text}</button>
-    </div>
+    (text, index) => <button key={text.content + index} value="banana" onClick={toClipboard}>{text.content}</button>
   )
 }
 

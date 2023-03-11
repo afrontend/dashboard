@@ -65,7 +65,7 @@ fetch('json/bookmark.json?' + (new Date()).valueOf())
  * text.json
  * [
  *   {
- *     "text": "text for copy",
+ *     "content": "text for copy",
  *   },
  * ]
  */
