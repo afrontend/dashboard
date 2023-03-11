@@ -18,6 +18,7 @@ export function Bookmark() {
   return bookmarks.map(
     (b, index)  => <div key={b.link + index}>
       <a href={b.link}>{b.name}</a>
+      &nbsp;
       <span className={classes.description}>{b.link}</span>
     </div>
   )
