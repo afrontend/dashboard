@@ -1,3 +1,4 @@
+import React from "react";
 import { Bookmark } from "./Bookmark";
 import { TextForCopy } from "./TextForCopy";
 export function App() {

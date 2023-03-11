@@ -2,12 +2,12 @@
   "name": "dashboard",
   "version": "1.0.0",
   "description": "Local web service for showing bookmarks",
-  "main": "index.js",
   "repository": "https://github.com/afrontend/dashboard.git",
   "author": "afrontend <autoscripts@gmail.com>",
   "scripts": {
     "preserve": "mkdir -p dist && cp -rf ./json dist/",
-    "serve": "parcel index.html && yarn run preserve"
+    "serve": "parcel index.html && yarn run preserve",
+    "watch": "parcel watch index.html && yarn run preserve"
   },
   "license": "MIT",
   "private": true,

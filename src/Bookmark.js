@@ -1,5 +1,5 @@
-import {useEffect, useState} from "react";
-import '../css/bookmark.css';
+import React, {useEffect, useState} from "react";
+import * as classes from '../css/bookmark.module.css';
 
 export function Bookmark() {
   const [bookmarks, setList] = useState([])
@@ -16,9 +16,9 @@ export function Bookmark() {
   if (bookmarks.length === 0) return 'Loading...'
 
   return bookmarks.map(
-    (bookmark)  => <div key={bookmark.link}>
-      <a href={bookmark.link}>{bookmark.name}</a>
-      <span className="description">{bookmark.link}</span>
+    (b, index)  => <div key={b.link + index}>
+      <a href={b.link}>{b.name}</a>
+      <span className={classes.description}>{b.link}</span>
     </div>
   )
 }
