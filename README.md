@@ -6,7 +6,7 @@ git clone https://github.com/afrontend/dashboard.git
 cd dashboard
 yarn install
 mkdir json
-echo "[]" > json/bookmark.json
-echo "[]" > json/text.json
+echo '[{"name": "google", "link": "https://google.com"}]' > json/bookmark.json
+echo '[{"content": "This a text for copy"}]' > json/text.json
 yarn run serve
 ```
