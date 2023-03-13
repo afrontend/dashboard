@@ -23,6 +23,7 @@ button {
  -webkit-user-select: none;
  touch-action: manipulation;
  will-change: transform;
+ margin-bottom: 0.5rem;
 }
 
 button:disabled {
