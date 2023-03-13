@@ -30,8 +30,8 @@ export function TextForCopy() {
   if (textAry.length === 0) return 'Loading...'
 
   return textAry.map(
-    (text, index) => <div>
-      <button key={text.content + index} onClick={() => toClipboard(text.content)}>{text.content}</button>
+    (text, index) => <div key={text.content + index}>
+      <button onClick={() => toClipboard(text.content)}>{text.content}</button>
       &nbsp;
       {message === text.content && COPIED_MESSAGE}
     </div>
