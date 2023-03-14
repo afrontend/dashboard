@@ -6,3 +6,13 @@
   width: 50%;
   padding: 20px;
 }
+
+.wrapper {
+  display: flex;
+  align-items: top;
+  justify-content: center;
+}
+
+.wrapper .side {
+  width: 50%;
+}

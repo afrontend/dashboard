@@ -1,12 +1,13 @@
 import React, {useEffect, useState} from "react";
 import * as classes from '../css/bookmark.module.css';
 
-export function Bookmark({hasDescription}) {
+export function Bookmark({hasDescription, jsonFilename = 'bookmark.json'}) {
   const [bookmarks, setList] = useState([])
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch('json/bookmark.json?');
+      const path = (`json/${jsonFilename}?`)
+      const response = await fetch(path);
       const bList = await response.json();
       setList(bList)
     };
