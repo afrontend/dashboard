@@ -1,7 +1,7 @@
 import React, {useState} from "react";
-import { Bookmark } from "./Bookmark";
-import { TextForCopy } from "./TextForCopy";
-import { Switch } from "./Switch";
+import { Bookmark } from "../components/Bookmark";
+import { TextForCopy } from "../components/TextForCopy";
+import { Switch } from "../components/Switch";
 import * as classes  from '../css/App.module.css'
 
 export function App() {
