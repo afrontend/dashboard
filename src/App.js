@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import { Bookmark } from "../components/Bookmark";
 import { TextForCopy } from "../components/TextForCopy";
 import { Switch } from "../components/Switch";
-import * as classes  from '../css/App.module.css'
+import classes from '../css/App.module.css'
 
 export function App() {
   const [hasDescription, toggleDescription] = useState(false)
