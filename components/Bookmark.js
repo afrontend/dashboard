@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import * as classes from '../css/bookmark.module.css';
+import classes from '../css/bookmark.module.css';
 
 export function Bookmark({hasDescription, jsonFilename = 'bookmark.json'}) {
   const [bookmarks, setList] = useState([])
@@ -17,10 +17,8 @@ export function Bookmark({hasDescription, jsonFilename = 'bookmark.json'}) {
   if (bookmarks.length === 0) return 'Loading...'
 
   return bookmarks.map(
-    (b, index)  => <div key={b.link + index}>
-      <button>
-        <a href={b.link}>{b.name}</a>
-      </button>
+    (b, index)  => <div style={{ marginBottom: '0.5rem' }}key={b.link + index}>
+      <a href={b.link} className={classes.btn}>{b.name}</a>
       &nbsp;
       {hasDescription && <span className={classes.description}>{b.link}</span>}
     </div>
