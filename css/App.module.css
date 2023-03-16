@@ -20,3 +20,7 @@ body {
 .wrapper .side {
   width: 50%;
 }
+
+a {
+  text-decoration: none;
+}

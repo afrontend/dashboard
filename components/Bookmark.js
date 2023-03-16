@@ -18,7 +18,9 @@ export function Bookmark({hasDescription, jsonFilename = 'bookmark.json'}) {
 
   return bookmarks.map(
     (b, index)  => <div key={b.link + index}>
-      <a href={b.link}>{b.name}</a>
+      <button>
+        <a href={b.link}>{b.name}</a>
+      </button>
       &nbsp;
       {hasDescription && <span className={classes.description}>{b.link}</span>}
     </div>
