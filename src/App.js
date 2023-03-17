@@ -7,7 +7,7 @@ import classes from '../css/App.module.css'
 export function App() {
   const [hasDescription, toggleDescription] = useState(false)
   return <div className={classes.background}>
-    <h1>Dashboard</h1>
+    <h2>Dashboard</h2>
     <div className={classes.wrapper}>
       <div className={classes.side}>
         <Bookmark

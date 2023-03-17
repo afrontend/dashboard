@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import '../css/button.css'
+import buttonCss from '../css/button.module.css';
 
 const COPIED_MESSAGE = 'copied'
 
@@ -9,7 +9,7 @@ export function TextForCopy() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch('json/text.json?');
+      const response = await fetch('json/text.json?' + (new Date()).valueOf());
       const tList = await response.json();
       setTextAry(tList)
     };
@@ -30,8 +30,8 @@ export function TextForCopy() {
   if (textAry.length === 0) return 'Loading...'
 
   return textAry.map(
-    (text, index) => <div key={text.content + index}>
-      <button onClick={() => toClipboard(text.content)}>{text.content}</button>
+    (text, index) => <div style={{marginBottom: '0.5rem'}} key={text.content + index}>
+      <div className={buttonCss.btn} onClick={() => toClipboard(text.content)}>{text.content}</div>
       &nbsp;
       {message === text.content && COPIED_MESSAGE}
     </div>
