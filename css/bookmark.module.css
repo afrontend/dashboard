@@ -5,7 +5,7 @@
 
 .btn:link,
 .btn:visited {
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   text-decoration: none;
   color: rgb(27, 27, 27);
   padding: 10px 30px;
