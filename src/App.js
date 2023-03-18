@@ -23,7 +23,7 @@ export function App() {
       </div>
     </div>
     <Switch onOff={hasDescription} setOnOff={toggleDescription} name="show description"/>
-    <h1>Text For Copy</h1>
+    <h2>Text For Copy</h2>
     <TextForCopy />
   </div>;
 }
