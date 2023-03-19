@@ -15,7 +15,7 @@ export function Bookmark({hasDescription, jsonFilename = 'bookmark.json'}) {
     fetchData();
   }, []);
 
-  if (bookmarkAry.length === 0) return 'Loading...'
+  if (bookmarkAry.length === 0) return <div>Loading...</div>
 
   return bookmarkAry.map(
     (b, index)  => <div style={{marginBottom: '0.5rem'}} key={b.link + index}>
