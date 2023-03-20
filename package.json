@@ -5,7 +5,7 @@
   "repository": "https://github.com/afrontend/dashboard.git",
   "author": "afrontend <autoscripts@gmail.com>",
   "scripts": {
-    "copyjson": "rimraf -rf dist && mkdir -p dist && cp -rf json dist/",
+    "copyjson": "cp -rf json dist/",
     "serve": "parcel index.html && yarn run copyjson",
     "watch": "parcel watch index.html && yarn run copyjson"
   },
