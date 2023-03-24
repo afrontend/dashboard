@@ -31,7 +31,7 @@ export function TextForCopy() {
 
   return textAry.map(
     (text, index) => <div style={{marginBottom: '0.5rem'}} key={text.content + index}>
-      <div className={buttonCss.btn} onClick={() => toClipboard(text.content)}>{text.content}</div>
+      <a className={buttonCss.btn} onClick={() => toClipboard(text.content)}>{text.content}</a>
       &nbsp;
       {message === text.content && COPIED_MESSAGE}
     </div>
