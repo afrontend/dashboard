@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
-import bookmarkCss from '../css/bookmark.module.css';
-import buttonCss from '../css/button.module.css';
+import * as bookmarkCss from '../css/bookmark.module.css';
+import * as buttonCss from '../css/button.module.css';
 
 export function Bookmark({hasDescription, jsonFilename = 'bookmark.json'}) {
   const [bookmarkAry, setBookmark] = useState([])

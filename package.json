@@ -6,6 +6,7 @@
   "author": "afrontend <autoscripts@gmail.com>",
   "scripts": {
     "copyjson": "cp -rf json dist/",
+    "build": "parcel build index.html",
     "serve": "parcel index.html && yarn run copyjson",
     "watch": "parcel watch index.html && yarn run copyjson"
   },
