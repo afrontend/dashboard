@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import buttonCss from '../css/button.module.css';
+import * as buttonCss from '../css/button.module.css';
 
 const COPIED_MESSAGE = 'copied'
 
