@@ -6,9 +6,9 @@
   "author": "afrontend <autoscripts@gmail.com>",
   "scripts": {
     "copyjson": "cp -rf json dist/",
-    "build": "parcel build index.html",
-    "serve": "parcel index.html && yarn run copyjson",
-    "watch": "parcel watch index.html && yarn run copyjson"
+    "build": "parcel build index.html --no-cache",
+    "serve": "parcel index.html --no-cache",
+    "watch": "parcel watch index.html --no-cache"
   },
   "license": "MIT",
   "private": true,
