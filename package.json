@@ -7,7 +7,7 @@
   "scripts": {
     "copyjson": "cp -rf json dist/",
     "build": "parcel build index.html --no-cache",
-    "serve": "parcel index.html --no-cache",
+    "serve": "parcel index.html --no-cache && npm run copyjson",
     "watch": "parcel watch index.html --no-cache"
   },
   "license": "MIT",
