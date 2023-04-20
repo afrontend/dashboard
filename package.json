@@ -8,7 +8,9 @@
     "copyjson": "cp -rf json dist/",
     "build": "parcel build index.html --no-cache",
     "serve": "parcel index.html --no-cache && npm run copyjson",
-    "watch": "parcel watch index.html --no-cache"
+    "watch": "parcel watch index.html --no-cache",
+    "predeploy": "parcel build index.html",
+    "deploy": "gh-pages -d dist"
   },
   "license": "MIT",
   "private": true,
@@ -19,6 +21,7 @@
     "process": "^0.11.10"
   },
   "dependencies": {
+    "gh-pages": "^5.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "rimraf": "^4.4.0"
