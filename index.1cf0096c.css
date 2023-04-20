@@ -1,0 +1,102 @@
+.TY2-MG_description {
+  color: #8a2be2;
+  font-size: .7rem;
+}
+
+.oTIHyq_btn {
+  appearance: none;
+  box-sizing: border-box;
+  color: #24292e;
+  cursor: pointer;
+  touch-action: manipulation;
+  vertical-align: middle;
+  white-space: nowrap;
+  word-wrap: break-word;
+  background-color: #fafbfc;
+  border: 1px solid #1b1f2326;
+  border-radius: 6px;
+  padding: 6px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  list-style: none;
+  transition: background-color .2s cubic-bezier(.3, 0, .5, 1);
+  display: inline-block;
+  position: relative;
+  box-shadow: 0 1px #1b1f230a, inset 0 1px #ffffff40;
+}
+
+.oTIHyq_btn:hover {
+  background-color: #f3f4f6;
+  text-decoration: none;
+  transition-duration: .1s;
+}
+
+.oTIHyq_btn:disabled {
+  color: #959da5;
+  cursor: default;
+  background-color: #fafbfc;
+  border-color: #1b1f2326;
+}
+
+.oTIHyq_btn:active {
+  background-color: #edeff2;
+  transition: none;
+  box-shadow: inset 0 1px #e1e4e833;
+}
+
+.oTIHyq_btn:focus {
+  outline: 1px #0000;
+}
+
+.oTIHyq_btn:before {
+  display: none;
+}
+
+.oTIHyq_btn:-webkit-details-marker {
+  display: none;
+}
+
+body {
+  margin: 0;
+}
+
+.LywrHa_background {
+  max-width: 1200px;
+  background-color: #dcdde1;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+}
+
+.LywrHa_link {
+  overflow-wrap: break-word;
+  margin: 1rem;
+}
+
+.LywrHa_wrapper {
+  align-items: top;
+  justify-content: center;
+  display: flex;
+}
+
+.LywrHa_wrapper .LywrHa_side {
+  width: 50%;
+}
+
+.LywrHa_wrapper .LywrHa_rightSide {
+  width: 50%;
+  margin: 10px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.LywrHa_textarea {
+  height: calc(100vh - 400px);
+  width: 95%;
+  margin: 10px;
+}
+
+/*# sourceMappingURL=index.1cf0096c.css.map */
