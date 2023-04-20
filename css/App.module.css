@@ -10,6 +10,11 @@ body {
   padding: 20px;
 }
 
+.link {
+  overflow-wrap: break-word;
+  margin: 1rem;
+}
+
 .wrapper {
   display: flex;
   align-items: top;
@@ -20,6 +25,18 @@ body {
   width: 50%;
 }
 
+.wrapper .rightSide {
+  width: 50%;
+  margin: 10px;
+}
+
 a {
   text-decoration: none;
+}
+
+.textarea {
+  flex: 1;
+  height: calc(100vh - 400px);
+  width: 95%;
+  margin: 10px;
 }
