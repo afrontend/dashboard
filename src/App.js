@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 // import { BookmarkJsonFile } from "../components/BookmarkJsonFile";
 import { BookmarkJsonData } from "../components/BookmarkJsonData";
-import { TextForCopy } from "../components/TextForCopy";
-import { Switch } from "../components/Switch";
+// import { TextForCopy } from "../components/TextForCopy";
+// import { Switch } from "../components/Switch";
 import  * as classes from '../css/App.module.css'
 
 const mock = [
@@ -86,9 +86,9 @@ export function App() {
         />
       </div> */}
     </div>
-    <Switch onOff={hasDescription} setOnOff={toggleDescription} name="show description"/>
-    <h2>Text For Copy</h2>
-    <TextForCopy />
+    {/* <Switch onOff={hasDescription} setOnOff={toggleDescription} name="show description"/> */}
+    {/* <h2>Text For Copy</h2> */}
+    {/* <TextForCopy /> */}
   </div>;
 }
 
