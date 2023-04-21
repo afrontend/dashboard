@@ -1,11 +1,11 @@
 import React, {useState} from "react";
-// import { BookmarkJsonFile } from "../components/BookmarkJsonFile";
+import { BookmarkJsonFile } from "../components/BookmarkJsonFile";
 import { BookmarkJsonData } from "../components/BookmarkJsonData";
 // import { TextForCopy } from "../components/TextForCopy";
-// import { Switch } from "../components/Switch";
+import { Switch } from "../components/Switch";
 import  * as classes from '../css/App.module.css'
 
-const mock = [
+const initialData = [
   {
     "name": "🌤 Daily",
     "link": ""
@@ -40,12 +40,25 @@ function isJSON(str) {
   return true
 }
 
+const initialJsonFile = localStorage.getItem('useJsonFile') === 'true'
+
 export function App() {
-  const jsonAry = getJsonData()
-  const [bookmarkAry, setBookmarkAry] = useState(jsonAry.length === 0 ? mock : jsonAry)
-  const [bookmarkText, setBookmarkText] = useState(JSON.stringify(jsonAry.length === 0 ? mock : jsonAry, null, 2))
-  const [hasDescription, toggleDescription] = useState(false)
+  const jsonData = getJsonData()
+  const jsonAry = jsonData.length === 0 ? initialData : jsonData
+  const [bookmarkAry, setBookmarkAry] = useState(jsonAry)
+  const [bookmarkText, setBookmarkText] = useState(JSON.stringify(jsonAry, null, 2))
+  const [useJsonFile, setJsonFile] = useState(initialJsonFile)
   const [msg, setMsg] = useState("")
+
+  function handleSwitch(checked) {
+    if (checked) {
+      setJsonFile(true)
+      localStorage.setItem('useJsonFile', 'true')
+    } else {
+      setJsonFile(false)
+      localStorage.setItem('useJsonFile', 'false')
+    }
+  }
 
   function handleChange (e) {
     const text = e.target.value;
@@ -60,33 +73,35 @@ export function App() {
   }
 
   return <div className={classes.background}>
-    <h2>Dashboard</h2>
-    <div className={classes.link}><Link jsonData={bookmarkAry}/></div>
+    <h2> Dashboard </h2>
+    <div style={{ marginBottom: '1rem' }}><Switch onOff={useJsonFile} setOnOff={handleSwitch} name="use JSON file"/></div>
+    {!useJsonFile && <div className={classes.link}><Link jsonData={bookmarkAry}/></div>}
     <div className={classes.wrapper}>
-      <div className={classes.side}>
-        <textarea className={classes.textarea} value={bookmarkText} onChange={handleChange}/>
-      </div>
-      <div className={classes.rightSide}>
-        {msg && <pre>{msg}</pre>}
-        <BookmarkJsonData
-          hasDescription={hasDescription}
-          bookmarkAry={bookmarkAry}
-        />
-      </div>
-      {/* <div className={classes.side}>
-        <BookmarkJsonFile
-          hasDescription={hasDescription}
-          jsonFilename="officeBookmark.json"
-        />
-      </div>
-      <div className={classes.side}>
-        <BookmarkJsonFile
-          hasDescription={hasDescription}
-          jsonFilename="homeBookmark.json"
-        />
-      </div> */}
+      { !useJsonFile && <>
+        <div className={classes.side}>
+          <textarea className={classes.textarea} value={bookmarkText} onChange={handleChange}/>
+        </div>
+        <div className={classes.rightSide}>
+          {msg && <pre>{msg}</pre>}
+          <BookmarkJsonData
+            bookmarkAry={bookmarkAry}
+          />
+        </div>
+      </>
+      }
+      {useJsonFile && <>
+        <div className={classes.side}>
+          <BookmarkJsonFile
+            jsonFilename="officeBookmark.json"
+          />
+        </div>
+        <div className={classes.side}>
+          <BookmarkJsonFile
+            jsonFilename="homeBookmark.json"
+          />
+        </div>
+      </>}
     </div>
-    {/* <Switch onOff={hasDescription} setOnOff={toggleDescription} name="show description"/> */}
     {/* <h2>Text For Copy</h2> */}
     {/* <TextForCopy /> */}
   </div>;
