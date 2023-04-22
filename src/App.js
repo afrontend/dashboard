@@ -3,6 +3,7 @@ import { BookmarkJsonFile } from "../components/BookmarkJsonFile";
 import { BookmarkJsonData } from "../components/BookmarkJsonData";
 // import { TextForCopy } from "../components/TextForCopy";
 import { Switch } from "../components/Switch";
+import { Button } from "../components/Button";
 import  * as classes from '../css/App.module.css'
 
 const initialData = [
@@ -17,7 +18,7 @@ function Link({ jsonData }) {
   const { origin, pathname } = window.location;
   const url = origin + pathname + param;
   return (
-    <a href={url}>{url}</a>
+    <a href={url}>Save</a>
   );
 }
 
@@ -26,7 +27,11 @@ function getJsonData() {
   const urlParams = new URLSearchParams(queryString);
   const d = urlParams.get('data')
   if (d) {
-    return JSON.parse(decodeURIComponent(d))
+    try {
+      return JSON.parse(decodeURIComponent(d))
+    } catch (e) {
+      return []
+    }
   }
   return []
 }
@@ -75,11 +80,11 @@ export function App() {
   return <div className={classes.background}>
     <h2> Dashboard </h2>
     <div style={{ marginBottom: '1rem' }}><Switch onOff={useJsonFile} setOnOff={handleSwitch} name="use JSON file"/></div>
-    {!useJsonFile && <div className={classes.link}><Link jsonData={bookmarkAry}/></div>}
     <div className={classes.wrapper}>
       { !useJsonFile && <>
         <div className={classes.side}>
           <textarea className={classes.textarea} value={bookmarkText} onChange={handleChange}/>
+          <div className={classes.link}><Link jsonData={bookmarkAry}/></div>
         </div>
         <div className={classes.rightSide}>
           {msg && <pre>{msg}</pre>}
