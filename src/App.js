@@ -92,13 +92,13 @@ export function App() {
       { !useJsonFile && <>
         <div className={classes.side}>
           <textarea className={classes.textarea} value={bookmarkText} onChange={handleChange}/>
+          {msg && <div className={classes.msg} style={{ color: '#8c7ae6' }}>{msg}</div>}
+          {errorMsg && <div className={classes.msg} style={{ color: '#e84118' }}>{errorMsg}</div>}
           <div className={classes.link}>
             <Link jsonData={bookmarkAry}/>{' '}<Clear />
           </div>
         </div>
         <div className={classes.rightSide}>
-          {msg && <div className={classes.msg} style={{ color: '#8c7ae6' }}>{msg}</div>}
-          {errorMsg && <div className={classes.msg} style={{ color: '#e84118' }}>{errorMsg}</div>}
           <BookmarkJsonData
             bookmarkAry={bookmarkAry}
           />

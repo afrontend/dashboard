@@ -23,6 +23,13 @@ body {
 
 .wrapper .side {
   width: 50%;
+  position: relative;
+}
+
+.wrapper .side .msg {
+  position: absolute;
+  top: 1rem;
+  right: 2rem;
 }
 
 .wrapper .rightSide {
