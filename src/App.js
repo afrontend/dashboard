@@ -21,6 +21,12 @@ function Link({ jsonData }) {
   );
 }
 
+function Clear() {
+  return (
+    <a href={'/'}>Clear</a>
+  );
+}
+
 function getJsonData() {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
@@ -86,11 +92,13 @@ export function App() {
       { !useJsonFile && <>
         <div className={classes.side}>
           <textarea className={classes.textarea} value={bookmarkText} onChange={handleChange}/>
-          <div className={classes.link}><Link jsonData={bookmarkAry}/></div>
+          <div className={classes.link}>
+            <Link jsonData={bookmarkAry}/>{' '}<Clear />
+          </div>
         </div>
         <div className={classes.rightSide}>
-          {msg && <pre style={{ color: '#8c7ae6' }}>{msg}</pre>}
-          {errorMsg && <pre style={{ color: '#e84118' }}>{errorMsg}</pre>}
+          {msg && <div className={classes.msg} style={{ color: '#8c7ae6' }}>{msg}</div>}
+          {errorMsg && <div className={classes.msg} style={{ color: '#e84118' }}>{errorMsg}</div>}
           <BookmarkJsonData
             bookmarkAry={bookmarkAry}
           />
