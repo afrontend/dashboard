@@ -101,6 +101,7 @@ export function App() {
         <div className={classes.rightSide}>
           <BookmarkJsonData
             bookmarkAry={bookmarkAry}
+            hasDescription={true}
           />
         </div>
       </>
