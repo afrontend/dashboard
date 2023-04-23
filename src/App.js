@@ -3,8 +3,7 @@ import { BookmarkJsonFile } from "../components/BookmarkJsonFile";
 import { BookmarkJsonData } from "../components/BookmarkJsonData";
 // import { TextForCopy } from "../components/TextForCopy";
 import { Switch } from "../components/Switch";
-import { Button } from "../components/Button";
-import  * as classes from '../css/App.module.css'
+import * as classes from '../css/App.module.css'
 
 const initialData = [
   {
@@ -54,6 +53,7 @@ export function App() {
   const [bookmarkText, setBookmarkText] = useState(JSON.stringify(jsonAry, null, 2))
   const [useJsonFile, setJsonFile] = useState(initialJsonFile)
   const [msg, setMsg] = useState("")
+  const [errorMsg, setErrorMsg] = useState("")
 
   function handleSwitch(checked) {
     if (checked) {
@@ -70,10 +70,12 @@ export function App() {
     setBookmarkText(text)
     if (text && isJSON(text)) {
       setMsg("Valid JSON")
+      setErrorMsg("")
       const jsonAry = JSON.parse(text)
       setBookmarkAry(jsonAry)
     } else {
-      setMsg("Invalid JSON")
+      setMsg("")
+      setErrorMsg("Invalid JSON")
     }
   }
 
@@ -87,7 +89,8 @@ export function App() {
           <div className={classes.link}><Link jsonData={bookmarkAry}/></div>
         </div>
         <div className={classes.rightSide}>
-          {msg && <pre>{msg}</pre>}
+          {msg && <pre style={{ color: '#8c7ae6' }}>{msg}</pre>}
+          {errorMsg && <pre style={{ color: '#e84118' }}>{errorMsg}</pre>}
           <BookmarkJsonData
             bookmarkAry={bookmarkAry}
           />
