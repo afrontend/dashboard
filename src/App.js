@@ -87,7 +87,7 @@ export function App() {
 
   return <div className={classes.background}>
     <h2> Dashboard </h2>
-    <div style={{ marginBottom: '1rem' }}><Switch onOff={useJsonFile} setOnOff={handleSwitch} name="use JSON file"/></div>
+    <div style={{ marginBottom: '1rem' }}><Switch onOff={useJsonFile} setOnOff={handleSwitch} name="Use JSON file"/></div>
     <div className={classes.wrapper}>
       { !useJsonFile && <>
         <div className={classes.side}>
