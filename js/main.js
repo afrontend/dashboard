@@ -1,42 +1,40 @@
-
 function genBookmark(data, target) {
   for (let i = 0; i < data.length; i++) {
-    if ('name' in data[i]) {
-      const a = document.createElement('a');
-      a.href = '' + data[i].link
-      a.appendChild(document.createTextNode(data[i].name))
+    if ("name" in data[i]) {
+      const a = document.createElement("a");
+      a.href = "" + data[i].link;
+      a.appendChild(document.createTextNode(data[i].name));
       target.appendChild(a);
-      const s = document.createElement('span');
-      s.className = 'description'
-      const t = document.createTextNode(' ' + data[i].link)
+      const s = document.createElement("span");
+      s.className = "description";
+      const t = document.createTextNode(" " + data[i].link);
       s.appendChild(t);
       target.appendChild(s);
-      target.appendChild(document.createElement('br'));
+      target.appendChild(document.createElement("br"));
     }
   }
 }
 
 function genTextForCopy(data, target, className) {
   for (let i = 0; i < data.length; i++) {
-    if ('text' in data[i]) {
-      const button = document.createElement('button');
-      button.classList.add(className)
-      button.appendChild(document.createTextNode(data[i].text))
+    if ("text" in data[i]) {
+      const button = document.createElement("button");
+      button.classList.add(className);
+      button.appendChild(document.createTextNode(data[i].text));
       target.appendChild(button);
     }
   }
 }
 
 function toClipboard(text) {
-  navigator.clipboard.writeText(this.innerText || text)
-    .then(()=>{})
+  navigator.clipboard.writeText(this.innerText || text).then(() => {});
 }
 
 function installClickHandlerToText(className) {
-    const ary = document.querySelectorAll("." + className);
-    for (let i = 0; i < ary.length; i++) {
-      ary[i].addEventListener("click", toClipboard);
-    }
+  const ary = document.querySelectorAll("." + className);
+  for (let i = 0; i < ary.length; i++) {
+    ary[i].addEventListener("click", toClipboard);
+  }
 }
 
 /*
@@ -49,7 +47,7 @@ function installClickHandlerToText(className) {
  * ]
  */
 
-fetch('json/homeBookmark.json?' + (new Date()).valueOf())
+fetch("json/homeBookmark.json?" + new Date().valueOf())
   .then(function (response) {
     return response.json();
   })
@@ -58,7 +56,7 @@ fetch('json/homeBookmark.json?' + (new Date()).valueOf())
     genBookmark(data, target);
   })
   .catch(function (err) {
-    console.log('error: ' + err);
+    console.log("error: " + err);
   });
 
 /*
@@ -70,15 +68,15 @@ fetch('json/homeBookmark.json?' + (new Date()).valueOf())
  * ]
  */
 
-fetch('json/text.json?' + (new Date()).valueOf())
+fetch("json/text.json?" + new Date().valueOf())
   .then(function (response) {
     return response.json();
   })
   .then(function (data) {
     const target = document.getElementById("textForCopy");
-    genTextForCopy(data, target, 'forCopy');
-    installClickHandlerToText('forCopy')
+    genTextForCopy(data, target, "forCopy");
+    installClickHandlerToText("forCopy");
   })
   .catch(function (err) {
-    console.log('error: ' + err);
+    console.log("error: " + err);
   });
