@@ -12,8 +12,11 @@ const initialData = [
   },
 ];
 
-function Link({ jsonData }) {
-  const param = "?data=" + encodeURIComponent(JSON.stringify(jsonData));
+function Link(a) {
+  const jsonData = a.jsonData;
+  const param = jsonData
+    ? "?data=" + encodeURIComponent(JSON.stringify(jsonData))
+    : "?data=";
   const { origin, pathname } = window.location;
   const url = origin + pathname + param;
   return <a href={url}>Save</a>;
@@ -29,7 +32,7 @@ function getJsonData(queryString) {
   if (data) {
     try {
       return JSON.parse(decodeURIComponent(data));
-    } catch (e) {
+    } catch {
       return [];
     }
   }
@@ -39,7 +42,7 @@ function getJsonData(queryString) {
 function isJSON(str) {
   try {
     JSON.parse(str);
-  } catch (e) {
+  } catch {
     return false;
   }
   return true;
