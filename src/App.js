@@ -1,16 +1,10 @@
 import React, { useState } from "react";
 import { BookmarkJsonFile } from "../components/BookmarkJsonFile";
 import { BookmarkJsonData } from "../components/BookmarkJsonData";
+import { getJsonData, isJSON } from "../js/utils";
 // import { TextForCopy } from "../components/TextForCopy";
 import { Switch } from "../components/Switch";
 import * as classes from "../css/App.module.css";
-
-const initialData = [
-  {
-    name: "🌤 Daily",
-    link: "",
-  },
-];
 
 function Link(a) {
   const jsonData = a.jsonData;
@@ -26,48 +20,25 @@ function Clear() {
   return <a href={"/"}>Clear</a>;
 }
 
-function getJsonData(queryString) {
-  const urlParams = new URLSearchParams(queryString);
-  const data = urlParams.get("data");
-  if (data) {
-    try {
-      return JSON.parse(decodeURIComponent(data));
-    } catch {
-      return [];
-    }
-  }
-  return [];
-}
-
-function isJSON(str) {
-  try {
-    JSON.parse(str);
-  } catch {
-    return false;
-  }
-  return true;
-}
-
-const initialJsonFile = localStorage.getItem("useJsonFile") === "true";
-
 export function App() {
-  const jsonData = getJsonData(window.location.search);
-  const jsonAry = jsonData.length === 0 ? initialData : jsonData;
+  const jsonAry = getJsonData(window.location.search);
   const [bookmarkAry, setBookmarkAry] = useState(jsonAry);
   const [bookmarkText, setBookmarkText] = useState(
     JSON.stringify(jsonAry, null, 2),
   );
-  const [useJsonFile, setJsonFile] = useState(initialJsonFile);
+  const [useJSONFile, setUseJSONFile] = useState(
+    localStorage.getItem("useJSONFile") === "true",
+  );
   const [msg, setMsg] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
 
   function handleSwitch(checked) {
     if (checked) {
-      setJsonFile(true);
-      localStorage.setItem("useJsonFile", "true");
+      setUseJSONFile(true);
+      localStorage.setItem("useJSONFile", "true");
     } else {
-      setJsonFile(false);
-      localStorage.setItem("useJsonFile", "false");
+      setUseJSONFile(false);
+      localStorage.setItem("useJSONFile", "false");
     }
   }
 
@@ -90,13 +61,13 @@ export function App() {
       <h2> Dashboard </h2>
       <div style={{ marginBottom: "1rem", marginLeft: "1rem" }}>
         <Switch
-          onOff={useJsonFile}
+          onOff={useJSONFile}
           setOnOff={handleSwitch}
           name="Use JSON file"
         />
       </div>
       <div className={classes.wrapper}>
-        {!useJsonFile && (
+        {!useJSONFile && (
           <>
             <div className={classes.side}>
               <textarea
@@ -126,7 +97,7 @@ export function App() {
             </div>
           </>
         )}
-        {useJsonFile && (
+        {useJSONFile && (
           <>
             <div className={classes.side}>
               <BookmarkJsonFile jsonFilename="officeBookmark.json" />
