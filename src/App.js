@@ -26,19 +26,19 @@ export function App() {
   const [bookmarkText, setBookmarkText] = useState(
     JSON.stringify(jsonAry, null, 2),
   );
-  const [useJSONFile, setUseJSONFile] = useState(
-    localStorage.getItem("useJSONFile") === "true",
+  const [useJsonFile, setUseJsonFile] = useState(
+    localStorage.getItem("useJsonFile") === "true",
   );
   const [msg, setMsg] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
 
   function handleSwitch(checked) {
     if (checked) {
-      setUseJSONFile(true);
-      localStorage.setItem("useJSONFile", "true");
+      setUseJsonFile(true);
+      localStorage.setItem("useJsonFile", "true");
     } else {
-      setUseJSONFile(false);
-      localStorage.setItem("useJSONFile", "false");
+      setUseJsonFile(false);
+      localStorage.setItem("useJsonFile", "false");
     }
   }
 
@@ -61,13 +61,13 @@ export function App() {
       <h2> Dashboard </h2>
       <div style={{ marginBottom: "1rem", marginLeft: "1rem" }}>
         <Switch
-          onOff={useJSONFile}
+          onOff={useJsonFile}
           setOnOff={handleSwitch}
           name="Use JSON file"
         />
       </div>
       <div className={classes.wrapper}>
-        {!useJSONFile && (
+        {!useJsonFile && (
           <>
             <div className={classes.side}>
               <textarea
@@ -97,7 +97,7 @@ export function App() {
             </div>
           </>
         )}
-        {useJSONFile && (
+        {useJsonFile && (
           <>
             <div className={classes.side}>
               <BookmarkJsonFile jsonFilename="officeBookmark.json" />
