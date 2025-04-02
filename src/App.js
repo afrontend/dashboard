@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { BookmarkJsonFile } from "../components/BookmarkJsonFile";
 import { BookmarkJsonData } from "../components/BookmarkJsonData";
+import { BookmarkJsonFile } from "../components/BookmarkJsonFile";
 import { getJsonData, isJSON } from "../js/utils";
 // import { TextForCopy } from "../components/TextForCopy";
 import { Switch } from "../components/Switch";
