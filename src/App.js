@@ -24,10 +24,10 @@ export function App() {
   const jsonAry = getJsonData(window.location.search);
   const [bookmarkAry, setBookmarkAry] = useState(jsonAry);
   const [bookmarkText, setBookmarkText] = useState(
-    JSON.stringify(jsonAry, null, 2),
+    JSON.stringify(jsonAry, null, 2)
   );
   const [useJsonFile, setUseJsonFile] = useState(
-    localStorage.getItem("useJsonFile") === "true",
+    localStorage.getItem("useJsonFile") === "true"
   );
   const [msg, setMsg] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
