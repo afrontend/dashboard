@@ -50,10 +50,10 @@ export function App() {
       setErrorMsg("");
       const jsonAry = JSON.parse(text);
       setBookmarkAry(jsonAry);
-    } else {
-      setMsg("");
-      setErrorMsg("Invalid JSON");
+      return;
     }
+    setMsg("");
+    setErrorMsg("Invalid JSON");
   }
 
   return (
