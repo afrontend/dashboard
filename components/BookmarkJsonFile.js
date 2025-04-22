@@ -1,5 +1,11 @@
+import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
 import { BookmarkJsonData } from "../components/BookmarkJsonData";
+
+BookmarkJsonFile.propTypes = {
+  hasDescription: PropTypes.bool,
+  jsonFilename: PropTypes.string,
+};
 
 export function BookmarkJsonFile({ hasDescription, jsonFilename }) {
   const [bookmarkAry, setBookmark] = useState([]);
@@ -22,8 +28,6 @@ export function BookmarkJsonFile({ hasDescription, jsonFilename }) {
     };
     if (jsonFilename) {
       fetchData();
-    } else if (jsonData && jsonData.length > 0) {
-      setBookmark(jsonData);
     }
   }, []);
 

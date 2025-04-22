@@ -1,6 +1,14 @@
 import React from "react";
 
-export function Switch({ name = "", onOff, setOnOff }) {
+import PropTypes from "prop-types";
+
+Switch.propTypes = {
+  name: PropTypes.string.isRequired,
+  onOff: PropTypes.bool,
+  setOnOff: PropTypes.func.isRequired,
+};
+
+export function Switch({ name, onOff, setOnOff }) {
   return (
     <div>
       <input
