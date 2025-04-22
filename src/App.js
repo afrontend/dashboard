@@ -36,10 +36,10 @@ export function App() {
     if (checked) {
       setUseJsonFile(true);
       localStorage.setItem("useJsonFile", "true");
-    } else {
-      setUseJsonFile(false);
-      localStorage.setItem("useJsonFile", "false");
+      return;
     }
+    setUseJsonFile(false);
+    localStorage.setItem("useJsonFile", "false");
   }
 
   function handleChange(e) {
