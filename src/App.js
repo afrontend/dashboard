@@ -67,7 +67,16 @@ export function App() {
         />
       </div>
       <div className={classes.wrapper}>
-        {!useJsonFile && (
+        {useJsonFile ? (
+          <>
+            <div className={classes.side}>
+              <BookmarkJsonFile jsonFilename="officeBookmark.json" />
+            </div>
+            <div className={classes.side}>
+              <BookmarkJsonFile jsonFilename="homeBookmark.json" />
+            </div>
+          </>
+        ) : (
           <>
             <div className={classes.side}>
               <textarea
@@ -86,6 +95,7 @@ export function App() {
                 </div>
               )}
               <div className={classes.link}>
+                apple
                 <Link jsonData={bookmarkAry} /> <Clear />
               </div>
             </div>
@@ -94,16 +104,6 @@ export function App() {
                 bookmarkAry={bookmarkAry}
                 hasDescription={true}
               />
-            </div>
-          </>
-        )}
-        {useJsonFile && (
-          <>
-            <div className={classes.side}>
-              <BookmarkJsonFile jsonFilename="officeBookmark.json" />
-            </div>
-            <div className={classes.side}>
-              <BookmarkJsonFile jsonFilename="homeBookmark.json" />
             </div>
           </>
         )}
