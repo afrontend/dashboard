@@ -3,7 +3,7 @@ import { BookmarkJsonData } from "../components/BookmarkJsonData";
 import { BookmarkJsonFile } from "../components/BookmarkJsonFile";
 import { getJsonData, isJSON } from "../js/utils";
 // import { TextForCopy } from "../components/TextForCopy";
-import { Switch } from "../components/Switch";
+import { JSONToggleSwitch } from "../components/JSONToggleSwitch";
 import * as classes from "../css/App.module.css";
 
 function Link(a) {
@@ -21,7 +21,7 @@ function Clear() {
 }
 
 export function App() {
-  const jsonAry = getJsonData(window.location.search);
+  const jsonAry = getJsonData();
   const [bookmarkAry, setBookmarkAry] = useState(jsonAry);
   const [bookmarkText, setBookmarkText] = useState(
     JSON.stringify(jsonAry, null, 2),
@@ -60,7 +60,7 @@ export function App() {
     <div className={classes.background}>
       <h2> Dashboard </h2>
       <div style={{ marginBottom: "1rem", marginLeft: "1rem" }}>
-        <Switch
+        <JSONToggleSwitch
           onOff={useJsonFile}
           setOnOff={handleSwitch}
           name="Use JSON file"
