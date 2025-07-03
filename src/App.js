@@ -6,18 +6,26 @@ import { getJsonData, isJSON } from "../js/utils";
 import { JSONToggleSwitch } from "../components/JSONToggleSwitch";
 import * as classes from "../css/App.module.css";
 
-function Link(a) {
+function SaveButton(a) {
   const jsonData = a.jsonData;
   const param = jsonData
     ? "?data=" + encodeURIComponent(JSON.stringify(jsonData))
     : "?data=";
   const { origin, pathname } = window.location;
   const url = origin + pathname + param;
-  return <a href={url}>Save</a>;
+  return (
+    <a href={url}>
+      <button>Save</button>
+    </a>
+  );
 }
 
-function Clear() {
-  return <a href={"/"}>Clear</a>;
+function ClearButton() {
+  return (
+    <a href={"/"}>
+      <button>Clear</button>
+    </a>
+  );
 }
 
 export function App() {
@@ -95,8 +103,7 @@ export function App() {
                 </div>
               )}
               <div className={classes.link}>
-                apple
-                <Link jsonData={bookmarkAry} /> <Clear />
+                <SaveButton jsonData={bookmarkAry} /> <ClearButton />
               </div>
             </div>
             <div className={classes.rightSide}>
