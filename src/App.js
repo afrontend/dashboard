@@ -5,28 +5,8 @@ import { getJsonData, isJSON } from "../js/utils";
 // import { TextForCopy } from "../components/TextForCopy";
 import { JSONToggleSwitch } from "../components/JSONToggleSwitch";
 import * as classes from "../css/App.module.css";
-
-function SaveButton(a) {
-  const jsonData = a.jsonData;
-  const param = jsonData
-    ? "?data=" + encodeURIComponent(JSON.stringify(jsonData))
-    : "?data=";
-  const { origin, pathname } = window.location;
-  const url = origin + pathname + param;
-  return (
-    <a href={url}>
-      <button>Save</button>
-    </a>
-  );
-}
-
-function ClearButton() {
-  return (
-    <a href={"/"}>
-      <button>Clear</button>
-    </a>
-  );
-}
+import SaveButton from "../components/SaveButton";
+import ClearButton from "../components/ClearButton";
 
 export function App() {
   const jsonAry = getJsonData();
@@ -103,7 +83,8 @@ export function App() {
                 </div>
               )}
               <div className={classes.link}>
-                <SaveButton jsonData={bookmarkAry} /> <ClearButton />
+                <SaveButton jsonData={bookmarkAry} />
+                <ClearButton />
               </div>
             </div>
             <div className={classes.rightSide}>
