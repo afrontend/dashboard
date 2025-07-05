@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import * as buttonCss from "../css/button.module.css";
 
 SaveButton.propTypes = {
-  jsonData: PropTypes.string,
+  jsonData: PropTypes.array,
 };
 
 export function SaveButton({ jsonData }) {

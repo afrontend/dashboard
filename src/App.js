@@ -5,8 +5,8 @@ import { getJsonData, isJSON } from "../js/utils";
 // import { TextForCopy } from "../components/TextForCopy";
 import { JSONToggleSwitch } from "../components/JSONToggleSwitch";
 import * as classes from "../css/App.module.css";
-import SaveButton from "../components/SaveButton";
-import ClearButton from "../components/ClearButton";
+import { SaveButton } from "../components/SaveButton";
+import { ClearButton } from "../components/ClearButton";
 
 export function App() {
   const jsonAry = getJsonData();
