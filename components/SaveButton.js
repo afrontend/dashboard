@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import * as buttonCss from "../css/button.module.css";
 
 SaveButton.propTypes = {
   jsonData: PropTypes.array,
@@ -14,7 +13,7 @@ export function SaveButton({ jsonData }) {
   const url = origin + pathname + param;
   return (
     <a href={url}>
-      <button className={buttonCss.btn}>Save</button>
+      <button>Save</button>
     </a>
   );
 }

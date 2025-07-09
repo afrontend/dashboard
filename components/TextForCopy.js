@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import * as buttonCss from "../css/button.module.css";
 
 const COPIED_MESSAGE = "copied";
 
@@ -29,9 +28,7 @@ export function TextForCopy() {
 
   return textAry.map((text, index) => (
     <div style={{ marginBottom: "0.5rem" }} key={text.content + index}>
-      <a className={buttonCss.btn} onClick={() => toClipboard(text.content)}>
-        {text.content}
-      </a>
+      <a onClick={() => toClipboard(text.content)}>{text.content}</a>
       &nbsp;
       {message === text.content && COPIED_MESSAGE}
     </div>

@@ -4,7 +4,6 @@ import { BookmarkJsonFile } from "../components/BookmarkJsonFile";
 import { getJsonData, isJSON } from "../js/utils";
 // import { TextForCopy } from "../components/TextForCopy";
 import { JSONToggleSwitch } from "../components/JSONToggleSwitch";
-import * as classes from "../css/App.module.css";
 import { SaveButton } from "../components/SaveButton";
 import { ClearButton } from "../components/ClearButton";
 
@@ -45,49 +44,57 @@ export function App() {
   }
 
   return (
-    <div className={classes.background}>
+    <div className={"bg-gray-300 mx-auto max-w-6xl p-5"}>
       <h2> Dashboard </h2>
-      <div style={{ marginBottom: "1rem", marginLeft: "1rem" }}>
+      <div className={"mb-4 ml-4"}>
         <JSONToggleSwitch
           onOff={useJsonFile}
           setOnOff={handleSwitch}
           name="Use JSON file"
         />
       </div>
-      <div className={classes.wrapper}>
+
+      <div className={"flex items-start justify-center"}>
         {useJsonFile ? (
           <>
-            <div className={classes.side}>
+            <div className="w-1/2 relative">
               <BookmarkJsonFile jsonFilename="officeBookmark.json" />
             </div>
-            <div className={classes.side}>
+            <div className="w-1/2 relative">
               <BookmarkJsonFile jsonFilename="homeBookmark.json" />
             </div>
           </>
         ) : (
           <>
-            <div className={classes.side}>
+            <div className="w-1/2 relative">
               <textarea
-                className={classes.textarea}
+                className="rounded-sm p-4 border-2 border-solid border-purple-500/75 h-[calc(100vh-400px)] w-[95%] m-2"
                 value={bookmarkText}
                 onChange={handleChange}
               />
               {msg && (
-                <div className={classes.msg} style={{ color: "#8c7ae6" }}>
+                <div
+                  className="absolute top-4 right-8"
+                  style={{ color: "#8c7ae6" }}
+                >
                   {msg}
                 </div>
               )}
               {errorMsg && (
-                <div className={classes.msg} style={{ color: "#e84118" }}>
+                <div
+                  className="absolute top-4 right-8"
+                  style={{ color: "#e84118" }}
+                >
                   {errorMsg}
                 </div>
               )}
-              <div className={classes.link}>
+
+              <div className="break-words m-4">
                 <SaveButton jsonData={bookmarkAry} />
                 <ClearButton />
               </div>
             </div>
-            <div className={classes.rightSide}>
+            <div className={"w-1/2 m-2"}>
               <BookmarkJsonData
                 bookmarkAry={bookmarkAry}
                 hasDescription={true}
