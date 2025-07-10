@@ -44,9 +44,9 @@ export function App() {
   }
 
   return (
-    <div className={"bg-gray-300 mx-auto max-w-6xl p-5"}>
+    <div className="bg-gray-300 mx-auto max-w-6xl p-5">
       <h2> Dashboard </h2>
-      <div className={"mb-4 ml-4"}>
+      <div className="mb-4 ml-4">
         <JSONToggleSwitch
           onOff={useJsonFile}
           setOnOff={handleSwitch}
@@ -54,7 +54,7 @@ export function App() {
         />
       </div>
 
-      <div className={"flex items-start justify-center"}>
+      <div className="flex items-start justify-center">
         {useJsonFile ? (
           <>
             <div className="w-1/2 relative">
@@ -91,6 +91,7 @@ export function App() {
 
               <div className="break-words m-4">
                 <SaveButton jsonData={bookmarkAry} />
+                &nbsp;
                 <ClearButton />
               </div>
             </div>
