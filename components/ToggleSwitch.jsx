@@ -1,14 +1,13 @@
 import React from "react";
-
 import PropTypes from "prop-types";
 
-JSONToggleSwitch.propTypes = {
+ToggleSwitch.propTypes = {
   name: PropTypes.string.isRequired,
   onOff: PropTypes.bool,
   setOnOff: PropTypes.func.isRequired,
 };
 
-export function JSONToggleSwitch({ name, onOff, setOnOff }) {
+export function ToggleSwitch({ name, onOff, setOnOff }) {
   return (
     <div>
       <input

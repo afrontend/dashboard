@@ -1,28 +1,28 @@
 import React, { useState } from "react";
 
-import { JSONToggleSwitch } from "../components/JSONToggleSwitch";
+import { ToggleSwitch } from "../components/ToggleSwitch";
 
 export function useFileToggleSwitch() {
   const [useFile, setUseFile] = useState(
-    localStorage.getItem("useFile") === "true",
+    localStorage.getItem("useFileFlag") === "true",
   );
 
   function handleSwitch(checked) {
     if (checked) {
       setUseFile(true);
-      localStorage.setItem("useFile", "true");
+      localStorage.setItem("useFileFlag", "true");
       return;
     }
     setUseFile(false);
-    localStorage.setItem("useFile", "false");
+    localStorage.setItem("useFileFlag", "false");
   }
 
   const SwitchComponent = () => {
     return (
-      <JSONToggleSwitch
+      <ToggleSwitch
         onOff={useFile}
         setOnOff={handleSwitch}
-        name="Use JSON file"
+        name="Use local JSON file"
       />
     );
   };
