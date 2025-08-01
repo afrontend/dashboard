@@ -1,11 +1,15 @@
 import React from "react";
-import PropTypes from "prop-types";
 
-SaveButton.propTypes = {
-  jsonData: PropTypes.array,
-};
+interface Bookmark {
+  name: string;
+  link: string;
+}
 
-export function SaveButton({ jsonData }) {
+interface SaveButtonProps {
+  jsonData?: Bookmark[];
+}
+
+export function SaveButton({ jsonData }: SaveButtonProps) {
   const param = jsonData
     ? "?data=" + encodeURIComponent(JSON.stringify(jsonData))
     : "?data=";

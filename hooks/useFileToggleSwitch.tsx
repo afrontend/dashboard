@@ -3,11 +3,11 @@ import React, { useState } from "react";
 import { ToggleSwitch } from "../components/ToggleSwitch";
 
 export function useFileToggleSwitch() {
-  const [useFile, setUseFile] = useState(
+  const [useFile, setUseFile] = useState<boolean>(
     localStorage.getItem("useFileFlag") === "true",
   );
 
-  function handleSwitch(checked) {
+  function handleSwitch(checked: boolean) {
     if (checked) {
       setUseFile(true);
       localStorage.setItem("useFileFlag", "true");

@@ -1,11 +1,16 @@
-const initialData = [
+interface Bookmark {
+  name: string;
+  link: string;
+}
+
+const initialData: Bookmark[] = [
   {
     name: "🌤 Daily",
     link: "",
   },
 ];
 
-export function getJsonData() {
+export function getJsonData(): Bookmark[] {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   const data = urlParams.get("data");
@@ -19,7 +24,7 @@ export function getJsonData() {
   return initialData;
 }
 
-export function isJSON(str) {
+export function isJSON(str: string): boolean {
   try {
     JSON.parse(str);
   } catch {

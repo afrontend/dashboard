@@ -1,13 +1,12 @@
 import React from "react";
-import PropTypes from "prop-types";
 
-ToggleSwitch.propTypes = {
-  name: PropTypes.string.isRequired,
-  onOff: PropTypes.bool,
-  setOnOff: PropTypes.func.isRequired,
-};
+interface ToggleSwitchProps {
+  name: string;
+  onOff: boolean;
+  setOnOff: (checked: boolean) => void;
+}
 
-export function ToggleSwitch({ name, onOff, setOnOff }) {
+export function ToggleSwitch({ name, onOff, setOnOff }: ToggleSwitchProps) {
   return (
     <div>
       <input

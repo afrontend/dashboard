@@ -2,20 +2,24 @@ import React, { useEffect, useState } from "react";
 
 const COPIED_MESSAGE = "copied";
 
+interface TextItem {
+  content: string;
+}
+
 export function TextForCopy() {
-  const [textAry, setTextAry] = useState([]);
-  const [message, setMessage] = useState([]);
+  const [textAry, setTextAry] = useState<TextItem[]>([]);
+  const [message, setMessage] = useState<string>("");
 
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch("json/text.json?" + new Date().valueOf());
-      const tList = await response.json();
+      const tList: TextItem[] = await response.json();
       setTextAry(tList);
     };
     fetchData();
   }, []);
 
-  function toClipboard(text) {
+  function toClipboard(text: string) {
     navigator.clipboard.writeText(text).then(() => {
       setMessage(text);
       setTimeout(() => {

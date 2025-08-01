@@ -1,6 +1,8 @@
 import globals from "globals";
 import js from "@eslint/js";
 import react from "eslint-plugin-react";
+import tseslint from "@typescript-eslint/eslint-plugin";
+import tsparser from "@typescript-eslint/parser";
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
@@ -10,6 +12,18 @@ export default [
     files: ["**/*.{js,mjs,jsx,cjs,ts,tsx}"],
     plugins: {
       react,
+      "@typescript-eslint": tseslint,
+    },
+    languageOptions: {
+      parser: tsparser,
+      parserOptions: {
+        ecmaVersion: "latest",
+        sourceType: "module",
+        ecmaFeatures: {
+          jsx: true,
+        },
+      },
+      globals: globals.browser,
     },
     settings: {
       react: {
@@ -17,12 +31,13 @@ export default [
       },
     },
     rules: {
-      "react/prop-types": "error",
+      "react/prop-types": "off",
+      "@typescript-eslint/no-unused-vars": "error",
+      "@typescript-eslint/no-explicit-any": "warn",
     },
   },
-  { languageOptions: { globals: globals.browser } },
   react.configs.flat.recommended,
   {
-    ignores: ["dist/**", "build/**"],
+    ignores: ["dist/**", "build/**", "node_modules/**"],
   },
 ];

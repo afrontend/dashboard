@@ -5,7 +5,7 @@ import { BookmarkWithURL } from "../components/BookmarkWithURL";
 import { useFileToggleSwitch } from "../hooks/useFileToggleSwitch";
 
 export function App() {
-  const { useFileFlag, SwitchComponent } = useFileToggleSwitch();
+  const { useFile: useFileFlag, SwitchComponent } = useFileToggleSwitch();
 
   return (
     <div className="bg-gray-300 mx-auto max-w-6xl p-5">

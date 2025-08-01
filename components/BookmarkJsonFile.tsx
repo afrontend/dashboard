@@ -1,23 +1,27 @@
-import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
 import { BookmarkJsonData } from "../components/BookmarkJsonData";
 
-BookmarkJsonFile.propTypes = {
-  hasDescription: PropTypes.bool,
-  jsonFilename: PropTypes.string,
-};
+interface Bookmark {
+  name: string;
+  link: string;
+}
 
-export function BookmarkJsonFile({ hasDescription, jsonFilename }) {
-  const [bookmarkAry, setBookmark] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [errorMsg, setErrorMsg] = useState("");
+interface BookmarkJsonFileProps {
+  hasDescription?: boolean;
+  jsonFilename: string;
+}
+
+export function BookmarkJsonFile({ hasDescription, jsonFilename }: BookmarkJsonFileProps) {
+  const [bookmarkAry, setBookmark] = useState<Bookmark[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [errorMsg, setErrorMsg] = useState<string>("");
 
   useEffect(() => {
     const fetchData = async () => {
       const path = `json/${jsonFilename}?` + new Date().valueOf();
       try {
         const response = await fetch(path);
-        const bList = await response.json();
+        const bList: Bookmark[] = await response.json();
         setBookmark(bList);
       } catch (error) {
         console.log(error);
@@ -29,7 +33,7 @@ export function BookmarkJsonFile({ hasDescription, jsonFilename }) {
     if (jsonFilename) {
       fetchData();
     }
-  }, []);
+  }, [jsonFilename]);
 
   if (loading) return <div>Loading...</div>;
   if (errorMsg) return <pre>{errorMsg}</pre>;

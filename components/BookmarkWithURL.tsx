@@ -1,25 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, ChangeEvent } from "react";
 import { BookmarkJsonData } from "../components/BookmarkJsonData";
 import { ClearButton } from "../components/ClearButton";
 import { SaveButton } from "../components/SaveButton";
 import { getJsonData, isJSON } from "../js/utils";
 
+interface Bookmark {
+  name: string;
+  link: string;
+}
+
 export function BookmarkWithURL() {
   const jsonAry = getJsonData();
-  const [bookmarkAry, setBookmarkAry] = useState(jsonAry);
-  const [bookmarkText, setBookmarkText] = useState(
+  const [bookmarkAry, setBookmarkAry] = useState<Bookmark[]>(jsonAry);
+  const [bookmarkText, setBookmarkText] = useState<string>(
     JSON.stringify(jsonAry, null, 2),
   );
-  const [msg, setMsg] = useState("");
-  const [errorMsg, setErrorMsg] = useState("");
+  const [msg, setMsg] = useState<string>("");
+  const [errorMsg, setErrorMsg] = useState<string>("");
 
-  function handleChange(e) {
+  function handleChange(e: ChangeEvent<HTMLTextAreaElement>) {
     const text = e.target.value;
     setBookmarkText(text);
     if (text && isJSON(text)) {
       setMsg("Valid JSON");
       setErrorMsg("");
-      const jsonAry = JSON.parse(text);
+      const jsonAry: Bookmark[] = JSON.parse(text);
       setBookmarkAry(jsonAry);
       return;
     }
