@@ -1,7 +1,7 @@
 import React from "react";
 
 import { BookmarkJsonFile } from "../components/BookmarkJsonFile";
-export function BookmarkFiles() {
+export function BookmarkJsonFiles() {
   return (
     <>
       <div className="w-1/2 relative">
