@@ -3,7 +3,7 @@ import React from "react";
 interface ToggleSwitchProps {
   name: string;
   onOff: boolean;
-  setOnOff: (checked: boolean) => void;
+  setOnOff: () => void;
 }
 
 export function ToggleSwitch({ name, onOff, setOnOff }: ToggleSwitchProps) {
