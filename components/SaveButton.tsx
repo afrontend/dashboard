@@ -15,9 +15,5 @@ export function SaveButton({ jsonData }: SaveButtonProps) {
     : "?data=";
   const { origin, pathname } = window.location;
   const url = origin + pathname + param;
-  return (
-    <a href={url}>
-      <button>Save</button>
-    </a>
-  );
+  return <a href={url}> Save</a>;
 }
