@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 
-import { ToggleSwitch } from "../components/ToggleSwitch";
-
 export function useFileToggleSwitch() {
   const [useFile, setUseFile] = useState<boolean>(
     localStorage.getItem("useFileFlag") === "true",
@@ -19,11 +17,15 @@ export function useFileToggleSwitch() {
 
   const SwitchComponent = () => {
     return (
-      <ToggleSwitch
-        onOff={useFile}
-        setOnOff={handleSwitch}
-        name="Use local JSON file"
-      />
+      <div>
+        <input
+          type="checkbox"
+          id="cb"
+          checked={useFile}
+          onChange={(e) => handleSwitch(e.target.checked)}
+        />
+        <label htmlFor="cb">Use local JSON file</label>
+      </div>
     );
   };
 
