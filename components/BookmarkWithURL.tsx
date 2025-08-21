@@ -35,6 +35,9 @@ export function BookmarkWithURL() {
   return (
     <>
       <div className="w-1/2 relative">
+        <div className="ml-2">
+          <SaveButton jsonData={bookmarkAry} />, <ClearButton />
+        </div>
         <textarea
           className="rounded-sm p-4 border-2 border-solid border-purple-500/75 h-[calc(100vh-400px)] w-[95%] m-2"
           value={bookmarkText}
@@ -50,12 +53,6 @@ export function BookmarkWithURL() {
             {errorMsg}
           </div>
         )}
-
-        <div className="break-words m-4">
-          <SaveButton jsonData={bookmarkAry} />
-          &nbsp;
-          <ClearButton />
-        </div>
       </div>
       <div className={"w-1/2 m-2"}>
         <BookmarkJsonData bookmarkAry={bookmarkAry} hasDescription={true} />
