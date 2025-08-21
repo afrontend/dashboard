@@ -19,6 +19,7 @@ export function useFileToggleSwitch() {
     return (
       <div>
         <input
+          className="mr-2"
           type="checkbox"
           id="cb"
           checked={useFile}

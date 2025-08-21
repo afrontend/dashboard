@@ -12,7 +12,7 @@ export function App() {
       <h1 className="text-4xl font-bold text-center text-gray-800 mb-6 pb-4 border-b-2 border-gray-400">
         Dashboard
       </h1>
-      <div className="mb-4 ml-4">
+      <div className="ml-2">
         <SwitchComponent />
       </div>
       <div className="flex items-start justify-center">
