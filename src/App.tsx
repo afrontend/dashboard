@@ -1,22 +1,28 @@
 import React from "react";
 // import { TextForCopy } from "../components/TextForCopy";
-import { BookmarkJsonFiles } from "../components/BookmarkJsonFiles";
 import { BookmarkWithURL } from "../components/BookmarkWithURL";
-import { useFileToggleSwitch } from "../hooks/useFileToggleSwitch";
+import { useFileCheckBox } from "../hooks/useFileCheckBox";
+import { BookmarkJsonFile } from "../components/BookmarkJsonFile";
 
 export function App() {
-  const { useFile: useFileFlag, SwitchComponent } = useFileToggleSwitch();
+  const { useFileFlag, FileFlagCheckBox } = useFileCheckBox();
 
   return (
-    <div className="bg-gray-300 mx-auto max-w-6xl p-5">
+    <div className="bg-gray-300 mx-auto p-5">
       <h1 className="text-4xl font-bold text-center text-gray-800 mb-6 pb-4 border-b-2 border-gray-400">
         Dashboard
       </h1>
       <div className="ml-2">
-        <SwitchComponent />
+        <FileFlagCheckBox />
       </div>
       <div className="flex items-start justify-center">
-        {useFileFlag ? <BookmarkJsonFiles /> : <BookmarkWithURL />}
+        {useFileFlag ? (
+          <div className="w-full max-w-4xl">
+            <BookmarkJsonFile jsonFilename="dashboard.json" />
+          </div>
+        ) : (
+          <BookmarkWithURL />
+        )}
       </div>
       {/* <h2>Text For Copy</h2> */}
       {/* <TextForCopy /> */}

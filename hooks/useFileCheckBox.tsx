@@ -1,34 +1,34 @@
 import React, { useState } from "react";
 
-export function useFileToggleSwitch() {
-  const [useFile, setUseFile] = useState<boolean>(
+export function useFileCheckBox() {
+  const [useFileFlag, setUseFileFlag] = useState<boolean>(
     localStorage.getItem("useFileFlag") === "true",
   );
 
   function handleSwitch(checked: boolean) {
     if (checked) {
-      setUseFile(true);
+      setUseFileFlag(true);
       localStorage.setItem("useFileFlag", "true");
       return;
     }
-    setUseFile(false);
+    setUseFileFlag(false);
     localStorage.setItem("useFileFlag", "false");
   }
 
-  const SwitchComponent = () => {
+  const FileFlagCheckBox = () => {
     return (
       <div>
         <input
           className="mr-2"
           type="checkbox"
           id="cb"
-          checked={useFile}
+          checked={useFileFlag}
           onChange={(e) => handleSwitch(e.target.checked)}
         />
-        <label htmlFor="cb">Use local JSON file</label>
+        <label htmlFor="cb">Use dashboard.json file</label>
       </div>
     );
   };
 
-  return { useFile, SwitchComponent };
+  return { useFileFlag, FileFlagCheckBox };
 }

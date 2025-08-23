@@ -36,23 +36,25 @@ export function BookmarkWithURL() {
     <>
       <div className="w-1/2 relative">
         <div className="ml-2">
-          <SaveButton jsonData={bookmarkAry} />, <ClearButton />
+          <SaveButton jsonData={bookmarkAry} />, <ClearButton />, &nbsp;
+          {msg && (
+            <span className="" style={{ color: "#8c7ae6" }}>
+              {msg}
+            </span>
+          )}
+          {errorMsg && (
+            <span className="" style={{ color: "#e84118" }}>
+              {errorMsg}
+            </span>
+          )}
         </div>
-        <textarea
-          className="rounded-sm p-4 border-2 border-solid border-purple-500/75 h-[calc(100vh-400px)] w-[95%] m-2"
-          value={bookmarkText}
-          onChange={handleChange}
-        />
-        {msg && (
-          <div className="absolute top-4 right-8" style={{ color: "#8c7ae6" }}>
-            {msg}
-          </div>
-        )}
-        {errorMsg && (
-          <div className="absolute top-4 right-8" style={{ color: "#e84118" }}>
-            {errorMsg}
-          </div>
-        )}
+        <div className="w-full h-[calc(100vh-200px)]">
+          <textarea
+            className="rounded-sm p-4 border-2 border-solid border-purple-500/75 h-[calc(100vh-200px)]"
+            value={bookmarkText}
+            onChange={handleChange}
+          />
+        </div>
       </div>
       <div className={"w-1/2 m-2"}>
         <BookmarkJsonData bookmarkAry={bookmarkAry} hasDescription={true} />

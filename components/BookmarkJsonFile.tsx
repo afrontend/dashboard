@@ -11,7 +11,10 @@ interface BookmarkJsonFileProps {
   jsonFilename: string;
 }
 
-export function BookmarkJsonFile({ hasDescription, jsonFilename }: BookmarkJsonFileProps) {
+export function BookmarkJsonFile({
+  hasDescription,
+  jsonFilename,
+}: BookmarkJsonFileProps) {
   const [bookmarkAry, setBookmark] = useState<Bookmark[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [errorMsg, setErrorMsg] = useState<string>("");
