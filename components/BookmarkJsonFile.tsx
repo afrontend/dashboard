@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { BookmarkJsonData } from "../components/BookmarkJsonData";
 
-interface Bookmark {
-  name: string;
-  link: string;
-}
+type Bookmark = [string, string];
 
 interface BookmarkJsonFileProps {
   hasDescription?: boolean;

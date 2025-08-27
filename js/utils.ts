@@ -1,13 +1,7 @@
-interface Bookmark {
-  name: string;
-  link: string;
-}
+type Bookmark = [string, string];
 
 const initialData: Bookmark[] = [
-  {
-    name: "🌤 Daily",
-    link: "",
-  },
+  ["🌤 Daily", ""],
 ];
 
 export function getJsonData(): Bookmark[] {

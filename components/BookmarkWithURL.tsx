@@ -4,10 +4,7 @@ import { ClearButton } from "../components/ClearButton";
 import { SaveButton } from "../components/SaveButton";
 import { getJsonData, isJSON } from "../js/utils";
 
-interface Bookmark {
-  name: string;
-  link: string;
-}
+type Bookmark = [string, string];
 
 export function BookmarkWithURL() {
   const jsonAry = getJsonData();

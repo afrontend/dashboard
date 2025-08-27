@@ -1,9 +1,6 @@
 import React from "react";
 
-interface Bookmark {
-  name: string;
-  link: string;
-}
+type Bookmark = [string, string];
 
 interface SaveButtonProps {
   jsonData?: Bookmark[];
