@@ -8,11 +8,11 @@ export function App() {
   const { useFileFlag, FileFlagCheckBox } = useFileCheckBox();
 
   return (
-    <div className="bg-gray-300 mx-auto p-5">
-      <h1 className="text-4xl font-bold text-center text-gray-800 mb-6 pb-4 border-b-2 border-gray-400">
+    <div className="bg-gray-300 mx-auto p-5 h-[100vh]">
+      <h1 className="text-4xl font-bold text-center text-gray-800 mb-2 pb-4 border-b-2 border-gray-400">
         Dashboard
       </h1>
-      <div className="ml-2">
+      <div className="flex justify-center mb-4">
         <FileFlagCheckBox />
       </div>
       <div className="flex items-start justify-center">

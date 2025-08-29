@@ -32,25 +32,27 @@ export function BookmarkWithURL() {
   return (
     <>
       <div className="w-1/2 relative">
-        <div className="ml-2">
-          <SaveButton jsonData={bookmarkAry} />, <ClearButton />, &nbsp;
-          {msg && (
-            <span className="" style={{ color: "#8c7ae6" }}>
-              {msg}
-            </span>
-          )}
-          {errorMsg && (
-            <span className="" style={{ color: "#e84118" }}>
-              {errorMsg}
-            </span>
-          )}
-        </div>
-        <div className="w-full h-[calc(100vh-200px)]">
+        <div className="w-full">
           <textarea
-            className="rounded-sm p-4 border-2 border-solid border-purple-500/75 h-[calc(100vh-200px)]"
+            className={`rounded-sm p-2 border-2 border-solid h-[calc(100vh-300px)] ${
+              errorMsg ? "border-red-600" : "border-purple-500/75"
+            }`}
             value={bookmarkText}
             onChange={handleChange}
           />
+          <div className="mt-2 mb-2 flex justify-end items-center gap-2">
+            {msg && (
+              <span className="" style={{ color: "#8c7ae6" }}>
+                &nbsp; {msg}
+              </span>
+            )}
+            {errorMsg && (
+              <span className="" style={{ color: "#e84118" }}>
+                &nbsp; {errorMsg}
+              </span>
+            )}
+            <SaveButton jsonData={bookmarkAry} /> <ClearButton />
+          </div>
         </div>
       </div>
       <div className={"w-1/2 m-2"}>
