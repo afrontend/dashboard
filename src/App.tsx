@@ -8,7 +8,7 @@ export function App() {
   const { useFileFlag, FileFlagCheckBox } = useFileCheckBox();
 
   return (
-    <div className="bg-gray-300 mx-auto p-5 h-[100vh]">
+    <div className="bg-gray-300 mx-auto p-5">
       <h1 className="text-4xl font-bold text-center text-gray-800 mb-2 pb-4 border-b-2 border-gray-400">
         Dashboard
       </h1>
