@@ -1,8 +1,8 @@
 import React from "react";
 // import { TextForCopy } from "../components/TextForCopy";
-import { BookmarkWithURL } from "../components/BookmarkWithURL";
+import { BookmarksInURL } from "../components/BookmarksInURL";
 import { useLocalFileFlag } from "../hooks/useLocalFileFlag";
-import { BookmarkJsonFile } from "../components/BookmarkJsonFile";
+import { BookmarksInFile } from "../components/BookmarksInFile";
 
 export function App() {
   const { flag: fileFlag, LocalFileFlag } = useLocalFileFlag();
@@ -18,10 +18,10 @@ export function App() {
       <div className="flex items-start justify-center">
         {fileFlag ? (
           <div className="w-full max-w-4xl">
-            <BookmarkJsonFile jsonFilename="dashboard.json" />
+            <BookmarksInFile jsonFilename="dashboard.json" />
           </div>
         ) : (
-          <BookmarkWithURL />
+          <BookmarksInURL />
         )}
       </div>
       {/* <h2>Text For Copy</h2> */}

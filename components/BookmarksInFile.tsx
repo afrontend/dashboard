@@ -8,7 +8,7 @@ interface BookmarkJsonFileProps {
   jsonFilename: string;
 }
 
-export function BookmarkJsonFile({
+export function BookmarksInFile({
   hasDescription,
   jsonFilename,
 }: BookmarkJsonFileProps) {

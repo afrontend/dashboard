@@ -6,7 +6,7 @@ import { getJsonData, isJSON } from "../js/utils";
 
 type Bookmark = [string, string];
 
-export function BookmarkWithURL() {
+export function BookmarksInURL() {
   const jsonAry = getJsonData();
   const [bookmarkAry, setBookmarkAry] = useState<Bookmark[]>(jsonAry);
   const [bookmarkText, setBookmarkText] = useState<string>(
