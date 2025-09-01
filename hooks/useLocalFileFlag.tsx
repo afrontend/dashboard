@@ -1,28 +1,28 @@
 import React, { useState } from "react";
 
-export function useFileCheckBox() {
-  const [useFileFlag, setUseFileFlag] = useState<boolean>(
+export function useLocalFileFlag() {
+  const [flag, setFlag] = useState<boolean>(
     localStorage.getItem("useFileFlag") === "true",
   );
 
   function handleSwitch(checked: boolean) {
     if (checked) {
-      setUseFileFlag(true);
+      setFlag(true);
       localStorage.setItem("useFileFlag", "true");
       return;
     }
-    setUseFileFlag(false);
+    setFlag(false);
     localStorage.setItem("useFileFlag", "false");
   }
 
-  const FileFlagCheckBox = () => {
+  const LocalFileFlag = () => {
     return (
       <div>
         <input
           className="mr-2"
           type="checkbox"
           id="cb"
-          checked={useFileFlag}
+          checked={flag}
           onChange={(e) => handleSwitch(e.target.checked)}
         />
         <label htmlFor="cb">Use dashboard.json file</label>
@@ -30,5 +30,5 @@ export function useFileCheckBox() {
     );
   };
 
-  return { useFileFlag, FileFlagCheckBox };
+  return { flag, LocalFileFlag };
 }

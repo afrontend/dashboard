@@ -4,7 +4,7 @@ Local web service to show bookmarks
 
 ## How to run
 
-json/\* files are used to store bookmarks and text to copy.
+JSON/\* files are used to store bookmarks and text to copy.
 
 ```basd
 git clone https://github.com/afrontend/dashboard.git

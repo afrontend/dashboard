@@ -1,11 +1,11 @@
 import React from "react";
 // import { TextForCopy } from "../components/TextForCopy";
 import { BookmarkWithURL } from "../components/BookmarkWithURL";
-import { useFileCheckBox } from "../hooks/useFileCheckBox";
+import { useLocalFileFlag } from "../hooks/useLocalFileFlag";
 import { BookmarkJsonFile } from "../components/BookmarkJsonFile";
 
 export function App() {
-  const { useFileFlag, FileFlagCheckBox } = useFileCheckBox();
+  const { flag: fileFlag, LocalFileFlag } = useLocalFileFlag();
 
   return (
     <div className="bg-gray-300 mx-auto p-5">
@@ -13,10 +13,10 @@ export function App() {
         Dashboard
       </h1>
       <div className="flex justify-center mb-4">
-        <FileFlagCheckBox />
+        <LocalFileFlag />
       </div>
       <div className="flex items-start justify-center">
-        {useFileFlag ? (
+        {fileFlag ? (
           <div className="w-full max-w-4xl">
             <BookmarkJsonFile jsonFilename="dashboard.json" />
           </div>
