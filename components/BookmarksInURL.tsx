@@ -3,12 +3,11 @@ import { BookmarkJsonData } from "../components/BookmarkJsonData";
 import { ClearButton } from "../components/ClearButton";
 import { SaveButton } from "../components/SaveButton";
 import { getJsonData, isJSON } from "../js/utils";
-
-type Bookmark = [string, string];
+import { TBookmark } from "../types";
 
 export function BookmarksInURL() {
   const jsonAry = getJsonData();
-  const [bookmarkAry, setBookmarkAry] = useState<Bookmark[]>(jsonAry);
+  const [bookmarkAry, setBookmarkAry] = useState<TBookmark[]>(jsonAry);
   const [bookmarkText, setBookmarkText] = useState<string>(
     JSON.stringify(jsonAry, null, 2),
   );
@@ -21,7 +20,7 @@ export function BookmarksInURL() {
     if (text && isJSON(text)) {
       setMsg("Valid JSON");
       setErrorMsg("");
-      const jsonAry: Bookmark[] = JSON.parse(text);
+      const jsonAry: TBookmark[] = JSON.parse(text);
       setBookmarkAry(jsonAry);
       return;
     }

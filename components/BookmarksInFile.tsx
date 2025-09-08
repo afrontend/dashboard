@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { BookmarkJsonData } from "../components/BookmarkJsonData";
-
-type Bookmark = [string, string];
+import { TBookmark } from "../types";
 
 interface BookmarkJsonFileProps {
   hasDescription?: boolean;
@@ -12,7 +11,7 @@ export function BookmarksInFile({
   hasDescription,
   jsonFilename,
 }: BookmarkJsonFileProps) {
-  const [bookmarkAry, setBookmark] = useState<Bookmark[]>([]);
+  const [bookmarkAry, setBookmark] = useState<TBookmark[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [errorMsg, setErrorMsg] = useState<string>("");
 
@@ -31,7 +30,7 @@ export function BookmarksInFile({
           }
           return;
         }
-        const bList: Bookmark[] = await response.json();
+        const bList: TBookmark[] = await response.json();
         setBookmark(bList);
       } catch (error) {
         if (error instanceof TypeError && error.message.includes("fetch")) {

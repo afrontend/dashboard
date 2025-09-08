@@ -1,9 +1,8 @@
 import React from "react";
-
-type Bookmark = [string, string];
+import { TBookmark } from "../types";
 
 interface SaveButtonProps {
-  jsonData?: Bookmark[];
+  jsonData?: TBookmark[];
 }
 
 export function SaveButton({ jsonData }: SaveButtonProps) {

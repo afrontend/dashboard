@@ -1,10 +1,8 @@
-type Bookmark = [string, string];
+import { TBookmark } from "../types";
 
-const initialData: Bookmark[] = [
-  ["🌤 Daily", ""],
-];
+const initialData: TBookmark[] = [["🌤 Daily", ""]];
 
-export function getJsonData(): Bookmark[] {
+export function getJsonData(): TBookmark[] {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   const data = urlParams.get("data");

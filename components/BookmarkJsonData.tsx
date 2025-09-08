@@ -1,13 +1,16 @@
 import React from "react";
 
-type Bookmark = [string, string];
+import { TBookmark } from "../types";
 
 interface BookmarkJsonDataProps {
   hasDescription?: boolean;
-  bookmarkAry?: Bookmark[];
+  bookmarkAry?: TBookmark[];
 }
 
-export function BookmarkJsonData({ hasDescription, bookmarkAry = [] }: BookmarkJsonDataProps) {
+export function BookmarkJsonData({
+  hasDescription,
+  bookmarkAry = [],
+}: BookmarkJsonDataProps) {
   const bAry = bookmarkAry && bookmarkAry.length > 0 ? bookmarkAry : [];
   return bAry.map((b, index) => (
     <div style={{ marginBottom: "0.5rem" }} key={b[1] + index}>
