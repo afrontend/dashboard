@@ -3,14 +3,10 @@ import { BookmarkJsonData } from "../components/BookmarkJsonData";
 import { TBookmark } from "../types";
 
 interface BookmarkJsonFileProps {
-  hasDescription?: boolean;
   jsonFilename: string;
 }
 
-export function BookmarksInFile({
-  hasDescription,
-  jsonFilename,
-}: BookmarkJsonFileProps) {
+export function BookmarksInFile({ jsonFilename }: BookmarkJsonFileProps) {
   const [bookmarkAry, setBookmark] = useState<TBookmark[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [errorMsg, setErrorMsg] = useState<string>("");
@@ -50,10 +46,5 @@ export function BookmarksInFile({
   if (loading) return <div>Loading...</div>;
   if (errorMsg) return <pre>{errorMsg}</pre>;
 
-  return (
-    <BookmarkJsonData
-      hasDescription={hasDescription}
-      bookmarkAry={bookmarkAry}
-    />
-  );
+  return <BookmarkJsonData bookmarkAry={bookmarkAry} />;
 }
