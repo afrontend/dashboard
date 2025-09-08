@@ -21,7 +21,6 @@ export function BookmarksInFile({
       const path = `json/${jsonFilename}?` + new Date().valueOf();
       try {
         const response = await fetch(path);
-        console.log(`response.ok: ${response.ok}`);
         if (!response.ok) {
           if (response.status === 404) {
             setErrorMsg(
@@ -35,7 +34,6 @@ export function BookmarksInFile({
         const bList: Bookmark[] = await response.json();
         setBookmark(bList);
       } catch (error) {
-        console.log(error);
         if (error instanceof TypeError && error.message.includes("fetch")) {
           setErrorMsg(`Network error: Unable to load ${jsonFilename}`);
         } else {
