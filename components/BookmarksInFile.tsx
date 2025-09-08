@@ -36,9 +36,11 @@ export function BookmarksInFile({
         setBookmark(bList);
       } catch (error) {
         console.log(error);
-        setErrorMsg(
-          `File not found: json/${jsonFilename}\n\nTo fix this, create the file with bookmark data:\necho '[["Google", "https://google.com"], ["🌤 Daily", ""]]' > json/${jsonFilename}`,
-        );
+        if (error instanceof TypeError && error.message.includes("fetch")) {
+          setErrorMsg(`Network error: Unable to load ${jsonFilename}`);
+        } else {
+          setErrorMsg(`Error loading file: ${String(error)}`);
+        }
       } finally {
         setLoading(false);
       }
