@@ -55,7 +55,7 @@ export function BookmarksInURL() {
         </div>
       </div>
       <div className={"w-1/2 m-2"}>
-        <BookmarkJsonData bookmarkAry={bookmarkAry} hasDescription={true} />
+        <BookmarkJsonData bookmarkAry={bookmarkAry} />
       </div>
     </>
   );
