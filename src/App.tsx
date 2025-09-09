@@ -3,6 +3,7 @@ import React from "react";
 import { BookmarksInURL } from "../components/BookmarksInURL";
 import { useLocalFileFlag } from "../hooks/useLocalFileFlag";
 import { BookmarksInFile } from "../components/BookmarksInFile";
+import { ErrorBoundary } from "../components/ErrorBoundary";
 
 export function App() {
   const { flag: fileFlag, LocalFileFlag } = useLocalFileFlag();
@@ -16,13 +17,15 @@ export function App() {
         <LocalFileFlag />
       </div>
       <div className="flex items-start justify-center">
-        {fileFlag ? (
-          <div className="w-full max-w-4xl">
-            <BookmarksInFile jsonFilename="dashboard.json" />
-          </div>
-        ) : (
-          <BookmarksInURL />
-        )}
+        <ErrorBoundary>
+          {fileFlag ? (
+            <div className="w-full max-w-4xl">
+              <BookmarksInFile jsonFilename="dashboard.json" />
+            </div>
+          ) : (
+            <BookmarksInURL />
+          )}
+        </ErrorBoundary>
       </div>
       {/* <h2>Text For Copy</h2> */}
       {/* <TextForCopy /> */}
