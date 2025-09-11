@@ -8,7 +8,7 @@ This is a React-based bookmark dashboard application written in TypeScript that 
 
 ## Development Commands
 
-- **Development server**: `npm run serve` - Starts Parcel dev server and copies JSON files
+- **Development server**: `npm run serve` - Starts Parcel dev server, then copies JSON files to dist
 - **Build for production**: `npm run build` - Builds the app to `dist/` directory
 - **Watch mode**: `npm run watch` - Watches files for changes without serving
 - **Type checking**: `npm run typecheck` - Runs TypeScript compiler without emitting files
@@ -29,11 +29,16 @@ The application supports two modes for displaying bookmarks:
 - **File mode**: Loads bookmarks from JSON files in `json/` directory (`dashboard.json`)
 - **Manual mode**: Allows direct JSON input via textarea with live validation
 
+Additional JSON files supported:
+- **text.json**: Contains copyable text items with `{"content": "text"}` format (handled by TextForCopy component)
+
 ### Component Structure
 - **App.tsx**: Main application component with toggle switch for data source modes
 - **BookmarksInFile.tsx**: Fetches and displays data from JSON files with error handling and loading states
 - **BookmarksInURL.tsx**: Provides textarea for manual JSON input with live preview and validation
 - **BookmarkJsonData.tsx**: Core component for rendering bookmark lists (used by both modes) - simple rendering component without keyboard navigation
+- **ErrorBoundary.tsx**: React error boundary component for graceful error handling with reload functionality
+- **TextForCopy.tsx**: Component for displaying copyable text items from `text.json` (currently commented out in App.tsx)
 - **useLocalFileFlag.tsx**: Custom hook managing localStorage-persisted mode switching
 
 ### Component Composition Pattern
