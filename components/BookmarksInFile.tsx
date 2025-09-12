@@ -48,25 +48,28 @@ export function BookmarksInFile({ jsonFilename }: BookmarkJsonFileProps) {
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.target instanceof HTMLInputElement || event.target instanceof HTMLTextAreaElement) {
+      if (
+        event.target instanceof HTMLInputElement ||
+        event.target instanceof HTMLTextAreaElement
+      ) {
         return;
       }
 
-      if (event.key === 's' || event.key === 'S') {
+      if (event.key === "s" || event.key === "S") {
         event.preventDefault();
         setShowFilter(true);
         setTimeout(() => {
           filterInputRef.current?.focus();
         }, 0);
-      } else if (event.key === 'Escape') {
+      } else if (event.key === "Escape") {
         setShowFilter(false);
         setFilterText("");
       }
     };
 
-    document.addEventListener('keydown', handleKeyDown);
+    document.addEventListener("keydown", handleKeyDown);
     return () => {
-      document.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener("keydown", handleKeyDown);
     };
   }, []);
 
@@ -96,7 +99,7 @@ export function BookmarksInFile({ jsonFilename }: BookmarkJsonFileProps) {
             onChange={(e) => setFilterText(e.target.value)}
             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             onKeyDown={(e) => {
-              if (e.key === 'Escape') {
+              if (e.key === "Escape") {
                 setShowFilter(false);
                 setFilterText("");
               }
