@@ -19,7 +19,7 @@ export function App() {
       <div className="flex items-start justify-center">
         <ErrorBoundary>
           {fileFlag ? (
-            <div className="w-full max-w-4xl">
+            <div className="w-full max-w-6xl">
               <BookmarksInFile jsonFilename="dashboard.json" />
             </div>
           ) : (
