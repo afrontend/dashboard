@@ -9,8 +9,9 @@ interface BookmarkJsonDataProps {
 export function BookmarkJsonData({ bookmarkAry = [] }: BookmarkJsonDataProps) {
   const bAry = bookmarkAry && bookmarkAry.length > 0 ? bookmarkAry : [];
   return bAry.map((b, index) => (
-    <div style={{ marginBottom: "0.5rem" }} key={`${b[1]}-${index}`}>
+    <div style={{ marginBottom: "0.5rem" }} className="flex justify-between items-center" key={`${b[1]}-${index}`}>
       <a href={b[1]}>{b[0]}</a>
+      {b[1] && <span className="text-gray-500">{b[1]}</span>}
     </div>
   ));
 }
