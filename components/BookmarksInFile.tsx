@@ -107,7 +107,7 @@ export function BookmarksInFile({ jsonFilename }: BookmarkJsonFileProps) {
           />
         </div>
       )}
-      <BookmarkJsonData bookmarkAry={filteredBookmarks} />
+      <BookmarkJsonData bookmarkAry={filteredBookmarks} showURL />
     </>
   );
 }
