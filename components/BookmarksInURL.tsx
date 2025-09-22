@@ -5,7 +5,11 @@ import { SaveButton } from "../components/SaveButton";
 import { getJsonData, isJSON } from "../js/utils";
 import { TBookmark } from "../types";
 
-export function BookmarksInURL() {
+interface BookmarksInURLProps {
+  showURL?: boolean;
+}
+
+export function BookmarksInURL({ showURL = false }: BookmarksInURLProps) {
   const jsonAry = getJsonData();
   const [bookmarkAry, setBookmarkAry] = useState<TBookmark[]>(jsonAry);
   const [bookmarkText, setBookmarkText] = useState<string>(
@@ -55,7 +59,7 @@ export function BookmarksInURL() {
         </div>
       </div>
       <div className={"w-1/2 m-2"}>
-        <BookmarkJsonData bookmarkAry={bookmarkAry} />
+        <BookmarkJsonData bookmarkAry={bookmarkAry} showURL={showURL} />
       </div>
     </>
   );

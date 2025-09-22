@@ -4,9 +4,10 @@ import { TBookmark } from "../types";
 
 interface BookmarkJsonFileProps {
   jsonFilename: string;
+  showURL?: boolean;
 }
 
-export function BookmarksInFile({ jsonFilename }: BookmarkJsonFileProps) {
+export function BookmarksInFile({ jsonFilename, showURL = false }: BookmarkJsonFileProps) {
   const [bookmarkAry, setBookmark] = useState<TBookmark[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [errorMsg, setErrorMsg] = useState<string>("");
@@ -107,7 +108,7 @@ export function BookmarksInFile({ jsonFilename }: BookmarkJsonFileProps) {
           />
         </div>
       )}
-      <BookmarkJsonData bookmarkAry={filteredBookmarks} showURL />
+      <BookmarkJsonData bookmarkAry={filteredBookmarks} showURL={showURL} />
     </>
   );
 }
