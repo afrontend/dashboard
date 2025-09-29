@@ -19,7 +19,12 @@ export function BookmarkJsonData({
       key={`${b[1]}-${index}`}
     >
       <a href={b[1]}>{b[0]}</a>
-      {b[1] && (showURL ? <span className="text-gray-500">{b[1]}</span> : null)}
+      {b[1] &&
+        (showURL ? (
+          <span className="text-gray-500 truncate max-w-lg inline-block">
+            {b[1]}
+          </span>
+        ) : null)}
     </div>
   ));
 }

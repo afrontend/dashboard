@@ -18,9 +18,10 @@ This is a React-based bookmark dashboard application written in TypeScript that 
 
 ## Important Development Notes
 
-- **Data Format Migration**: The README.md shows old object format `{"name": "...", "link": "..."}`, but the current implementation uses tuple format `[string, string]` where first element is display name and second is URL
+- **Data Format Migration**: The README.md shows incorrect object format in setup example, but the current implementation uses tuple format `[string, string]` where first element is display name and second is URL
 - **Always run type checking and linting** after making changes to ensure code quality
 - **JSON files are cached**: Development server uses cache-busting query parameters when fetching JSON files
+- **Package manager**: Project uses both npm and yarn commands - prefer npm as shown in package.json scripts
 
 ## Project Architecture
 
@@ -39,7 +40,10 @@ Additional JSON files supported:
 - **BookmarkJsonData.tsx**: Core component for rendering bookmark lists (used by both modes) - simple rendering component without keyboard navigation
 - **ErrorBoundary.tsx**: React error boundary component for graceful error handling with reload functionality
 - **TextForCopy.tsx**: Component for displaying copyable text items from `text.json` (currently commented out in App.tsx)
+- **SaveButton.tsx**: Component for saving bookmark data
+- **ClearButton.tsx**: Component for clearing bookmark data
 - **useLocalFileFlag.tsx**: Custom hook managing localStorage-persisted mode switching
+- **useShowURLFlag.tsx**: Custom hook managing URL visibility toggle with localStorage persistence
 
 ### Component Composition Pattern
 The architecture uses a shared `BookmarkJsonData` component that both `BookmarksInFile` and `BookmarksInURL` components use for rendering. This ensures consistent bookmark display regardless of data source.
@@ -68,23 +72,24 @@ Bookmark data uses array format: `[string, string]` where first element is displ
 
 ### Type Definitions
 All components use TypeScript with consistent type definitions:
-- `Bookmark`: Defined as `[string, string]` tuple type
+- `TBookmark`: Defined as `[string, string]` tuple type in `types/index.ts`
 - Component props are strictly typed with optional properties marked appropriately
 - Custom hooks return properly typed objects
 
 ### Utilities
-- `utils.ts`: Contains JSON validation and data parsing utilities
-- `getJsonData()`: Parses URL parameters for bookmark data
-- `isJSON()`: Validates JSON strings
+- `js/utils.ts`: Contains JSON validation and data parsing utilities
+- `getJsonData()`: Parses URL parameters for bookmark data with fallback to initial data
+- `isJSON()`: Validates JSON strings safely with try-catch
 
 ## Setup Instructions
 
 To set up the project for development:
-1. Install dependencies: `yarn install` or `npm install`
-2. Create `json/` directory if it doesn't exist
+1. Install dependencies: `npm install` (preferred) or `yarn install`
+2. Create `json/` directory if it doesn't exist: `mkdir json`
 3. Add sample JSON files using correct tuple format:
    ```bash
    echo '[["Google", "https://google.com"], ["🌤 Daily", ""]]' > json/dashboard.json
+   echo '[{"content": "Sample text for copying"}]' > json/text.json
    ```
 4. Run development server: `npm run serve`
 
@@ -96,8 +101,9 @@ To set up the project for development:
 - Includes: `src/`, `components/`, `hooks/`, `js/` directories
 
 ### ESLint (`eslint.config.mjs`)
-- TypeScript and React plugins enabled
-- Custom rules: disabled prop-types, error on unused vars
+- Uses flat config format with TypeScript and React plugins
+- Custom rules: disabled prop-types, error on unused vars, warn on explicit any
+- Supports JSX and modern ECMAScript features
 - Ignores: `dist/`, `build/`, `node_modules/`
 
 ### Build Process
@@ -105,3 +111,8 @@ To set up the project for development:
 - **Hot Reloading**: Automatic via Parcel with dependency resolution
 - **Asset Copying**: JSON files copied to `dist/` during build
 - **Cache Busting**: Development mode uses timestamps for JSON requests
+# important-instruction-reminders
+Do what has been asked; nothing more, nothing less.
+NEVER create files unless they're absolutely necessary for achieving your goal.
+ALWAYS prefer editing an existing file to creating a new one.
+NEVER proactively create documentation files (*.md) or README files. Only create documentation files if explicitly requested by the User.
