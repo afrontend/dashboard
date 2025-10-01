@@ -25,7 +25,7 @@ export function useLocalFileFlag() {
           checked={flag}
           onChange={(e) => handleSwitch(e.target.checked)}
         />
-        <label htmlFor="cb">Use dashboard.json file</label>
+        <label htmlFor="cb">Use local file</label>
       </div>
     );
   };
