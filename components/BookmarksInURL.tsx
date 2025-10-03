@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent } from "react";
+import React, { useState, ChangeEvent, useEffect } from "react";
 import { BookmarkJsonData } from "../components/BookmarkJsonData";
 import { ClearButton } from "../components/ClearButton";
 import { SaveButton } from "../components/SaveButton";
@@ -17,6 +17,7 @@ export function BookmarksInURL({ showURL = false }: BookmarksInURLProps) {
   );
   const [msg, setMsg] = useState<string>("");
   const [errorMsg, setErrorMsg] = useState<string>("");
+  const [saveMsg, setSaveMsg] = useState<string>("");
 
   function handleChange(e: ChangeEvent<HTMLTextAreaElement>) {
     const text = e.target.value;
@@ -31,6 +32,21 @@ export function BookmarksInURL({ showURL = false }: BookmarksInURLProps) {
     setMsg("");
     setErrorMsg("Invalid JSON");
   }
+
+  function handleSave() {
+    const isMac = navigator.platform.toUpperCase().indexOf("MAC") >= 0;
+    const shortcut = isMac ? "⌘D" : "Ctrl+D";
+    setSaveMsg(`URL updated! Press ${shortcut} to bookmark this page`);
+  }
+
+  useEffect(() => {
+    if (saveMsg) {
+      const timer = setTimeout(() => {
+        setSaveMsg("");
+      }, 10000);
+      return () => clearTimeout(timer);
+    }
+  }, [saveMsg]);
 
   return (
     <>
@@ -54,7 +70,13 @@ export function BookmarksInURL({ showURL = false }: BookmarksInURLProps) {
                 &nbsp; {errorMsg}
               </span>
             )}
-            <SaveButton jsonData={bookmarkAry} /> <ClearButton />
+            {saveMsg && (
+              <span className="" style={{ color: "#10ac84" }}>
+                &nbsp; {saveMsg}
+              </span>
+            )}
+            <SaveButton jsonData={bookmarkAry} onSave={handleSave} />{" "}
+            <ClearButton />
           </div>
         </div>
       </div>
