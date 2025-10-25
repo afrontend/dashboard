@@ -16,13 +16,16 @@ export function BookmarkJsonData({
     <div
       style={{ marginBottom: "0.5rem" }}
       className="flex justify-between items-center"
-      key={`${b[1]}-${index}`}
+      key={`${b.url}-${index}`}
     >
-      <a href={b[1]}>{b[0]}</a>
-      {b[1] &&
+      <a href={b.url}>
+        {b.emoji && <span>{b.emoji} </span>}
+        {b.label}
+      </a>
+      {b.url &&
         (showURL ? (
           <span className="text-gray-500 truncate max-w-lg inline-block">
-            {b[1]}
+            {b.url}
           </span>
         ) : null)}
     </div>

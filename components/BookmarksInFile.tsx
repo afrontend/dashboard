@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { BookmarkJsonData } from "../components/BookmarkJsonData";
-import { TBookmark } from "../types";
+import { TBookmark, BookmarkData } from "../types";
 
 interface BookmarkJsonFileProps {
   jsonFilename: string;
@@ -23,15 +23,15 @@ export function BookmarksInFile({ jsonFilename, showURL = false }: BookmarkJsonF
         if (!response.ok) {
           if (response.status === 404) {
             setErrorMsg(
-              `File not found: json/${jsonFilename}\n\nTo fix this, create the file with bookmark data:\necho '[["Google", "https://google.com"], ["🌤 Daily", ""]]' > json/${jsonFilename}`,
+              `File not found: json/${jsonFilename}\n\nTo fix this, create the file with bookmark data:\necho '{"urls":[{"emoji":"🍑","label":"Google","url":"https://google.com"}]}' > json/${jsonFilename}`,
             );
           } else {
             setErrorMsg(`HTTP ${response.status}: ${response.statusText}`);
           }
           return;
         }
-        const bList: TBookmark[] = await response.json();
-        setBookmark(bList);
+        const data: BookmarkData = await response.json();
+        setBookmark(data.urls || []);
       } catch (error) {
         if (error instanceof TypeError && error.message.includes("fetch")) {
           setErrorMsg(`Network error: Unable to load ${jsonFilename}`);
@@ -79,11 +79,11 @@ export function BookmarksInFile({ jsonFilename, showURL = false }: BookmarkJsonF
 
   const filteredBookmarks = filterText.trim()
     ? bookmarkAry.filter((bookmark) => {
-        const [name, url] = bookmark;
         const searchTerm = filterText.toLowerCase();
         return (
-          name.toLowerCase().includes(searchTerm) ||
-          url.toLowerCase().includes(searchTerm)
+          bookmark.label.toLowerCase().includes(searchTerm) ||
+          bookmark.url.toLowerCase().includes(searchTerm) ||
+          bookmark.emoji.toLowerCase().includes(searchTerm)
         );
       })
     : bookmarkAry;

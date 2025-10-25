@@ -1,6 +1,6 @@
 import { TBookmark } from "../types";
 
-const initialData: TBookmark[] = [["🌤 Daily", ""]];
+const initialData: TBookmark[] = [{ emoji: "🌤", label: "Daily", url: "" }];
 
 export function getJsonData(): TBookmark[] {
   const queryString = window.location.search;
@@ -8,7 +8,19 @@ export function getJsonData(): TBookmark[] {
   const data = urlParams.get("data");
   if (data) {
     try {
-      return JSON.parse(decodeURIComponent(data));
+      const parsed = JSON.parse(decodeURIComponent(data));
+      // Support both old array format and new object format
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        if (Array.isArray(parsed[0])) {
+          // Old format: [["label", "url"]]
+          return parsed.map(([label, url]: [string, string]) => ({
+            emoji: "",
+            label: label || "",
+            url: url || "",
+          }));
+        }
+      }
+      return parsed;
     } catch {
       return initialData;
     }
