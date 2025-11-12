@@ -7,7 +7,7 @@
   "scripts": {
     "copyjson": "cp -rf json dist/",
     "build": "parcel build index.html --no-cache",
-    "serve": "parcel index.html --no-cache && npm run copyjson",
+    "serve": "parcel index.html --no-cache",
     "watch": "parcel watch index.html --no-cache",
     "predeploy": "npm run copyjson && parcel build index.html",
     "deploy": "gh-pages -d dist",

@@ -7,7 +7,10 @@ interface BookmarkJsonFileProps {
   showURL?: boolean;
 }
 
-export function BookmarksInFile({ jsonFilename, showURL = false }: BookmarkJsonFileProps) {
+export function BookmarksInFile({
+  jsonFilename,
+  showURL = false,
+}: BookmarkJsonFileProps) {
   const [bookmarkAry, setBookmark] = useState<TBookmark[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [errorMsg, setErrorMsg] = useState<string>("");
@@ -80,11 +83,17 @@ export function BookmarksInFile({ jsonFilename, showURL = false }: BookmarkJsonF
   const filteredBookmarks = filterText.trim()
     ? bookmarkAry.filter((bookmark) => {
         const searchTerm = filterText.toLowerCase();
-        return (
-          bookmark.label.toLowerCase().includes(searchTerm) ||
-          bookmark.url.toLowerCase().includes(searchTerm) ||
-          bookmark.emoji.toLowerCase().includes(searchTerm)
-        );
+        const testAry: string[] = Object.values(bookmark);
+        const matchedAry = testAry.reduce((acc, curr) => {
+          if (
+            typeof curr === "string" &&
+            curr.toLowerCase().includes(searchTerm)
+          ) {
+            acc.push(curr);
+          }
+          return acc;
+        }, [] as string[]);
+        return matchedAry.length > 0;
       })
     : bookmarkAry;
 
