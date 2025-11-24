@@ -6,12 +6,12 @@ Local web service to show bookmarks
 
 JSON/\* files are used to store bookmarks and text to copy.
 
-```basd
+```bash
 git clone https://github.com/afrontend/dashboard.git
 cd dashboard
 npm install
 mkdir json
-echo '[["name": "google", "link": "https://google.com"]]' > json/dashboard.json
-echo '[["content": "This a text for copy"]]' > json/text.json
+echo '{"urls":[{"emoji":"🍑","label":"Google","url":"https://google.com"}]}' > json/dashboard.json
+echo '{"urls":[{"emoji":"","label":"This is a text for copy","url":""}]}' > json/text.json
 npm run serve
 ```
