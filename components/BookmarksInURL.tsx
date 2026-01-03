@@ -1,4 +1,6 @@
-import React, { useState, ChangeEvent, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import CodeMirror from "@uiw/react-codemirror";
+import { json } from "@codemirror/lang-json";
 import { BookmarkJsonData } from "../components/BookmarkJsonData";
 import { ClearButton } from "../components/ClearButton";
 import { SaveButton } from "../components/SaveButton";
@@ -19,8 +21,7 @@ export function BookmarksInURL({ showURL = false }: BookmarksInURLProps) {
   const [errorMsg, setErrorMsg] = useState<string>("");
   const [saveMsg, setSaveMsg] = useState<string>("");
 
-  function handleChange(e: ChangeEvent<HTMLTextAreaElement>) {
-    const text = e.target.value;
+  function handleChange(text: string) {
     setBookmarkText(text);
     if (text && isJSON(text)) {
       setMsg("Valid JSON");
@@ -52,13 +53,25 @@ export function BookmarksInURL({ showURL = false }: BookmarksInURLProps) {
     <>
       <div className="w-1/2 relative">
         <div className="w-full">
-          <textarea
-            className={`rounded-sm p-2 border-2 border-solid h-[calc(100vh-300px)] ${
+          <div
+            className={`rounded-sm border-2 border-solid overflow-hidden ${
               errorMsg ? "border-red-600" : "border-purple-500/75"
             }`}
-            value={bookmarkText}
-            onChange={handleChange}
-          />
+          >
+            <CodeMirror
+              value={bookmarkText}
+              height="calc(100vh - 300px)"
+              extensions={[json()]}
+              onChange={handleChange}
+              basicSetup={{
+                lineNumbers: true,
+                highlightActiveLineGutter: true,
+                highlightActiveLine: true,
+                foldGutter: true,
+                bracketMatching: true,
+              }}
+            />
+          </div>
           <div className="mt-2 mb-2 flex justify-end items-center gap-2">
             {msg && (
               <span className="" style={{ color: "#8c7ae6" }}>
