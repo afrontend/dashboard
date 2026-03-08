@@ -4,7 +4,7 @@ Local web service to show bookmarks
 
 ## How to run
 
-JSON/\* files are used to store bookmarks and text to copy.
+JSON files in the `json/` directory store bookmarks and text to copy.
 
 ```bash
 git clone https://github.com/afrontend/dashboard.git
@@ -12,6 +12,48 @@ cd dashboard
 npm install
 mkdir json
 echo '{"urls":[{"emoji":"🍑","label":"Google","url":"https://google.com"}]}' > json/dashboard.json
-echo '{"urls":[{"emoji":"","label":"This is a text for copy","url":""}]}' > json/text.json
+echo '[{"content":"This is a text for copy"}]' > json/text.json
 npm run serve
 ```
+
+## Build
+
+```bash
+npm run build        # Production build to dist/
+npm run serve        # Development server with hot reload
+npm run watch        # Watch mode without serving
+npm run typecheck    # Run TypeScript type checking
+npm run lint         # Run ESLint
+npm run lint:fix     # Auto-fix ESLint issues
+npm run deploy       # Deploy to GitHub Pages
+```
+
+## Usage
+
+The app has two modes, toggled via a switch in the header:
+
+- **File mode** (default): Loads bookmarks from JSON files in the `json/` directory.
+- **Manual mode**: Edit bookmark JSON directly in a CodeMirror editor with live preview.
+
+### Bookmark data format
+
+```json
+{
+  "urls": [
+    { "emoji": "🍑", "label": "Google", "url": "https://google.com" },
+    { "emoji": "🌤", "label": "Daily", "url": "" }
+  ]
+}
+```
+
+Each bookmark has optional `emoji`, `label`, and `url` fields. Entries without a `url` are displayed as plain text.
+
+### Keyboard shortcuts
+
+- **S** — Open search filter (file mode)
+- **Escape** — Close search filter
+
+### Options
+
+- **Show URL** — Toggle to display bookmark URLs below each link.
+- **File selection** — Choose which JSON file to load (file mode).
