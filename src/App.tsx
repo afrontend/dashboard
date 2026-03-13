@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { BookmarksInURL } from "../components/BookmarksInURL";
 import { useLocalFileFlag } from "../hooks/useLocalFileFlag";
 import { useShowURLFlag } from "../hooks/useShowURLFlag";
-import { useFileSelectionFlag } from "../hooks/useFileSelectionFlag";
+
 import { BookmarksInFile } from "../components/BookmarksInFile";
 import { BookmarkJsonData } from "../components/BookmarkJsonData";
 import { ErrorBoundary } from "../components/ErrorBoundary";
@@ -12,7 +12,6 @@ import { TBookmark } from "../types";
 export function App() {
   const { flag: fileFlag, LocalFileFlag } = useLocalFileFlag();
   const { flag: showURL, ShowURLFlag } = useShowURLFlag();
-  const { filename, FileSelectionFlag } = useFileSelectionFlag();
   const [urlBookmarks, setUrlBookmarks] = useState<TBookmark[]>([]);
 
   return (
@@ -23,7 +22,7 @@ export function App() {
       <div className="flex justify-center mb-4 gap-6">
         <LocalFileFlag />
         <ShowURLFlag />
-        {fileFlag && <FileSelectionFlag />}
+
       </div>
       <div className="flex items-start justify-center">
         <ErrorBoundary>
@@ -35,7 +34,7 @@ export function App() {
             )}
             <div className="flex-1 min-w-0">
               {fileFlag ? (
-                <BookmarksInFile jsonFilename={filename} showURL={showURL} />
+                <BookmarksInFile jsonFilename="dashboard.json" showURL={showURL} />
               ) : (
                 <BookmarkJsonData
                   bookmarkAry={urlBookmarks}
