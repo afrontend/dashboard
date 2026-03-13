@@ -1,16 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 // import { TextForCopy } from "../components/TextForCopy";
 import { BookmarksInURL } from "../components/BookmarksInURL";
 import { useLocalFileFlag } from "../hooks/useLocalFileFlag";
 import { useShowURLFlag } from "../hooks/useShowURLFlag";
 import { useFileSelectionFlag } from "../hooks/useFileSelectionFlag";
 import { BookmarksInFile } from "../components/BookmarksInFile";
+import { BookmarkJsonData } from "../components/BookmarkJsonData";
 import { ErrorBoundary } from "../components/ErrorBoundary";
+import { TBookmark } from "../types";
 
 export function App() {
   const { flag: fileFlag, LocalFileFlag } = useLocalFileFlag();
   const { flag: showURL, ShowURLFlag } = useShowURLFlag();
   const { filename, FileSelectionFlag } = useFileSelectionFlag();
+  const [urlBookmarks, setUrlBookmarks] = useState<TBookmark[]>([]);
 
   return (
     <div className="bg-gray-300 mx-auto p-5">
@@ -24,13 +27,23 @@ export function App() {
       </div>
       <div className="flex items-start justify-center">
         <ErrorBoundary>
-          {fileFlag ? (
-            <div className="w-full max-w-6xl">
-              <BookmarksInFile jsonFilename={filename} showURL={showURL} />
+          <div className="w-full max-w-6xl flex gap-4">
+            {!fileFlag && (
+              <div className="w-5/12 flex-shrink-0">
+                <BookmarksInURL onBookmarksChange={setUrlBookmarks} />
+              </div>
+            )}
+            <div className="flex-1 min-w-0">
+              {fileFlag ? (
+                <BookmarksInFile jsonFilename={filename} showURL={showURL} />
+              ) : (
+                <BookmarkJsonData
+                  bookmarkAry={urlBookmarks}
+                  showURL={showURL}
+                />
+              )}
             </div>
-          ) : (
-            <BookmarksInURL showURL={showURL} />
-          )}
+          </div>
         </ErrorBoundary>
       </div>
       {/* <h2>Text For Copy</h2> */}

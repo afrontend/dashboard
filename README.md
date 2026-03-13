@@ -4,15 +4,15 @@ Local web service to show bookmarks
 
 ## How to run
 
-JSON files in the `json/` directory store bookmarks and text to copy.
+JSON files in the `dist/json/` directory store bookmarks and text to copy.
 
 ```bash
 git clone https://github.com/afrontend/dashboard.git
 cd dashboard
 npm install
-mkdir json
-echo '{"urls":[{"emoji":"🍑","label":"Google","url":"https://google.com"}]}' > json/dashboard.json
-echo '[{"content":"This is a text for copy"}]' > json/text.json
+mkdir -p dist/json
+echo '{"urls":[{"emoji":"🍑","label":"Google","url":"https://google.com"}]}' > dist/json/dashboard.json
+echo '[{"content":"This is a text for copy"}]' > dist/json/text.json
 npm run serve
 ```
 
