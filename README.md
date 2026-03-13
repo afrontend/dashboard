@@ -56,4 +56,3 @@ Each bookmark has optional `emoji`, `label`, and `url` fields. Entries without a
 ### Options
 
 - **Show URL** — Toggle to display bookmark URLs below each link.
-- **File selection** — Choose which JSON file to load (file mode).
