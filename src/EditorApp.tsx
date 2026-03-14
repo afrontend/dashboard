@@ -16,20 +16,22 @@ export function EditorApp() {
       </h1>
       <div className="flex items-start justify-center mt-4">
         <ErrorBoundary>
-          <div className="w-full max-w-6xl flex gap-4">
-            <div className={editorVisible ? "w-5/12 flex-shrink-0" : ""}>
-              <button
-                onClick={toggleEditor}
-                className="mb-2 px-3 py-1 text-sm bg-gray-500 text-white rounded hover:bg-gray-600"
-              >
-                {editorVisible ? "◀ Hide" : "▶ Edit"}
-              </button>
+          <div className="w-full max-w-6xl">
+            <button
+              onClick={toggleEditor}
+              className="mb-2 px-3 py-1 text-sm bg-gray-500 text-white rounded hover:bg-gray-600"
+            >
+              {editorVisible ? "◀ Hide" : "▶ Edit"}
+            </button>
+            <div className="flex gap-4">
               {editorVisible && (
-                <BookmarksInURL onBookmarksChange={setUrlBookmarks} />
+                <div className="w-5/12 flex-shrink-0">
+                  <BookmarksInURL onBookmarksChange={setUrlBookmarks} />
+                </div>
               )}
-            </div>
-            <div className="flex-1 min-w-0">
-              <SearchableBookmarkList bookmarkAry={urlBookmarks} />
+              <div className="flex-1 min-w-0">
+                <SearchableBookmarkList bookmarkAry={urlBookmarks} />
+              </div>
             </div>
           </div>
         </ErrorBoundary>
