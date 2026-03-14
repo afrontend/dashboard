@@ -6,11 +6,11 @@
   "author": "afrontend <autoscripts@gmail.com>",
   "scripts": {
     "copyjson": "cp -rf json dist/",
-    "build": "parcel build index.html --no-cache",
+    "build": "parcel build index.html --no-cache --public-url /dashboard/",
     "serve": "parcel local.html --no-cache",
     "serve:editor": "parcel index.html --no-cache",
     "watch": "parcel watch index.html --no-cache",
-    "predeploy": "parcel build index.html --no-cache",
+    "predeploy": "parcel build index.html --no-cache --public-url /dashboard/",
     "deploy": "gh-pages -d dist",
     "lint": "eslint src components hooks js",
     "lint:fix": "eslint src components hooks js --fix",
