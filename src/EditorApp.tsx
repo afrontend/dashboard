@@ -22,13 +22,11 @@ function IconButton({
   children: React.ReactNode;
 }) {
   return (
-    <div className="relative group">
-      <button className={iconBtnClass} onClick={onClick}>
+    <div className="flex flex-col items-center gap-0.5 cursor-pointer" onClick={onClick}>
+      <div className={iconBtnClass}>
         {children}
-      </button>
-      <span className="absolute top-full left-1/2 -translate-x-1/2 mt-1 px-2 py-0.5 text-xs text-white bg-gray-700 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-150 pointer-events-none">
-        {label}
-      </span>
+      </div>
+      <span className="text-xs text-gray-600">{label}</span>
     </div>
   );
 }
