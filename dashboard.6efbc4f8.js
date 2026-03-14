@@ -207,11 +207,11 @@
       });
     }
   }
-})({"acFcD":[function(require,module,exports,__globalThis) {
+})({"7KwkS":[function(require,module,exports,__globalThis) {
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
-var HMR_SERVER_PORT = 50299;
+var HMR_SERVER_PORT = 1234;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "439701173a9199ea";
 var HMR_USE_SSE = false;
@@ -25007,11 +25007,11 @@ var _s = $RefreshSig$();
 const iconBtnClass = "w-9 h-9 flex items-center justify-center rounded-full bg-gray-400 text-white hover:bg-gray-500 transition-colors duration-150 text-base leading-none";
 function IconButton({ label, onClick, children }) {
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        className: "relative group",
+        className: "flex flex-col items-center gap-0.5 cursor-pointer",
+        onClick: onClick,
         children: [
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 className: iconBtnClass,
-                onClick: onClick,
                 children: children
             }, void 0, false, {
                 fileName: "src/EditorApp.tsx",
@@ -25019,7 +25019,7 @@ function IconButton({ label, onClick, children }) {
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                className: "absolute top-full left-1/2 -translate-x-1/2 mt-1 px-2 py-0.5 text-xs text-white bg-gray-700 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-150 pointer-events-none",
+                className: "text-xs text-gray-600",
                 children: label
             }, void 0, false, {
                 fileName: "src/EditorApp.tsx",
@@ -25047,7 +25047,7 @@ function EditorApp() {
                 children: "Dashboard"
             }, void 0, false, {
                 fileName: "src/EditorApp.tsx",
-                lineNumber: 43,
+                lineNumber: 41,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -25067,7 +25067,7 @@ function EditorApp() {
                                                 children: "Editor"
                                             }, void 0, false, {
                                                 fileName: "src/EditorApp.tsx",
-                                                lineNumber: 51,
+                                                lineNumber: 49,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -25078,26 +25078,26 @@ function EditorApp() {
                                                         className: `w-11 h-6 rounded-full transition-colors duration-200 ${editorVisible ? "bg-blue-500" : "bg-gray-400"}`
                                                     }, void 0, false, {
                                                         fileName: "src/EditorApp.tsx",
-                                                        lineNumber: 55,
+                                                        lineNumber: 53,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                                                         className: `absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform duration-200 ${editorVisible ? "translate-x-5" : "translate-x-0"}`
                                                     }, void 0, false, {
                                                         fileName: "src/EditorApp.tsx",
-                                                        lineNumber: 58,
+                                                        lineNumber: 56,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "src/EditorApp.tsx",
-                                                lineNumber: 54,
+                                                lineNumber: 52,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "src/EditorApp.tsx",
-                                        lineNumber: 50,
+                                        lineNumber: 48,
                                         columnNumber: 15
                                     }, this),
                                     editorVisible && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -25109,7 +25109,7 @@ function EditorApp() {
                                                 children: "\uD83D\uDCC2"
                                             }, void 0, false, {
                                                 fileName: "src/EditorApp.tsx",
-                                                lineNumber: 65,
+                                                lineNumber: 63,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(IconButton, {
@@ -25118,7 +25118,7 @@ function EditorApp() {
                                                 children: "\u21A7"
                                             }, void 0, false, {
                                                 fileName: "src/EditorApp.tsx",
-                                                lineNumber: 71,
+                                                lineNumber: 69,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(IconButton, {
@@ -25127,7 +25127,7 @@ function EditorApp() {
                                                 children: "\uD83D\uDCBE"
                                             }, void 0, false, {
                                                 fileName: "src/EditorApp.tsx",
-                                                lineNumber: 77,
+                                                lineNumber: 75,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("a", {
@@ -25137,24 +25137,24 @@ function EditorApp() {
                                                     children: "\u2715"
                                                 }, void 0, false, {
                                                     fileName: "src/EditorApp.tsx",
-                                                    lineNumber: 84,
+                                                    lineNumber: 82,
                                                     columnNumber: 21
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "src/EditorApp.tsx",
-                                                lineNumber: 83,
+                                                lineNumber: 81,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "src/EditorApp.tsx",
-                                        lineNumber: 64,
+                                        lineNumber: 62,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "src/EditorApp.tsx",
-                                lineNumber: 49,
+                                lineNumber: 47,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -25167,12 +25167,12 @@ function EditorApp() {
                                             onBookmarksChange: setUrlBookmarks
                                         }, void 0, false, {
                                             fileName: "src/EditorApp.tsx",
-                                            lineNumber: 92,
+                                            lineNumber: 90,
                                             columnNumber: 19
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "src/EditorApp.tsx",
-                                        lineNumber: 91,
+                                        lineNumber: 89,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -25182,40 +25182,40 @@ function EditorApp() {
                                             onReorder: setUrlBookmarks
                                         }, void 0, false, {
                                             fileName: "src/EditorApp.tsx",
-                                            lineNumber: 99,
+                                            lineNumber: 97,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "src/EditorApp.tsx",
-                                        lineNumber: 98,
+                                        lineNumber: 96,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "src/EditorApp.tsx",
-                                lineNumber: 89,
+                                lineNumber: 87,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "src/EditorApp.tsx",
-                        lineNumber: 48,
+                        lineNumber: 46,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "src/EditorApp.tsx",
-                    lineNumber: 47,
+                    lineNumber: 45,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "src/EditorApp.tsx",
-                lineNumber: 46,
+                lineNumber: 44,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "src/EditorApp.tsx",
-        lineNumber: 42,
+        lineNumber: 40,
         columnNumber: 5
     }, this);
 }
@@ -25234,7 +25234,7 @@ $RefreshReg$(_c1, "EditorApp");
   globalThis.$RefreshReg$ = prevRefreshReg;
   globalThis.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"dVPUn","react":"jMk1U","../components/BookmarksInURL":"lC06k","../components/SearchableBookmarkList":"8Y0Zx","../components/ErrorBoundary":"4W0YR","../hooks/useEditorVisible":"8TkCz","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi","../js/utils":"16axz"}],"lC06k":[function(require,module,exports,__globalThis) {
+},{"react/jsx-dev-runtime":"dVPUn","react":"jMk1U","../components/BookmarksInURL":"lC06k","../components/SearchableBookmarkList":"8Y0Zx","../components/ErrorBoundary":"4W0YR","../hooks/useEditorVisible":"8TkCz","../js/utils":"16axz","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi"}],"lC06k":[function(require,module,exports,__globalThis) {
 var $parcel$ReactRefreshHelpers$4528 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 $parcel$ReactRefreshHelpers$4528.init();
 var prevRefreshReg = globalThis.$RefreshReg$;
@@ -58195,6 +58195,6 @@ _s(useEditorVisible, "21CEg7z6gdvlYRYxJO1NAXTbyBg=");
   globalThis.$RefreshReg$ = prevRefreshReg;
   globalThis.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi"}]},["acFcD","4dmnR"], "4dmnR", "parcelRequire52bb", {}, null, null, "http://localhost:50299")
+},{"react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi"}]},["7KwkS","4dmnR"], "4dmnR", "parcelRequire52bb", {}, null, null, "http://localhost:1234")
 
 //# sourceMappingURL=dashboard.6efbc4f8.js.map
