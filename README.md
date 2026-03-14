@@ -4,38 +4,41 @@ Local web service to show bookmarks
 
 ## How to run
 
-JSON files in the `dist/json/` directory store bookmarks and text to copy.
+### Local file mode
+
+Loads bookmarks from a local JSON file.
 
 ```bash
 git clone https://github.com/afrontend/dashboard.git
 cd dashboard
 npm install
-mkdir -p dist/json
-echo '{"urls":[{"emoji":"🍑","label":"Google","url":"https://google.com"}]}' > dist/json/dashboard.json
-echo '[{"content":"This is a text for copy"}]' > dist/json/text.json
+mkdir -p json
+echo '{"urls":[{"emoji":"🍑","label":"Google","url":"https://google.com"}]}' > json/dashboard.json
 npm run serve
 ```
 
-## Build
+### Editor mode
+
+Edit bookmark JSON directly in a CodeMirror editor with live preview. Deployable to GitHub Pages.
 
 ```bash
-npm run build        # Production build to dist/
-npm run serve        # Development server with hot reload
-npm run watch        # Watch mode without serving
-npm run typecheck    # Run TypeScript type checking
-npm run lint         # Run ESLint
-npm run lint:fix     # Auto-fix ESLint issues
-npm run deploy       # Deploy to GitHub Pages
+npm run serve:editor
 ```
 
-## Usage
+## Commands
 
-The app has two modes, toggled via a switch in the header:
+```bash
+npm run serve          # Local file mode development server
+npm run serve:editor   # Editor mode development server
+npm run build          # Production build (editor mode) to dist/
+npm run watch          # Watch mode without serving
+npm run typecheck      # Run TypeScript type checking
+npm run lint           # Run ESLint
+npm run lint:fix       # Auto-fix ESLint issues
+npm run deploy         # Deploy editor mode to GitHub Pages
+```
 
-- **File mode** (default): Loads bookmarks from JSON files in the `json/` directory.
-- **Manual mode**: Edit bookmark JSON directly in a CodeMirror editor with live preview.
-
-### Bookmark data format
+## Bookmark data format
 
 ```json
 {
@@ -48,11 +51,13 @@ The app has two modes, toggled via a switch in the header:
 
 Each bookmark has optional `emoji`, `label`, and `url` fields. Entries without a `url` are displayed as plain text.
 
-### Keyboard shortcuts
+## Keyboard shortcuts
 
-- **S** — Open search filter (file mode)
+- **S** — Open search filter
 - **Escape** — Close search filter
 
-### Options
+## Editor mode features
 
-- **Show URL** — Toggle to display bookmark URLs below each link.
+- **Hide/Show editor** — Toggle the CodeMirror editor with the `◀ Hide` / `▶ Edit` button
+- **Save** — Encodes bookmark data into the URL for sharing
+- **Clear** — Resets to default state

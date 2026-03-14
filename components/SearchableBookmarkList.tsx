@@ -50,6 +50,9 @@ export function SearchableBookmarkList({
 
   return (
     <>
+      {!showFilter && (
+        <p className="text-sm text-gray-400 mb-2">Press S to search</p>
+      )}
       {showFilter && (
         <div className="mb-4">
           <input
