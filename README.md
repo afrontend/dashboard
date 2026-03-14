@@ -2,6 +2,8 @@
 
 Local web service to show bookmarks
 
+**Live demo:** https://afrontend.github.io/dashboard/
+
 ## How to run
 
 ### Local file mode
@@ -58,6 +60,16 @@ Each bookmark has optional `emoji`, `label`, and `url` fields. Entries without a
 
 ## Editor mode features
 
-- **Hide/Show editor** — Toggle the CodeMirror editor with the `◀ Hide` / `▶ Edit` button
-- **Save** — Encodes bookmark data into the URL for sharing
-- **Clear** — Resets to default state
+- **Editor toggle** — iOS-style toggle switch to show/hide the CodeMirror editor
+- **Import** (📂) — Load bookmarks from a JSON file
+- **Export** (↧) — Download bookmarks as a JSON file
+- **Save** (💾) — Encodes bookmark data into the URL for sharing
+- **Clear** (✕) — Resets to default state
+
+## Tech stack
+
+- **React 18** with **TypeScript**
+- **Parcel** — Build tool and dev server
+- **CodeMirror** — JSON editor with syntax highlighting and validation
+- **Pico CSS** + **Tailwind CSS** — Styling
+- **GitHub Pages** — Deployment via `gh-pages`
