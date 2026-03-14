@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import CodeMirror from "@uiw/react-codemirror";
 import { json } from "@codemirror/lang-json";
 import { ClearButton } from "../components/ClearButton";
@@ -20,6 +20,7 @@ export function BookmarksInURL({ onBookmarksChange }: BookmarksInURLProps) {
   const [msg, setMsg] = useState<string>("");
   const [errorMsg, setErrorMsg] = useState<string>("");
   const [saveMsg, setSaveMsg] = useState<string>("");
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     onBookmarksChange(jsonAry);
@@ -37,6 +38,41 @@ export function BookmarksInURL({ onBookmarksChange }: BookmarksInURLProps) {
     }
     setMsg("");
     setErrorMsg("Invalid JSON");
+  }
+
+  function handleImport(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const text = event.target?.result as string;
+      if (text && isJSON(text)) {
+        const parsed = JSON.parse(text);
+        const urls = parsed.urls || parsed;
+        const formatted = JSON.stringify(urls, null, 2);
+        setBookmarkText(formatted);
+        setBookmarkAry(urls);
+        onBookmarksChange(urls);
+        setMsg("File imported");
+        setErrorMsg("");
+      } else {
+        setErrorMsg("Invalid JSON file");
+        setMsg("");
+      }
+    };
+    reader.readAsText(file);
+    if (fileInputRef.current) fileInputRef.current.value = "";
+  }
+
+  function handleExport() {
+    const data = JSON.stringify(bookmarkAry, null, 2);
+    const blob = new Blob([data], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "bookmarks.json";
+    a.click();
+    URL.revokeObjectURL(url);
   }
 
   function handleSave() {
@@ -85,6 +121,15 @@ export function BookmarksInURL({ onBookmarksChange }: BookmarksInURLProps) {
         {saveMsg && (
           <span style={{ color: "#10ac84" }}>&nbsp; {saveMsg}</span>
         )}
+        <input
+          ref={fileInputRef}
+          type="file"
+          accept=".json"
+          onChange={handleImport}
+          className="hidden"
+        />
+        <button onClick={() => fileInputRef.current?.click()}>Import</button>{" "}
+        <button onClick={handleExport}>Export</button>{" "}
         <SaveButton jsonData={bookmarkAry} onSave={handleSave} />{" "}
         <ClearButton />
       </div>
