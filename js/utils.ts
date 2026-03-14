@@ -1,6 +1,12 @@
 import { TBookmark } from "../types";
 
-const initialData: TBookmark[] = [{ emoji: "🌤", label: "Daily", url: "" }];
+const initialData: TBookmark[] = [
+  { emoji: "📁", label: "Bookmarks", url: "" },
+  { emoji: "🔍", label: "Google", url: "https://google.com" },
+  { emoji: "💻", label: "GitHub", url: "https://github.com" },
+  { emoji: "📚", label: "Resources", url: "" },
+  { emoji: "📖", label: "MDN Web Docs", url: "https://developer.mozilla.org" },
+];
 
 export function getJsonData(): TBookmark[] {
   const queryString = window.location.search;
