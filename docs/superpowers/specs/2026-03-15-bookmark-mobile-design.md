@@ -6,15 +6,14 @@ Add Tailwind responsive classes to `BookmarkJsonData.tsx` to improve mobile usab
 
 ## Changes
 
-### BookmarkItem component
+### BookmarkItem wrapper `<div>` (line 81)
 
-1. **Touch target**: Add `py-2 sm:py-0` for adequate mobile tap area (~44px)
-2. **URL visibility**: Add `hidden sm:inline-block` to URL `<span>` — hidden on mobile, visible on desktop
-3. **Spacing**: Replace inline `style={{ marginBottom: "0.5rem" }}` with Tailwind `mb-2 sm:mb-1`
+1. **Touch target + spacing**: Remove inline `style={{ marginBottom: "0.5rem" }}`. Add `py-2 sm:py-0 mb-2 sm:mb-1` to className. Both padding and margin apply to the same wrapper div. On desktop `sm:py-0 sm:mb-1` preserves the current visual rhythm (~0.5rem = ~mb-1 equivalent).
+2. **URL visibility**: On the URL `<span>` (line 99), replace existing `inline-block` with `hidden sm:inline-block` so the span is hidden on mobile and inline-block on desktop. The rest of its classes (`text-gray-500 truncate max-w-lg`) remain unchanged.
 
-### Category header
+### Category header `<div>` (line 162)
 
-1. **Touch target**: Add `py-2 sm:py-0` to category header `<div>` for mobile tap area
+1. **Touch target**: Add `py-2 sm:py-0` to className. Existing `mb-1` is kept as-is (category headers already have sufficient spacing from margin alone; only padding is added for tap target).
 
 ## Out of scope
 
