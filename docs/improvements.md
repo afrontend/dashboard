@@ -1,19 +1,19 @@
 # Dashboard Improvements
 
-## Short-term
+## Short-term (completed)
 
-- [ ] Fix `<body className="m-0">` to `<body class="m-0">` in `index.html` and `local.html`
-- [ ] Update CLAUDE.md: fix TBookmark type description (object interface, not tuple), update component structure to reflect separated modes
-- [ ] Editor height: replace `calc(100vh - 300px)` hardcoded value with a more flexible approach
+- [x] Fix `<body className="m-0">` to `<body class="m-0">` in `index.html` and `local.html`
+- [x] Update CLAUDE.md: fix TBookmark type description, update component structure for separated modes
+- [x] Editor height: adjust from `calc(100vh - 300px)` to `calc(100vh - 200px)`
 
-## Mid-term
+## Mid-term (completed)
 
-- [ ] Editor mode initial data: provide richer example data to help new users understand the format
-- [ ] Search UX: show result count, highlight matching text
-- [ ] Responsive layout: stack editor and preview vertically on mobile
+- [x] Editor mode initial data: richer example with categories and links
+- [x] Search UX: result count display and matching text highlight
+- [x] Responsive layout: stack editor and preview vertically on mobile
 
-## Long-term
+## Long-term (completed)
 
-- [ ] JSON import/export in editor mode: allow importing local file mode data and exporting editor data as a file
-- [ ] Bookmark category collapse/expand: entries without URL act as category headers, allow folding
-- [ ] Drag and drop sorting: reorder bookmarks without editing JSON directly
+- [x] JSON import/export in editor mode: Import and Export buttons
+- [x] Bookmark category collapse/expand: click category headers to fold/unfold
+- [x] Drag and drop sorting: reorder bookmarks in editor mode by dragging
