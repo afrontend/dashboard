@@ -1,8 +1,12 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  useImperativeHandle,
+  forwardRef,
+} from "react";
 import CodeMirror from "@uiw/react-codemirror";
 import { json } from "@codemirror/lang-json";
-import { ClearButton } from "../components/ClearButton";
-import { SaveButton } from "../components/SaveButton";
 import { getJsonData, isJSON } from "../js/utils";
 import { TBookmark } from "../types";
 
@@ -11,7 +15,16 @@ interface BookmarksInURLProps {
   onBookmarksChange: (data: TBookmark[]) => void;
 }
 
-export function BookmarksInURL({ onBookmarksChange }: BookmarksInURLProps) {
+export interface BookmarksInURLHandle {
+  triggerImport: () => void;
+  triggerExport: () => void;
+  triggerSave: () => void;
+}
+
+export const BookmarksInURL = forwardRef<
+  BookmarksInURLHandle,
+  BookmarksInURLProps
+>(function BookmarksInURL({ onBookmarksChange }, ref) {
   const jsonAry = getJsonData();
   const [bookmarkAry, setBookmarkAry] = useState<TBookmark[]>(jsonAry);
   const [bookmarkText, setBookmarkText] = useState<string>(
@@ -76,10 +89,22 @@ export function BookmarksInURL({ onBookmarksChange }: BookmarksInURLProps) {
   }
 
   function handleSave() {
+    const param = bookmarkAry
+      ? "?data=" + encodeURIComponent(JSON.stringify(bookmarkAry))
+      : "?data=";
+    const { origin, pathname } = window.location;
+    const url = origin + pathname + param;
+    window.history.pushState({}, "", url);
     const isMac = navigator.platform.toUpperCase().indexOf("MAC") >= 0;
     const shortcut = isMac ? "⌘D" : "Ctrl+D";
     setSaveMsg(`URL updated! Press ${shortcut} to bookmark this page`);
   }
+
+  useImperativeHandle(ref, () => ({
+    triggerImport: () => fileInputRef.current?.click(),
+    triggerExport: handleExport,
+    triggerSave: handleSave,
+  }));
 
   useEffect(() => {
     if (saveMsg) {
@@ -99,7 +124,7 @@ export function BookmarksInURL({ onBookmarksChange }: BookmarksInURLProps) {
       >
         <CodeMirror
           value={bookmarkText}
-          height="calc(100vh - 200px)"
+          maxHeight="calc(100vh - 200px)"
           extensions={[json()]}
           onChange={handleChange}
           basicSetup={{
@@ -111,28 +136,18 @@ export function BookmarksInURL({ onBookmarksChange }: BookmarksInURLProps) {
           }}
         />
       </div>
-      <div className="mt-2 mb-2 flex justify-end items-center gap-2">
-        {msg && (
-          <span style={{ color: "#8c7ae6" }}>&nbsp; {msg}</span>
-        )}
-        {errorMsg && (
-          <span style={{ color: "#e84118" }}>&nbsp; {errorMsg}</span>
-        )}
-        {saveMsg && (
-          <span style={{ color: "#10ac84" }}>&nbsp; {saveMsg}</span>
-        )}
-        <input
-          ref={fileInputRef}
-          type="file"
-          accept=".json"
-          onChange={handleImport}
-          className="hidden"
-        />
-        <button onClick={() => fileInputRef.current?.click()}>Import</button>{" "}
-        <button onClick={handleExport}>Export</button>{" "}
-        <SaveButton jsonData={bookmarkAry} onSave={handleSave} />{" "}
-        <ClearButton />
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept=".json"
+        onChange={handleImport}
+        className="hidden"
+      />
+      <div className="mt-1 flex items-center gap-2 text-sm">
+        {msg && <span style={{ color: "#8c7ae6" }}>{msg}</span>}
+        {errorMsg && <span style={{ color: "#e84118" }}>{errorMsg}</span>}
+        {saveMsg && <span style={{ color: "#10ac84" }}>{saveMsg}</span>}
       </div>
     </div>
   );
-}
+});
