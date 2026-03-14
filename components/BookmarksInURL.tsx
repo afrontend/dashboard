@@ -63,7 +63,7 @@ export function BookmarksInURL({ onBookmarksChange }: BookmarksInURLProps) {
       >
         <CodeMirror
           value={bookmarkText}
-          height="calc(100vh - 300px)"
+          height="calc(100vh - 200px)"
           extensions={[json()]}
           onChange={handleChange}
           basicSetup={{
