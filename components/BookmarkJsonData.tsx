@@ -5,6 +5,8 @@ import { TBookmark } from "../types";
 interface BookmarkJsonDataProps {
   bookmarkAry: TBookmark[];
   searchTerm?: string;
+  // eslint-disable-next-line no-unused-vars
+  onReorder?: (reordered: TBookmark[]) => void;
 }
 
 function HighlightText({
@@ -58,14 +60,32 @@ function groupByCategory(bookmarks: TBookmark[]): Category[] {
 function BookmarkItem({
   b,
   searchTerm,
+  draggable,
+  onDragStart,
+  onDragOver,
+  onDrop,
+  onDragEnd,
+  isDragOver,
 }: {
   b: TBookmark;
   searchTerm?: string;
+  draggable?: boolean;
+  onDragStart?: () => void;
+  // eslint-disable-next-line no-unused-vars
+  onDragOver?: (e: React.DragEvent) => void;
+  onDrop?: () => void;
+  onDragEnd?: () => void;
+  isDragOver?: boolean;
 }) {
   return (
     <div
       style={{ marginBottom: "0.5rem" }}
-      className="flex justify-between items-center"
+      className={`flex justify-between items-center ${draggable ? "cursor-grab active:cursor-grabbing" : ""} ${isDragOver ? "border-t-2 border-blue-400" : ""}`}
+      draggable={draggable}
+      onDragStart={onDragStart}
+      onDragOver={onDragOver}
+      onDrop={onDrop}
+      onDragEnd={onDragEnd}
     >
       <a href={b.url}>
         {b.emoji && (
@@ -87,15 +107,43 @@ function BookmarkItem({
 export function BookmarkJsonData({
   bookmarkAry = [],
   searchTerm,
+  onReorder,
 }: BookmarkJsonDataProps) {
   const bAry = bookmarkAry && bookmarkAry.length > 0 ? bookmarkAry : [];
   const groups = groupByCategory(bAry);
   const hasCategories = groups.some((g) => g.header.label);
   const [collapsed, setCollapsed] = useState<Record<number, boolean>>({});
+  const [dragIdx, setDragIdx] = useState<number | null>(null);
+  const [dragOverIdx, setDragOverIdx] = useState<number | null>(null);
+
+  function handleDrop(toIdx: number) {
+    if (dragIdx === null || dragIdx === toIdx || !onReorder) return;
+    const reordered = [...bAry];
+    const [moved] = reordered.splice(dragIdx, 1);
+    reordered.splice(toIdx, 0, moved);
+    onReorder(reordered);
+    setDragIdx(null);
+    setDragOverIdx(null);
+  }
+
+  function handleDragEnd() {
+    setDragIdx(null);
+    setDragOverIdx(null);
+  }
 
   if (!hasCategories) {
     return bAry.map((b, index) => (
-      <BookmarkItem key={`${b.url}-${index}`} b={b} searchTerm={searchTerm} />
+      <BookmarkItem
+        key={`${b.url}-${index}`}
+        b={b}
+        searchTerm={searchTerm}
+        draggable={!!onReorder}
+        onDragStart={() => setDragIdx(index)}
+        onDragOver={(e) => { e.preventDefault(); setDragOverIdx(index); }}
+        onDrop={() => handleDrop(index)}
+        onDragEnd={handleDragEnd}
+        isDragOver={dragOverIdx === index && dragIdx !== index}
+      />
     ));
   }
 
@@ -103,41 +151,65 @@ export function BookmarkJsonData({
     setCollapsed((prev) => ({ ...prev, [idx]: !prev[idx] }));
   }
 
-  return groups.map((group, gIdx) => (
-    <div key={gIdx} className="mb-2">
-      {group.header.label && (
-        <div
-          onClick={() => toggleGroup(gIdx)}
-          className="flex items-center gap-1 cursor-pointer select-none mb-1"
-        >
-          <span className="text-xs text-gray-500">
-            {collapsed[gIdx] ? "▶" : "▼"}
-          </span>
-          <span className="font-semibold">
-            {group.header.emoji && (
-              <span>
-                <HighlightText
-                  text={group.header.emoji}
-                  searchTerm={searchTerm}
-                />{" "}
-              </span>
-            )}
-            <HighlightText
-              text={group.header.label}
-              searchTerm={searchTerm}
-            />
-          </span>
-          <span className="text-xs text-gray-400 ml-1">
-            ({group.items.length})
-          </span>
-        </div>
-      )}
-      {!collapsed[gIdx] &&
-        group.items.map((b, index) => (
-          <div key={`${gIdx}-${index}`} className={group.header.label ? "ml-4" : ""}>
-            <BookmarkItem b={b} searchTerm={searchTerm} />
+  // Build flat index mapping for drag across categories
+  let flatIdx = 0;
+  return groups.map((group, gIdx) => {
+    const headerFlatIdx = flatIdx;
+    flatIdx++;
+    return (
+      <div key={gIdx} className="mb-2">
+        {group.header.label && (
+          <div
+            onClick={() => toggleGroup(gIdx)}
+            className={`flex items-center gap-1 cursor-pointer select-none mb-1 ${onReorder ? "cursor-grab active:cursor-grabbing" : ""} ${dragOverIdx === headerFlatIdx && dragIdx !== headerFlatIdx ? "border-t-2 border-blue-400" : ""}`}
+            draggable={!!onReorder}
+            onDragStart={() => setDragIdx(headerFlatIdx)}
+            onDragOver={(e) => { e.preventDefault(); setDragOverIdx(headerFlatIdx); }}
+            onDrop={() => handleDrop(headerFlatIdx)}
+            onDragEnd={handleDragEnd}
+          >
+            <span className="text-xs text-gray-500">
+              {collapsed[gIdx] ? "▶" : "▼"}
+            </span>
+            <span className="font-semibold">
+              {group.header.emoji && (
+                <span>
+                  <HighlightText
+                    text={group.header.emoji}
+                    searchTerm={searchTerm}
+                  />{" "}
+                </span>
+              )}
+              <HighlightText
+                text={group.header.label}
+                searchTerm={searchTerm}
+              />
+            </span>
+            <span className="text-xs text-gray-400 ml-1">
+              ({group.items.length})
+            </span>
           </div>
-        ))}
-    </div>
-  ));
+        )}
+        {!collapsed[gIdx] &&
+          group.items.map((b) => {
+            const itemFlatIdx = flatIdx;
+            flatIdx++;
+            return (
+              <div key={`${gIdx}-${itemFlatIdx}`} className={group.header.label ? "ml-4" : ""}>
+                <BookmarkItem
+                  b={b}
+                  searchTerm={searchTerm}
+                  draggable={!!onReorder}
+                  onDragStart={() => setDragIdx(itemFlatIdx)}
+                  onDragOver={(e) => { e.preventDefault(); setDragOverIdx(itemFlatIdx); }}
+                  onDrop={() => handleDrop(itemFlatIdx)}
+                  onDragEnd={handleDragEnd}
+                  isDragOver={dragOverIdx === itemFlatIdx && dragIdx !== itemFlatIdx}
+                />
+              </div>
+            );
+          })}
+      </div>
+    );
+  });
 }

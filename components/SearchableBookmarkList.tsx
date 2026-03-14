@@ -4,10 +4,13 @@ import { TBookmark } from "../types";
 
 interface SearchableBookmarkListProps {
   bookmarkAry: TBookmark[];
+  // eslint-disable-next-line no-unused-vars
+  onReorder?: (reordered: TBookmark[]) => void;
 }
 
 export function SearchableBookmarkList({
   bookmarkAry,
+  onReorder,
 }: SearchableBookmarkListProps) {
   const [showFilter, setShowFilter] = useState(false);
   const [filterText, setFilterText] = useState("");
@@ -79,6 +82,7 @@ export function SearchableBookmarkList({
       <BookmarkJsonData
         bookmarkAry={filteredBookmarks}
         searchTerm={showFilter ? filterText.trim() : undefined}
+        onReorder={!filterText.trim() ? onReorder : undefined}
       />
     </>
   );

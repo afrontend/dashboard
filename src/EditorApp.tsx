@@ -30,7 +30,10 @@ export function EditorApp() {
                 </div>
               )}
               <div className="flex-1 min-w-0">
-                <SearchableBookmarkList bookmarkAry={urlBookmarks} />
+                <SearchableBookmarkList
+                  bookmarkAry={urlBookmarks}
+                  onReorder={setUrlBookmarks}
+                />
               </div>
             </div>
           </div>
