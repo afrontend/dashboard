@@ -1,0 +1,299 @@
+{
+  "urls": [
+    {
+      "emoji": "🍓",
+      "label": "AI",
+      "url": ""
+    },
+    {
+      "emoji": "🍓",
+      "label": "Google Skill",
+      "url": "https://www.skills.google/"
+    },
+    {
+      "emoji": "🍓",
+      "label": "Hugging Face",
+      "url": "https://huggingface.co/"
+    },
+    {
+      "emoji": "🍉",
+      "label": "TUI",
+      "url": ""
+    },
+    {
+      "emoji": "🍉",
+      "label": "OpenTUI",
+      "url": "https://github.com/sst/opentui"
+    },
+    {
+      "emoji": "🍒",
+      "label": "Backend",
+      "url": ""
+    },
+    {
+      "emoji": "🍒",
+      "label": "Try: promo: Bigboxswe",
+      "url": "https://www.boot.dev/"
+    },
+    {
+      "emoji": "🍑",
+      "label": "Vim",
+      "url": ""
+    },
+    {
+      "emoji": "🍑",
+      "label": "cheatsheet",
+      "url": "https://tui.ninja/neovim/cheatsheet/"
+    },
+    {
+      "emoji": "🍑",
+      "label": "Learn Neovim",
+      "url": "https://jeffbailey.us/blog/2025/06/07/learn-neovim/"
+    },
+    {
+      "emoji": "🍑",
+      "label": "VimPlugins",
+      "url": "https://medium.com/@afrontend/vim%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%9C%EB%8B%A4-fede04634bab"
+    },
+    {
+      "emoji": "🍑",
+      "label": "LearnVim",
+      "url": "https://learnvim.irian.to/"
+    },
+    {
+      "emoji": "🍇",
+      "label": "Daily",
+      "url": ""
+    },
+    {
+      "emoji": "🍇",
+      "label": "Study code",
+      "url": "https://github.com/codecrafters-io/build-your-own-x"
+    },
+    {
+      "emoji": "🍇",
+      "label": "O'reilly",
+      "url": "https://learning.oreilly.com/home/"
+    },
+    {
+      "emoji": "🍇",
+      "label": "Book podcast",
+      "url": "https://bookoverflow.io/"
+    },
+    {
+      "emoji": "🍇",
+      "label": "Modern Font Stacks",
+      "url": "https://modernfontstacks.com/"
+    },
+    {
+      "emoji": "🍇",
+      "label": "FileSystemAccess",
+      "url": "https://web.dev/file-system-access"
+    },
+    {
+      "emoji": "🍇",
+      "label": "Freecodecamp",
+      "url": "https://www.freecodecamp.org/"
+    },
+    {
+      "emoji": "🍇",
+      "label": "Leetcode",
+      "url": "https://leetcode.com/problemset/all/"
+    },
+    {
+      "emoji": "🍇",
+      "label": "Learn Images",
+      "url": "https://web.dev/learn/images/"
+    },
+    {
+      "emoji": "🍇",
+      "label": "Lottiefiles",
+      "url": "https://lottiefiles.com/"
+    },
+    {
+      "emoji": "🍇",
+      "label": "Dribbble",
+      "url": "https://dribbble.com/"
+    },
+    {
+      "emoji": "➒",
+      "label": "",
+      "url": "https://careerly.co.kr/comments/82743"
+    },
+    {
+      "emoji": "",
+      "label": "코드를 이미지로",
+      "url": "https://ray.so/"
+    },
+    {
+      "emoji": "",
+      "label": "로드맵",
+      "url": "https://roadmap.sh/"
+    },
+    {
+      "emoji": "",
+      "label": "무료아이콘",
+      "url": "https://iconstore.co/"
+    },
+    {
+      "emoji": "",
+      "label": "README Writer",
+      "url": "https://readme.so/"
+    },
+    {
+      "emoji": "",
+      "label": "Dummy Image",
+      "url": "https://picsum.photos/"
+    },
+    {
+      "emoji": "➊",
+      "label": "Python",
+      "url": ""
+    },
+    {
+      "emoji": "",
+      "label": "Automate the Boring Stuff with Python",
+      "url": "https://automatetheboringstuff.com/"
+    },
+    {
+      "emoji": "",
+      "label": "Data Science in VS Code tutorial",
+      "url": "https://code.visualstudio.com/docs/datascience/data-science-tutorial"
+    },
+    {
+      "emoji": "",
+      "label": "PyPi",
+      "url": "https://pypi.org/"
+    },
+    {
+      "emoji": "",
+      "label": "GitHub Python",
+      "url": "https://github.com/Python"
+    },
+    {
+      "emoji": "",
+      "label": "readthedocs",
+      "url": "https://readthedocs.org/"
+    },
+    {
+      "emoji": "",
+      "label": "Python Recipes",
+      "url": "https://code.activestate.com/recipes/langs/python/"
+    },
+    {
+      "emoji": "",
+      "label": "Python Modules",
+      "url": "https://pymotw.com/3/"
+    },
+    {
+      "emoji": "➋",
+      "label": "OnePage",
+      "url": "http://localhost:3000"
+    },
+    {
+      "emoji": "",
+      "label": "CSS Center with GRID",
+      "url": "https://coryrylan.com/blog/how-to-center-in-css-with-css-grid"
+    },
+    {
+      "emoji": "",
+      "label": "picocss",
+      "url": "https://picocss.com/"
+    },
+    {
+      "emoji": "",
+      "label": "Design",
+      "url": "https://anthonyhobday.com/sideprojects/saferules/"
+    },
+    {
+      "emoji": "",
+      "label": "Input",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Input"
+    },
+    {
+      "emoji": "",
+      "label": "libraries for react",
+      "url": "https://retool.com/blog/react-component-libraries/"
+    },
+    {
+      "emoji": "➌",
+      "label": "Dashboard",
+      "url": ""
+    },
+    {
+      "emoji": "",
+      "label": "Aligning items in a flex container",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Aligning_Items_in_a_Flex_Container"
+    },
+    {
+      "emoji": "",
+      "label": "British Palette",
+      "url": "https://flatuicolors.com/palette/gb"
+    },
+    {
+      "emoji": "",
+      "label": "React, setTimeout",
+      "url": "https://www.reactshark.com/blog/settimeout-react"
+    },
+    {
+      "emoji": "",
+      "label": "Uiverse",
+      "url": "https://uiverse.io/"
+    },
+    {
+      "emoji": "",
+      "label": "Parcel with React",
+      "url": "https://parceljs.org/recipes/react/"
+    },
+    {
+      "emoji": "",
+      "label": "react.school <input>",
+      "url": "https://react.school/ui/input"
+    },
+    {
+      "emoji": "",
+      "label": "React doc <input>",
+      "url": "https://beta.reactjs.org/reference/react-dom/components/input"
+    },
+    {
+      "emoji": "",
+      "label": "risingstars 2024",
+      "url": "https://risingstars.js.org/2024/en"
+    },
+    {
+      "emoji": "",
+      "label": "🅐 🅑 🅒 🅓 🅔 🅕 🅖 🅗 🅘 🅙 🅚 🅛 🅜 🅝 🅞 🅟 🅠 🅡 🅢 🅣 🅤 🅥 🅦 🅧 🅨 🅩 ➊ ➋ ➌ ➍ ➎ ➏ ➐ ➑ ➒ ➓",
+      "url": "http://xahlee.info/comp/unicode_circled_numbers.html"
+    },
+    {
+      "emoji": "",
+      "label": "🍇 🍑 🍒 🍓 🥝 🍉 🍈 🍊 🍋 🍌 🍍 🥭 🥥 🍎 🍏 🍐",
+      "url": "http://xahlee.info/comp/unicode_food_drink.html"
+    },
+    {
+      "emoji": "📚",
+      "label": "hscitylib",
+      "url": "https://hscitylib.or.kr/dtlib/index.do"
+    },
+    {
+      "emoji": "👽️",
+      "label": "react2shell",
+      "url": "https://github.com/kOaDT/poc-cve-2025-55182"
+    },
+    {
+      "emoji": "🌏",
+      "label": "art of curl",
+      "url": "https://curl.se/docs/httpscripting.html"
+    },
+    {
+      "emoji": "🔥",
+      "label": "Office work",
+      "url": "https://www.dropbox.com/scl/fi/c8g67u21842gvkldvdo62/.paper?dl=0"
+    },
+    {
+      "emoji": "📄",
+      "label": "news.md",
+      "url": "https://www.dropbox.com/preview/doc/news.md?role=personal"
+    }
+  ]
+}
