@@ -23,9 +23,9 @@ export function EditorApp() {
             >
               {editorVisible ? "◀ Hide" : "▶ Edit"}
             </button>
-            <div className="flex gap-4">
+            <div className="flex flex-col md:flex-row gap-4">
               {editorVisible && (
-                <div className="w-5/12 flex-shrink-0">
+                <div className="w-full md:w-5/12 md:flex-shrink-0">
                   <BookmarksInURL onBookmarksChange={setUrlBookmarks} />
                 </div>
               )}
