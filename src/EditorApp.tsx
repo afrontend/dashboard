@@ -3,10 +3,11 @@ import { BookmarksInURL } from "../components/BookmarksInURL";
 import { SearchableBookmarkList } from "../components/SearchableBookmarkList";
 import { ErrorBoundary } from "../components/ErrorBoundary";
 import { useEditorVisible } from "../hooks/useEditorVisible";
+import { getJsonData } from "../js/utils";
 import { TBookmark } from "../types";
 
 export function EditorApp() {
-  const [urlBookmarks, setUrlBookmarks] = useState<TBookmark[]>([]);
+  const [urlBookmarks, setUrlBookmarks] = useState<TBookmark[]>(getJsonData());
   const { visible: editorVisible, toggle: toggleEditor } = useEditorVisible();
 
   return (
