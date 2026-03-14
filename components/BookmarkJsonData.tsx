@@ -79,8 +79,7 @@ function BookmarkItem({
 }) {
   return (
     <div
-      style={{ marginBottom: "0.5rem" }}
-      className={`flex justify-between items-center ${draggable ? "cursor-grab active:cursor-grabbing" : ""} ${isDragOver ? "border-t-2 border-blue-400" : ""}`}
+      className={`flex justify-between items-center py-2 sm:py-0 mb-2 sm:mb-1 ${draggable ? "cursor-grab active:cursor-grabbing" : ""} ${isDragOver ? "border-t-2 border-blue-400" : ""}`}
       draggable={draggable}
       onDragStart={onDragStart}
       onDragOver={onDragOver}
@@ -96,7 +95,7 @@ function BookmarkItem({
         <HighlightText text={b.label || ""} searchTerm={searchTerm} />
       </a>
       {b.url && (
-        <span className="text-gray-500 truncate max-w-lg inline-block">
+        <span className="text-gray-500 truncate max-w-lg hidden sm:inline-block">
           <HighlightText text={decodeURI(b.url)} searchTerm={searchTerm} />
         </span>
       )}
@@ -161,7 +160,7 @@ export function BookmarkJsonData({
         {group.header.label && (
           <div
             onClick={() => toggleGroup(gIdx)}
-            className={`flex items-center gap-1 cursor-pointer select-none mb-1 ${onReorder ? "cursor-grab active:cursor-grabbing" : ""} ${dragOverIdx === headerFlatIdx && dragIdx !== headerFlatIdx ? "border-t-2 border-blue-400" : ""}`}
+            className={`flex items-center gap-1 cursor-pointer select-none mb-1 py-2 sm:py-0 ${onReorder ? "cursor-grab active:cursor-grabbing" : ""} ${dragOverIdx === headerFlatIdx && dragIdx !== headerFlatIdx ? "border-t-2 border-blue-400" : ""}`}
             draggable={!!onReorder}
             onDragStart={() => setDragIdx(headerFlatIdx)}
             onDragOver={(e) => { e.preventDefault(); setDragOverIdx(headerFlatIdx); }}
