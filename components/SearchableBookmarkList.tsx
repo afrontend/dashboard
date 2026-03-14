@@ -69,9 +69,17 @@ export function SearchableBookmarkList({
               }
             }}
           />
+          {filterText.trim() && (
+            <p className="text-sm text-gray-500 mt-1">
+              {filteredBookmarks.length} / {bookmarkAry.length} results
+            </p>
+          )}
         </div>
       )}
-      <BookmarkJsonData bookmarkAry={filteredBookmarks} />
+      <BookmarkJsonData
+        bookmarkAry={filteredBookmarks}
+        searchTerm={showFilter ? filterText.trim() : undefined}
+      />
     </>
   );
 }
