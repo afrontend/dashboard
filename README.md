@@ -32,6 +32,7 @@ npm run serve:editor
 ```bash
 npm run serve          # Local file mode development server
 npm run serve:editor   # Editor mode development server
+npm run dev            # Build then serve (local file mode)
 npm run build          # Production build (editor mode) to dist/
 npm run watch          # Watch mode without serving
 npm run typecheck      # Run TypeScript type checking
