@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { BookmarkJsonData } from "./BookmarkJsonData";
 import { TBookmark } from "../types";
+import { fuzzyIncludes } from "../js/utils";
 
 interface SearchableBookmarkListProps {
   bookmarkAry: TBookmark[];
@@ -43,10 +44,14 @@ export function SearchableBookmarkList({
 
   const filteredBookmarks = filterText.trim()
     ? bookmarkAry.filter((bookmark) => {
-        const searchTerm = filterText.toLowerCase();
+        const searchTerm = filterText.trim().toLowerCase();
+        const terms = searchTerm.split(/\s+/);
+        const allTerms = terms.length > 1 ? [searchTerm, ...terms] : terms;
         const values = Object.values(bookmark);
-        return values.some(
-          (v) => typeof v === "string" && v.toLowerCase().includes(searchTerm),
+        return allTerms.some((term) =>
+          values.some(
+            (v) => typeof v === "string" && fuzzyIncludes(v.toLowerCase(), term),
+          ),
         );
       })
     : bookmarkAry;
