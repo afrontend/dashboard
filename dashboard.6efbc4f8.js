@@ -207,11 +207,11 @@
       });
     }
   }
-})({"7KwkS":[function(require,module,exports,__globalThis) {
+})({"acFcD":[function(require,module,exports,__globalThis) {
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
-var HMR_SERVER_PORT = 1234;
+var HMR_SERVER_PORT = 50299;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "439701173a9199ea";
 var HMR_USE_SSE = false;
@@ -25234,7 +25234,7 @@ $RefreshReg$(_c1, "EditorApp");
   globalThis.$RefreshReg$ = prevRefreshReg;
   globalThis.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"dVPUn","react":"jMk1U","../components/BookmarksInURL":"lC06k","../components/SearchableBookmarkList":"8Y0Zx","../components/ErrorBoundary":"4W0YR","../hooks/useEditorVisible":"8TkCz","../js/utils":"16axz","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi"}],"lC06k":[function(require,module,exports,__globalThis) {
+},{"react/jsx-dev-runtime":"dVPUn","react":"jMk1U","../components/BookmarksInURL":"lC06k","../components/SearchableBookmarkList":"8Y0Zx","../components/ErrorBoundary":"4W0YR","../hooks/useEditorVisible":"8TkCz","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi","../js/utils":"16axz"}],"lC06k":[function(require,module,exports,__globalThis) {
 var $parcel$ReactRefreshHelpers$4528 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 $parcel$ReactRefreshHelpers$4528.init();
 var prevRefreshReg = globalThis.$RefreshReg$;
@@ -57827,10 +57827,7 @@ function groupByCategory(bookmarks) {
 }
 function BookmarkItem({ b, searchTerm, draggable, onDragStart, onDragOver, onDrop, onDragEnd, isDragOver }) {
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        style: {
-            marginBottom: "0.5rem"
-        },
-        className: `flex justify-between items-center ${draggable ? "cursor-grab active:cursor-grabbing" : ""} ${isDragOver ? "border-t-2 border-blue-400" : ""}`,
+        className: `flex justify-between items-center py-2 sm:py-0 mb-2 sm:mb-1 ${draggable ? "cursor-grab active:cursor-grabbing" : ""} ${isDragOver ? "border-t-2 border-blue-400" : ""}`,
         draggable: draggable,
         onDragStart: onDragStart,
         onDragOver: onDragOver,
@@ -57847,14 +57844,14 @@ function BookmarkItem({ b, searchTerm, draggable, onDragStart, onDragOver, onDro
                                 searchTerm: searchTerm
                             }, void 0, false, {
                                 fileName: "components/BookmarkJsonData.tsx",
-                                lineNumber: 93,
+                                lineNumber: 92,
                                 columnNumber: 13
                             }, this),
                             " "
                         ]
                     }, void 0, true, {
                         fileName: "components/BookmarkJsonData.tsx",
-                        lineNumber: 92,
+                        lineNumber: 91,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(HighlightText, {
@@ -57862,28 +57859,28 @@ function BookmarkItem({ b, searchTerm, draggable, onDragStart, onDragOver, onDro
                         searchTerm: searchTerm
                     }, void 0, false, {
                         fileName: "components/BookmarkJsonData.tsx",
-                        lineNumber: 96,
+                        lineNumber: 95,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "components/BookmarkJsonData.tsx",
-                lineNumber: 90,
+                lineNumber: 89,
                 columnNumber: 7
             }, this),
             b.url && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                className: "text-gray-500 truncate max-w-lg inline-block",
+                className: "text-gray-500 truncate max-w-lg hidden sm:inline-block",
                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(HighlightText, {
                     text: decodeURI(b.url),
                     searchTerm: searchTerm
                 }, void 0, false, {
                     fileName: "components/BookmarkJsonData.tsx",
-                    lineNumber: 100,
+                    lineNumber: 99,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "components/BookmarkJsonData.tsx",
-                lineNumber: 99,
+                lineNumber: 98,
                 columnNumber: 9
             }, this)
         ]
@@ -57931,7 +57928,7 @@ function BookmarkJsonData({ bookmarkAry = [], searchTerm, onReorder }) {
             isDragOver: dragOverIdx === index && dragIdx !== index
         }, `${b.url}-${index}`, false, {
             fileName: "components/BookmarkJsonData.tsx",
-            lineNumber: 136,
+            lineNumber: 135,
             columnNumber: 7
         }, this));
     function toggleGroup(idx) {
@@ -57950,7 +57947,7 @@ function BookmarkJsonData({ bookmarkAry = [], searchTerm, onReorder }) {
             children: [
                 group.header.label && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                     onClick: ()=>toggleGroup(gIdx),
-                    className: `flex items-center gap-1 cursor-pointer select-none mb-1 ${onReorder ? "cursor-grab active:cursor-grabbing" : ""} ${dragOverIdx === headerFlatIdx && dragIdx !== headerFlatIdx ? "border-t-2 border-blue-400" : ""}`,
+                    className: `flex items-center gap-1 cursor-pointer select-none mb-1 py-2 sm:py-0 ${onReorder ? "cursor-grab active:cursor-grabbing" : ""} ${dragOverIdx === headerFlatIdx && dragIdx !== headerFlatIdx ? "border-t-2 border-blue-400" : ""}`,
                     draggable: !!onReorder,
                     onDragStart: ()=>setDragIdx(headerFlatIdx),
                     onDragOver: (e)=>{
@@ -57965,7 +57962,7 @@ function BookmarkJsonData({ bookmarkAry = [], searchTerm, onReorder }) {
                             children: collapsed[gIdx] ? "\u25B6" : "\u25BC"
                         }, void 0, false, {
                             fileName: "components/BookmarkJsonData.tsx",
-                            lineNumber: 171,
+                            lineNumber: 170,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
@@ -57978,14 +57975,14 @@ function BookmarkJsonData({ bookmarkAry = [], searchTerm, onReorder }) {
                                             searchTerm: searchTerm
                                         }, void 0, false, {
                                             fileName: "components/BookmarkJsonData.tsx",
-                                            lineNumber: 177,
+                                            lineNumber: 176,
                                             columnNumber: 19
                                         }, this),
                                         " "
                                     ]
                                 }, void 0, true, {
                                     fileName: "components/BookmarkJsonData.tsx",
-                                    lineNumber: 176,
+                                    lineNumber: 175,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(HighlightText, {
@@ -57993,13 +57990,13 @@ function BookmarkJsonData({ bookmarkAry = [], searchTerm, onReorder }) {
                                     searchTerm: searchTerm
                                 }, void 0, false, {
                                     fileName: "components/BookmarkJsonData.tsx",
-                                    lineNumber: 183,
+                                    lineNumber: 182,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "components/BookmarkJsonData.tsx",
-                            lineNumber: 174,
+                            lineNumber: 173,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
@@ -58011,13 +58008,13 @@ function BookmarkJsonData({ bookmarkAry = [], searchTerm, onReorder }) {
                             ]
                         }, void 0, true, {
                             fileName: "components/BookmarkJsonData.tsx",
-                            lineNumber: 188,
+                            lineNumber: 187,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "components/BookmarkJsonData.tsx",
-                    lineNumber: 162,
+                    lineNumber: 161,
                     columnNumber: 11
                 }, this),
                 !collapsed[gIdx] && group.items.map((b)=>{
@@ -58039,19 +58036,19 @@ function BookmarkJsonData({ bookmarkAry = [], searchTerm, onReorder }) {
                             isDragOver: dragOverIdx === itemFlatIdx && dragIdx !== itemFlatIdx
                         }, void 0, false, {
                             fileName: "components/BookmarkJsonData.tsx",
-                            lineNumber: 199,
+                            lineNumber: 198,
                             columnNumber: 17
                         }, this)
                     }, `${gIdx}-${itemFlatIdx}`, false, {
                         fileName: "components/BookmarkJsonData.tsx",
-                        lineNumber: 198,
+                        lineNumber: 197,
                         columnNumber: 15
                     }, this);
                 })
             ]
         }, gIdx, true, {
             fileName: "components/BookmarkJsonData.tsx",
-            lineNumber: 160,
+            lineNumber: 159,
             columnNumber: 7
         }, this);
     });
@@ -58195,6 +58192,6 @@ _s(useEditorVisible, "21CEg7z6gdvlYRYxJO1NAXTbyBg=");
   globalThis.$RefreshReg$ = prevRefreshReg;
   globalThis.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi"}]},["7KwkS","4dmnR"], "4dmnR", "parcelRequire52bb", {}, null, null, "http://localhost:1234")
+},{"react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi"}]},["acFcD","4dmnR"], "4dmnR", "parcelRequire52bb", {}, null, null, "http://localhost:50299")
 
 //# sourceMappingURL=dashboard.6efbc4f8.js.map

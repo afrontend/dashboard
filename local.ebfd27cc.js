@@ -25149,6 +25149,7 @@ var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _bookmarkJsonData = require("./BookmarkJsonData");
+var _utils = require("../js/utils");
 var _s = $RefreshSig$();
 function SearchableBookmarkList({ bookmarkAry, onReorder }) {
     _s();
@@ -25172,9 +25173,14 @@ function SearchableBookmarkList({ bookmarkAry, onReorder }) {
         return ()=>document.removeEventListener("keydown", handleKeyDown);
     }, []);
     const filteredBookmarks = filterText.trim() ? bookmarkAry.filter((bookmark)=>{
-        const searchTerm = filterText.toLowerCase();
+        const searchTerm = filterText.trim().toLowerCase();
+        const terms = searchTerm.split(/\s+/);
+        const allTerms = terms.length > 1 ? [
+            searchTerm,
+            ...terms
+        ] : terms;
         const values = Object.values(bookmark);
-        return values.some((v)=>typeof v === "string" && v.toLowerCase().includes(searchTerm));
+        return allTerms.some((term)=>values.some((v)=>typeof v === "string" && (0, _utils.fuzzyIncludes)(v.toLowerCase(), term)));
     }) : bookmarkAry;
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: [
@@ -25183,7 +25189,7 @@ function SearchableBookmarkList({ bookmarkAry, onReorder }) {
                 children: "Press S to search"
             }, void 0, false, {
                 fileName: "components/SearchableBookmarkList.tsx",
-                lineNumber: 57,
+                lineNumber: 62,
                 columnNumber: 9
             }, this),
             showFilter && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -25204,7 +25210,7 @@ function SearchableBookmarkList({ bookmarkAry, onReorder }) {
                         }
                     }, void 0, false, {
                         fileName: "components/SearchableBookmarkList.tsx",
-                        lineNumber: 61,
+                        lineNumber: 66,
                         columnNumber: 11
                     }, this),
                     filterText.trim() && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
@@ -25217,13 +25223,13 @@ function SearchableBookmarkList({ bookmarkAry, onReorder }) {
                         ]
                     }, void 0, true, {
                         fileName: "components/SearchableBookmarkList.tsx",
-                        lineNumber: 76,
+                        lineNumber: 81,
                         columnNumber: 13
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "components/SearchableBookmarkList.tsx",
-                lineNumber: 60,
+                lineNumber: 65,
                 columnNumber: 9
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _bookmarkJsonData.BookmarkJsonData), {
@@ -25232,7 +25238,7 @@ function SearchableBookmarkList({ bookmarkAry, onReorder }) {
                 onReorder: !filterText.trim() ? onReorder : undefined
             }, void 0, false, {
                 fileName: "components/SearchableBookmarkList.tsx",
-                lineNumber: 82,
+                lineNumber: 87,
                 columnNumber: 7
             }, this)
         ]
@@ -25248,7 +25254,7 @@ $RefreshReg$(_c, "SearchableBookmarkList");
   globalThis.$RefreshReg$ = prevRefreshReg;
   globalThis.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"dVPUn","react":"jMk1U","./BookmarkJsonData":"kfhaW","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi"}],"kfhaW":[function(require,module,exports,__globalThis) {
+},{"react/jsx-dev-runtime":"dVPUn","react":"jMk1U","./BookmarkJsonData":"kfhaW","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi","../js/utils":"16axz"}],"kfhaW":[function(require,module,exports,__globalThis) {
 var $parcel$ReactRefreshHelpers$4212 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 $parcel$ReactRefreshHelpers$4212.init();
 var prevRefreshReg = globalThis.$RefreshReg$;
@@ -25314,10 +25320,7 @@ function groupByCategory(bookmarks) {
 }
 function BookmarkItem({ b, searchTerm, draggable, onDragStart, onDragOver, onDrop, onDragEnd, isDragOver }) {
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        style: {
-            marginBottom: "0.5rem"
-        },
-        className: `flex justify-between items-center ${draggable ? "cursor-grab active:cursor-grabbing" : ""} ${isDragOver ? "border-t-2 border-blue-400" : ""}`,
+        className: `flex justify-between items-center py-2 sm:py-0 mb-2 sm:mb-1 ${draggable ? "cursor-grab active:cursor-grabbing" : ""} ${isDragOver ? "border-t-2 border-blue-400" : ""}`,
         draggable: draggable,
         onDragStart: onDragStart,
         onDragOver: onDragOver,
@@ -25334,14 +25337,14 @@ function BookmarkItem({ b, searchTerm, draggable, onDragStart, onDragOver, onDro
                                 searchTerm: searchTerm
                             }, void 0, false, {
                                 fileName: "components/BookmarkJsonData.tsx",
-                                lineNumber: 93,
+                                lineNumber: 92,
                                 columnNumber: 13
                             }, this),
                             " "
                         ]
                     }, void 0, true, {
                         fileName: "components/BookmarkJsonData.tsx",
-                        lineNumber: 92,
+                        lineNumber: 91,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(HighlightText, {
@@ -25349,28 +25352,28 @@ function BookmarkItem({ b, searchTerm, draggable, onDragStart, onDragOver, onDro
                         searchTerm: searchTerm
                     }, void 0, false, {
                         fileName: "components/BookmarkJsonData.tsx",
-                        lineNumber: 96,
+                        lineNumber: 95,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "components/BookmarkJsonData.tsx",
-                lineNumber: 90,
+                lineNumber: 89,
                 columnNumber: 7
             }, this),
             b.url && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                className: "text-gray-500 truncate max-w-lg inline-block",
+                className: "text-gray-500 truncate max-w-lg hidden sm:inline-block",
                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(HighlightText, {
                     text: decodeURI(b.url),
                     searchTerm: searchTerm
                 }, void 0, false, {
                     fileName: "components/BookmarkJsonData.tsx",
-                    lineNumber: 100,
+                    lineNumber: 99,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "components/BookmarkJsonData.tsx",
-                lineNumber: 99,
+                lineNumber: 98,
                 columnNumber: 9
             }, this)
         ]
@@ -25418,7 +25421,7 @@ function BookmarkJsonData({ bookmarkAry = [], searchTerm, onReorder }) {
             isDragOver: dragOverIdx === index && dragIdx !== index
         }, `${b.url}-${index}`, false, {
             fileName: "components/BookmarkJsonData.tsx",
-            lineNumber: 136,
+            lineNumber: 135,
             columnNumber: 7
         }, this));
     function toggleGroup(idx) {
@@ -25437,7 +25440,7 @@ function BookmarkJsonData({ bookmarkAry = [], searchTerm, onReorder }) {
             children: [
                 group.header.label && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                     onClick: ()=>toggleGroup(gIdx),
-                    className: `flex items-center gap-1 cursor-pointer select-none mb-1 ${onReorder ? "cursor-grab active:cursor-grabbing" : ""} ${dragOverIdx === headerFlatIdx && dragIdx !== headerFlatIdx ? "border-t-2 border-blue-400" : ""}`,
+                    className: `flex items-center gap-1 cursor-pointer select-none mb-1 py-2 sm:py-0 ${onReorder ? "cursor-grab active:cursor-grabbing" : ""} ${dragOverIdx === headerFlatIdx && dragIdx !== headerFlatIdx ? "border-t-2 border-blue-400" : ""}`,
                     draggable: !!onReorder,
                     onDragStart: ()=>setDragIdx(headerFlatIdx),
                     onDragOver: (e)=>{
@@ -25452,7 +25455,7 @@ function BookmarkJsonData({ bookmarkAry = [], searchTerm, onReorder }) {
                             children: collapsed[gIdx] ? "\u25B6" : "\u25BC"
                         }, void 0, false, {
                             fileName: "components/BookmarkJsonData.tsx",
-                            lineNumber: 171,
+                            lineNumber: 170,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
@@ -25465,14 +25468,14 @@ function BookmarkJsonData({ bookmarkAry = [], searchTerm, onReorder }) {
                                             searchTerm: searchTerm
                                         }, void 0, false, {
                                             fileName: "components/BookmarkJsonData.tsx",
-                                            lineNumber: 177,
+                                            lineNumber: 176,
                                             columnNumber: 19
                                         }, this),
                                         " "
                                     ]
                                 }, void 0, true, {
                                     fileName: "components/BookmarkJsonData.tsx",
-                                    lineNumber: 176,
+                                    lineNumber: 175,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(HighlightText, {
@@ -25480,13 +25483,13 @@ function BookmarkJsonData({ bookmarkAry = [], searchTerm, onReorder }) {
                                     searchTerm: searchTerm
                                 }, void 0, false, {
                                     fileName: "components/BookmarkJsonData.tsx",
-                                    lineNumber: 183,
+                                    lineNumber: 182,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "components/BookmarkJsonData.tsx",
-                            lineNumber: 174,
+                            lineNumber: 173,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
@@ -25498,13 +25501,13 @@ function BookmarkJsonData({ bookmarkAry = [], searchTerm, onReorder }) {
                             ]
                         }, void 0, true, {
                             fileName: "components/BookmarkJsonData.tsx",
-                            lineNumber: 188,
+                            lineNumber: 187,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "components/BookmarkJsonData.tsx",
-                    lineNumber: 162,
+                    lineNumber: 161,
                     columnNumber: 11
                 }, this),
                 !collapsed[gIdx] && group.items.map((b)=>{
@@ -25526,19 +25529,19 @@ function BookmarkJsonData({ bookmarkAry = [], searchTerm, onReorder }) {
                             isDragOver: dragOverIdx === itemFlatIdx && dragIdx !== itemFlatIdx
                         }, void 0, false, {
                             fileName: "components/BookmarkJsonData.tsx",
-                            lineNumber: 199,
+                            lineNumber: 198,
                             columnNumber: 17
                         }, this)
                     }, `${gIdx}-${itemFlatIdx}`, false, {
                         fileName: "components/BookmarkJsonData.tsx",
-                        lineNumber: 198,
+                        lineNumber: 197,
                         columnNumber: 15
                     }, this);
                 })
             ]
         }, gIdx, true, {
             fileName: "components/BookmarkJsonData.tsx",
-            lineNumber: 160,
+            lineNumber: 159,
             columnNumber: 7
         }, this);
     });
@@ -27861,6 +27864,89 @@ function $da9882e673ac146b$var$ErrorOverlay() {
         editorHandler: $da9882e673ac146b$var$editorHandler
     });
     return null;
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"16axz":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "getJsonData", ()=>getJsonData);
+parcelHelpers.export(exports, "fuzzyIncludes", ()=>fuzzyIncludes);
+parcelHelpers.export(exports, "isJSON", ()=>isJSON);
+const initialData = [
+    {
+        emoji: "\uD83D\uDCC1",
+        label: "Bookmarks",
+        url: ""
+    },
+    {
+        emoji: "\uD83D\uDD0D",
+        label: "Google",
+        url: "https://google.com"
+    },
+    {
+        emoji: "\uD83D\uDCBB",
+        label: "GitHub",
+        url: "https://github.com"
+    },
+    {
+        emoji: "\uD83D\uDCDA",
+        label: "Resources",
+        url: ""
+    },
+    {
+        emoji: "\uD83D\uDCD6",
+        label: "MDN Web Docs",
+        url: "https://developer.mozilla.org"
+    }
+];
+function getJsonData() {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const data = urlParams.get("data");
+    if (data) try {
+        const parsed = JSON.parse(decodeURIComponent(data));
+        // Support both old array format and new object format
+        if (Array.isArray(parsed) && parsed.length > 0) {
+            if (Array.isArray(parsed[0])) // Old format: [["label", "url"]]
+            return parsed.map(([label, url])=>({
+                    emoji: "",
+                    label: label || "",
+                    url: url || ""
+                }));
+        }
+        return parsed;
+    } catch  {
+        return initialData;
+    }
+    return initialData;
+}
+function levenshtein(a, b) {
+    const m = a.length;
+    const n = b.length;
+    const dp = Array.from({
+        length: m + 1
+    }, (_, i)=>Array.from({
+            length: n + 1
+        }, (_, j)=>i === 0 ? j : j === 0 ? i : 0));
+    for(let i = 1; i <= m; i++)for(let j = 1; j <= n; j++)dp[i][j] = a[i - 1] === b[j - 1] ? dp[i - 1][j - 1] : 1 + Math.min(dp[i - 1][j - 1], dp[i - 1][j], dp[i][j - 1]);
+    return dp[m][n];
+}
+function fuzzyIncludes(text, term) {
+    if (text.includes(term)) return true;
+    if (term.length < 3) return false;
+    const len = term.length;
+    for(let winLen = len - 1; winLen <= len + 1; winLen++)for(let i = 0; i <= text.length - winLen; i++){
+        if (levenshtein(text.substring(i, i + winLen), term) <= 1) return true;
+    }
+    return false;
+}
+function isJSON(str) {
+    try {
+        JSON.parse(str);
+    } catch  {
+        return false;
+    }
+    return true;
 }
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"4W0YR":[function(require,module,exports,__globalThis) {
