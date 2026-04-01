@@ -80,6 +80,27 @@ Then mount it when running:
 docker run -p 1234:1234 -v $(pwd)/json:/app/json dashboard
 ```
 
+#### Setup and Automation
+
+This repository uses GitHub Actions for automatic Docker image building and publishing to GHCR.
+
+**How it works:**
+- Every push to `main` automatically builds and publishes a `latest` image
+- Every git tag (e.g., `v1.0.0`) automatically creates a versioned image
+- Pull requests trigger a build test (without publishing)
+
+**Check build status:**
+1. Go to [GitHub Actions](https://github.com/afrontend/dashboard/actions) to monitor automated builds
+2. After the first successful build, make the package public (optional):
+   - Go to your package settings on GitHub
+   - Set visibility to "Public" for public access
+3. Release a new version:
+   ```bash
+   git tag v1.0.3
+   git push origin v1.0.3
+   ```
+   This will automatically build and publish `ghcr.io/afrontend/dashboard:v1.0.3`
+
 ### Editor mode
 
 Edit bookmark JSON directly in a CodeMirror editor with live preview. Deployable to GitHub Pages.
