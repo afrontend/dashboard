@@ -14,8 +14,8 @@ Loads bookmarks from a local JSON file.
 git clone https://github.com/afrontend/dashboard.git
 cd dashboard
 npm install
-mkdir -p dist/json
-echo '{"urls":[{"emoji":"🍑","label":"Google","url":"https://google.com"}]}' > dist/json/dashboard.json
+mkdir -p json
+echo '{"urls":[{"emoji":"🍑","label":"Google","url":"https://google.com"}]}' > json/dashboard.json
 npm run serve
 ```
 
