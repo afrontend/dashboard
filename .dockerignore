@@ -1,0 +1,12 @@
+node_modules
+.git
+.gitignore
+dist
+build
+.parcel-cache
+.DS_Store
+npm-debug.log
+*.md
+docs
+.env
+.env.local

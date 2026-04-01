@@ -19,6 +19,67 @@ echo '{"urls":[{"emoji":"🍑","label":"Google","url":"https://google.com"}]}' >
 npm run serve
 ```
 
+### Docker
+
+Run the local file mode in a Docker container. The container automatically sets up dependencies and creates a default bookmark JSON file.
+
+#### Build locally
+
+**Build the image:**
+```bash
+docker build -t dashboard .
+```
+
+**Run the container:**
+```bash
+# Basic usage (uses default bookmarks)
+docker run -p 1234:1234 dashboard
+
+# With custom bookmarks (mount local json file)
+docker run -p 1234:1234 -v $(pwd)/json:/app/json dashboard
+
+# Run in background
+docker run -d -p 1234:1234 --name dashboard dashboard
+```
+
+Then open http://localhost:1234 in your browser.
+
+#### Use pre-built image from GHCR
+
+Docker images are automatically built and published to GitHub Container Registry on every push to `main` and for tagged releases.
+
+**Pull and run the latest image:**
+```bash
+docker run -p 1234:1234 ghcr.io/afrontend/dashboard:latest
+```
+
+**Use a specific version:**
+```bash
+docker run -p 1234:1234 ghcr.io/afrontend/dashboard:v1.0.2
+```
+
+**With custom bookmarks:**
+```bash
+docker run -p 1234:1234 -v $(pwd)/json:/app/json ghcr.io/afrontend/dashboard:latest
+```
+
+#### Custom bookmarks
+
+Create a `json/dashboard.json` file:
+```json
+{
+  "urls": [
+    { "emoji": "🍑", "label": "Google", "url": "https://google.com" },
+    { "emoji": "📚", "label": "GitHub", "url": "https://github.com" }
+  ]
+}
+```
+
+Then mount it when running:
+```bash
+docker run -p 1234:1234 -v $(pwd)/json:/app/json dashboard
+```
+
 ### Editor mode
 
 Edit bookmark JSON directly in a CodeMirror editor with live preview. Deployable to GitHub Pages.
