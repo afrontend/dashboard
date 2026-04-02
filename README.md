@@ -26,11 +26,13 @@ Run the local file mode in a Docker container. The container automatically sets 
 #### Build locally
 
 **Build the image:**
+
 ```bash
 docker build -t dashboard .
 ```
 
 **Run the container:**
+
 ```bash
 # Basic usage (uses default bookmarks)
 docker run -p 1234:1234 dashboard
@@ -49,16 +51,19 @@ Then open http://localhost:1234 in your browser.
 Docker images are automatically built and published to GitHub Container Registry on every push to `main` and for tagged releases.
 
 **Pull and run the latest image:**
+
 ```bash
 docker run -p 1234:1234 ghcr.io/afrontend/dashboard:latest
 ```
 
 **Use a specific version:**
+
 ```bash
 docker run -p 1234:1234 ghcr.io/afrontend/dashboard:v1.0.2
 ```
 
 **With custom bookmarks:**
+
 ```bash
 docker run -p 1234:1234 -v $(pwd)/json:/app/json ghcr.io/afrontend/dashboard:latest
 ```
@@ -66,6 +71,7 @@ docker run -p 1234:1234 -v $(pwd)/json:/app/json ghcr.io/afrontend/dashboard:lat
 #### Custom bookmarks
 
 Create a `json/dashboard.json` file:
+
 ```json
 {
   "urls": [
@@ -76,6 +82,7 @@ Create a `json/dashboard.json` file:
 ```
 
 Then mount it when running:
+
 ```bash
 docker run -p 1234:1234 -v $(pwd)/json:/app/json dashboard
 ```
@@ -85,11 +92,13 @@ docker run -p 1234:1234 -v $(pwd)/json:/app/json dashboard
 This repository uses GitHub Actions for automatic Docker image building and publishing to GHCR.
 
 **How it works:**
+
 - Every push to `main` automatically builds and publishes a `latest` image
 - Every git tag (e.g., `v1.0.0`) automatically creates a versioned image
 - Pull requests trigger a build test (without publishing)
 
 **Check build status:**
+
 1. Go to [GitHub Actions](https://github.com/afrontend/dashboard/actions) to monitor automated builds
 2. After the first successful build, make the package public (optional):
    - Go to your package settings on GitHub
@@ -149,10 +158,53 @@ Each bookmark has optional `emoji`, `label`, and `url` fields. Entries without a
 - **Save** (💾) — Encodes bookmark data into the URL for sharing
 - **Clear** (✕) — Resets to default state
 
+## Architecture
+
+### Development server
+
+The app uses a custom Node.js HTTP server (`server.js`) that:
+- Serves JSON files (`.json`) directly from the filesystem
+- Proxies all other requests to Parcel (on port 1235)
+
+This approach bypasses Parcel's SPA routing for static JSON files while maintaining full support for hot reloading and bundling.
+
+### Entry points
+
+- **Local file mode** (`local.html` → `src/local.tsx`) — Loads bookmarks from `json/dashboard.json`
+- **Editor mode** (`index.html` → `src/index.tsx`) — Editable bookmarks with CodeMirror, deployable to GitHub Pages
+
 ## Tech stack
 
 - **React 18** with **TypeScript**
-- **Parcel** — Build tool and dev server
+- **Parcel 2.8** — Bundler and dev server
 - **CodeMirror** — JSON editor with syntax highlighting and validation
 - **Pico CSS** + **Tailwind CSS** — Styling
 - **GitHub Pages** — Deployment via `gh-pages`
+- **GitHub Actions** — Automated Docker image building to GHCR
+
+## Project structure
+
+```
+.
+├── src/                          # React application code
+│   ├── index.tsx                # Editor mode entry point
+│   └── local.tsx                # Local file mode entry point
+├── components/                   # React components
+│   ├── EditorApp.tsx            # Editor mode app
+│   ├── LocalApp.tsx             # Local file mode app
+│   ├── BookmarksInFile.tsx      # Loads bookmarks from JSON file
+│   ├── BookmarksInURL.tsx       # CodeMirror JSON editor
+│   ├── SearchableBookmarkList.tsx
+│   ├── BookmarkJsonData.tsx     # Bookmark rendering
+│   └── ErrorBoundary.tsx        # Error handling
+├── hooks/                        # Custom React hooks
+│   └── useEditorVisible.tsx     # Visibility toggle state
+├── js/                           # Utilities
+│   └── utils.ts                 # JSON parsing and validation
+├── json/                         # Bookmark data directory (local development)
+├── server.js                     # Custom HTTP server (dev mode)
+├── Dockerfile                    # Docker image definition
+├── index.html                    # Editor mode HTML template
+├── local.html                    # Local file mode HTML template
+└── package.json                  # Project dependencies and scripts
+```
