@@ -8,7 +8,7 @@
     "copyjson": "cp -rf json dist/",
     "build": "parcel build index.html --no-cache --public-url /dashboard/",
     "serve": "node server.js",
-    "dev": "npm run build && npm run serve",
+    "dev": "npm run serve",
     "serve:editor": "parcel index.html --no-cache",
     "watch": "parcel watch index.html --no-cache",
     "predeploy": "parcel build index.html --no-cache --public-url /dashboard/",
