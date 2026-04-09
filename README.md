@@ -34,7 +34,8 @@ docker build -t dashboard .
 **Run the container:**
 
 ```bash
-# Basic usage (uses default bookmarks)
+# Basic usage (uses default bookmarks: Google, GitHub)
+# Without a volume mount, the container uses the default json/dashboard.json created during build
 docker run -p 1234:1234 dashboard
 
 # With custom bookmarks (mount local json file)
@@ -105,10 +106,9 @@ This repository uses GitHub Actions for automatic Docker image building and publ
    - Set visibility to "Public" for public access
 3. Release a new version:
    ```bash
-   git tag v1.0.3
-   git push origin v1.0.3
+   npm run release
    ```
-   This will automatically build and publish `ghcr.io/afrontend/dashboard:v1.0.3`
+   This bumps the patch version in `package.json`, creates a git commit and tag, and pushes everything to origin. GitHub Actions will automatically build and publish the new image to GHCR.
 
 ### Editor mode
 
