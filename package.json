@@ -1,6 +1,6 @@
 {
   "name": "dashboard",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Local web service for showing bookmarks",
   "repository": "https://github.com/afrontend/dashboard.git",
   "author": "afrontend <autoscripts@gmail.com>",
