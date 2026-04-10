@@ -118,6 +118,8 @@ Edit bookmark JSON directly in a CodeMirror editor with live preview. Deployable
 npm run serve:editor
 ```
 
+> **No backend required — your data lives in the URL.** When you click **Save** (💾), the entire bookmark dataset is encoded into the page URL. Bookmark that URL or share it, and you get your full dashboard back anywhere — no database, no account, no server-side storage.
+
 ## Commands
 
 ```bash
@@ -155,7 +157,7 @@ Each bookmark has optional `emoji`, `label`, and `url` fields. Entries without a
 - **Editor toggle** — iOS-style toggle switch to show/hide the CodeMirror editor
 - **Import** (📂) — Load bookmarks from a JSON file
 - **Export** (↧) — Download bookmarks as a JSON file
-- **Save** (💾) — Encodes bookmark data into the URL for sharing
+- **Save** (💾) — Encodes the entire bookmark dataset into the URL. The URL becomes your storage: bookmark it in your browser or share it to restore the full dashboard anywhere, with no backend needed.
 - **Clear** (✕) — Resets to default state
 
 ## Architecture
@@ -163,6 +165,7 @@ Each bookmark has optional `emoji`, `label`, and `url` fields. Entries without a
 ### Development server
 
 The app uses a custom Node.js HTTP server (`server.js`) that:
+
 - Serves JSON files (`.json`) directly from the filesystem
 - Proxies all other requests to Parcel (on port 1235)
 

@@ -13,6 +13,7 @@ import { TBookmark } from "../types";
 interface BookmarksInURLProps {
   // eslint-disable-next-line no-unused-vars
   onBookmarksChange: (data: TBookmark[]) => void;
+  onSaveComplete?: () => void;
 }
 
 export interface BookmarksInURLHandle {
@@ -24,7 +25,7 @@ export interface BookmarksInURLHandle {
 export const BookmarksInURL = forwardRef<
   BookmarksInURLHandle,
   BookmarksInURLProps
->(function BookmarksInURL({ onBookmarksChange }, ref) {
+>(function BookmarksInURL({ onBookmarksChange, onSaveComplete }, ref) {
   const jsonAry = getJsonData();
   const [bookmarkAry, setBookmarkAry] = useState<TBookmark[]>(jsonAry);
   const [bookmarkText, setBookmarkText] = useState<string>(
@@ -32,7 +33,6 @@ export const BookmarksInURL = forwardRef<
   );
   const [msg, setMsg] = useState<string>("");
   const [errorMsg, setErrorMsg] = useState<string>("");
-  const [saveMsg, setSaveMsg] = useState<string>("");
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -95,9 +95,9 @@ export const BookmarksInURL = forwardRef<
     const { origin, pathname } = window.location;
     const url = origin + pathname + param;
     window.history.pushState({}, "", url);
-    const isMac = navigator.platform.toUpperCase().indexOf("MAC") >= 0;
-    const shortcut = isMac ? "⌘D" : "Ctrl+D";
-    setSaveMsg(`URL updated! Press ${shortcut} to bookmark this page`);
+    if (onSaveComplete) {
+      onSaveComplete();
+    }
   }
 
   useImperativeHandle(ref, () => ({
@@ -105,15 +105,6 @@ export const BookmarksInURL = forwardRef<
     triggerExport: handleExport,
     triggerSave: handleSave,
   }));
-
-  useEffect(() => {
-    if (saveMsg) {
-      const timer = setTimeout(() => {
-        setSaveMsg("");
-      }, 10000);
-      return () => clearTimeout(timer);
-    }
-  }, [saveMsg]);
 
   return (
     <div>
@@ -146,7 +137,6 @@ export const BookmarksInURL = forwardRef<
       <div className="mt-1 flex items-center gap-2 text-sm">
         {msg && <span style={{ color: "#8c7ae6" }}>{msg}</span>}
         {errorMsg && <span style={{ color: "#e84118" }}>{errorMsg}</span>}
-        {saveMsg && <span style={{ color: "#10ac84" }}>{saveMsg}</span>}
       </div>
     </div>
   );

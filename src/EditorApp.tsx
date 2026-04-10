@@ -1,11 +1,14 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
   BookmarksInURL,
   BookmarksInURLHandle,
 } from "../components/BookmarksInURL";
 import { SearchableBookmarkList } from "../components/SearchableBookmarkList";
 import { ErrorBoundary } from "../components/ErrorBoundary";
+import { SaveToast } from "../components/SaveToast";
+import { SaveHint } from "../components/SaveHint";
 import { useEditorVisible } from "../hooks/useEditorVisible";
+import { useSaveHint } from "../hooks/useSaveHint";
 import { getJsonData } from "../js/utils";
 import { TBookmark } from "../types";
 
@@ -35,6 +38,29 @@ export function EditorApp() {
   const [urlBookmarks, setUrlBookmarks] = useState<TBookmark[]>(getJsonData());
   const { visible: editorVisible, toggle: toggleEditor } = useEditorVisible();
   const editorRef = useRef<BookmarksInURLHandle>(null);
+  const [toastVisible, setToastVisible] = useState(false);
+  const toastTimerRef = useRef<number | null>(null);
+  const saveHint = useSaveHint();
+
+  function handleSaveComplete() {
+    setToastVisible(true);
+    if (toastTimerRef.current !== null) {
+      window.clearTimeout(toastTimerRef.current);
+    }
+    toastTimerRef.current = window.setTimeout(() => {
+      setToastVisible(false);
+      toastTimerRef.current = null;
+    }, 5000);
+    saveHint.show();
+  }
+
+  useEffect(() => {
+    return () => {
+      if (toastTimerRef.current !== null) {
+        window.clearTimeout(toastTimerRef.current);
+      }
+    };
+  }, []);
 
   return (
     <div className="bg-gray-300 mx-auto p-5 pb-20">
@@ -90,6 +116,7 @@ export function EditorApp() {
                   <BookmarksInURL
                     ref={editorRef}
                     onBookmarksChange={setUrlBookmarks}
+                    onSaveComplete={handleSaveComplete}
                   />
                 </div>
               )}
@@ -103,6 +130,17 @@ export function EditorApp() {
           </div>
         </ErrorBoundary>
       </div>
+      <SaveToast
+        visible={toastVisible}
+        onClose={() => {
+          setToastVisible(false);
+          if (toastTimerRef.current !== null) {
+            window.clearTimeout(toastTimerRef.current);
+            toastTimerRef.current = null;
+          }
+        }}
+      />
+      <SaveHint visible={saveHint.visible} onDismiss={saveHint.dismiss} />
     </div>
   );
 }
