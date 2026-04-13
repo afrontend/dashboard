@@ -6,6 +6,26 @@ Local web service to show bookmarks
 
 ## How to run
 
+### npx (권장)
+
+설치 없이 즉시 실행:
+
+```bash
+npx local-bookmark-dash
+```
+
+처음 실행 시 현재 디렉토리에 `json/dashboard.json`을 자동 생성합니다.
+`json/dashboard.json`을 편집해 북마크를 추가하세요.
+
+브라우저에서 http://localhost:1234 로 접속합니다.
+
+기존 JSON 파일을 사용하려면 `--config`로 경로를 지정할 수 있습니다:
+
+```bash
+npx local-bookmark-dash --config ./my-bookmarks.json
+npx local-bookmark-dash --config /home/user/bookmarks.json
+```
+
 ### Local file mode
 
 Loads bookmarks from a local JSON file.
@@ -127,12 +147,41 @@ npm run serve          # Local file mode development server
 npm run serve:editor   # Editor mode development server
 npm run dev            # Build then serve (local file mode)
 npm run build          # Production build (editor mode) to dist/
+npm run build:npm      # Production build for npm publish (bundles React, no source maps)
 npm run watch          # Watch mode without serving
 npm run typecheck      # Run TypeScript type checking
 npm run lint           # Run ESLint
 npm run lint:fix       # Auto-fix ESLint issues
+npm run test           # Run unit tests
+npm run test:smoke     # Run smoke test against local build
 npm run deploy         # Deploy editor mode to GitHub Pages
 ```
+
+## Publishing to npm
+
+```bash
+# 1. 버전 업
+npm version patch   # 또는 minor / major
+
+# 2. npm용 빌드
+npm run build:npm
+
+# 3. 스모크 테스트 — 빌드 산출물이 실제로 동작하는지 확인
+npm run test:smoke
+
+# 4. 배포
+npm publish
+```
+
+### Smoke test 항목
+
+`npm run test:smoke`는 publish 전에 다음을 검증합니다:
+
+- 서버가 정상 기동되는지 (HTTP 200)
+- `local.html`과 JS 번들이 올바르게 서빙되는지
+- React가 번들에 포함되어 있는지 (bare specifier 없음 — 브라우저 blank screen 방지)
+- `json/dashboard.json`이 자동 생성되는지
+- JSON 파일이 HTTP로 서빙되는지
 
 ## Bookmark data format
 

@@ -1,12 +1,23 @@
 {
-  "name": "dashboard",
-  "version": "1.0.4",
+  "name": "local-bookmark-dash",
+  "version": "1.0.5",
   "description": "Local web service for showing bookmarks",
   "repository": "https://github.com/afrontend/dashboard.git",
   "author": "afrontend <autoscripts@gmail.com>",
+  "files": [
+    "bin/cli.js",
+    "dist"
+  ],
+  "keywords": [
+    "dashboard",
+    "bookmarks",
+    "local",
+    "npx"
+  ],
   "scripts": {
     "copyjson": "cp -rf json dist/",
     "build": "parcel build index.html --no-cache --public-url /dashboard/",
+    "build:npm": "parcel build index.html local.html --no-cache --public-url ./ --no-source-maps",
     "serve": "node server.js",
     "dev": "npm run serve",
     "serve:editor": "parcel index.html --no-cache",
@@ -18,10 +29,10 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
+    "test:smoke": "node bin/smoke-test.js",
     "release": "npm version patch && git push origin main --follow-tags"
   },
   "license": "MIT",
-  "private": true,
   "devDependencies": {
     "@eslint/js": "^9.15.0",
     "@parcel/packager-raw-url": "2.16.4",
@@ -47,5 +58,17 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "rimraf": "^4.4.0"
+  },
+  "bin": {
+    "local-bookmark-dash": "./bin/cli.js"
+  },
+  "engines": {
+    "node": ">=16"
+  },
+  "targets": {
+    "browser-app": {
+      "context": "browser",
+      "distDir": "dist"
+    }
   }
 }
