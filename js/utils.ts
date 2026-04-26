@@ -14,24 +14,39 @@ export function getJsonData(): TBookmark[] {
   const data = urlParams.get("data");
   if (data) {
     try {
-      const parsed = JSON.parse(decodeURIComponent(data));
-      // Support both old array format and new object format
-      if (Array.isArray(parsed) && parsed.length > 0) {
-        if (Array.isArray(parsed[0])) {
-          // Old format: [["label", "url"]]
-          return parsed.map(([label, url]: [string, string]) => ({
-            emoji: "",
-            label: label || "",
-            url: url || "",
-          }));
-        }
-      }
-      return parsed;
+      const result = parseBookmarkData(JSON.parse(decodeURIComponent(data)));
+      return result ?? initialData;
     } catch {
       return initialData;
     }
   }
   return initialData;
+}
+
+export function parseBookmarkData(raw: unknown): TBookmark[] | null {
+  if (Array.isArray(raw)) {
+    if (raw.length === 0) return [];
+    if (Array.isArray(raw[0])) {
+      return raw.map(([label, url]: [string, string]) => ({
+        emoji: "",
+        label: label || "",
+        url: url || "",
+      }));
+    }
+    if (raw.every((item) => item !== null && typeof item === "object" && !Array.isArray(item))) {
+      return raw as TBookmark[];
+    }
+    return null;
+  }
+  if (
+    raw !== null &&
+    typeof raw === "object" &&
+    "urls" in raw &&
+    Array.isArray((raw as Record<string, unknown>).urls)
+  ) {
+    return (raw as Record<string, unknown>).urls as TBookmark[];
+  }
+  return null;
 }
 
 function levenshtein(a: string, b: string): number {

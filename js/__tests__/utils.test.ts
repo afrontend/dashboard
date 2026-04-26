@@ -1,21 +1,18 @@
 import { describe, it, expect, vi, afterEach } from "vitest";
-import { isJSON, getJsonData } from "../utils";
+import * as utils from "../utils";
 
 describe("isJSON", () => {
-  it("유효한 JSON 객체를 true로 반환한다", () => {
-    expect(isJSON('{"a":1}')).toBe(true);
+  it("valid JSON object returns true", () => {
+    expect(utils.isJSON('{"a":1}')).toBe(true);
   });
-
-  it("유효한 JSON 배열을 true로 반환한다", () => {
-    expect(isJSON("[1,2]")).toBe(true);
+  it("valid JSON array returns true", () => {
+    expect(utils.isJSON("[1,2]")).toBe(true);
   });
-
-  it("잘못된 JSON을 false로 반환한다", () => {
-    expect(isJSON("{a:1}")).toBe(false);
+  it("invalid JSON returns false", () => {
+    expect(utils.isJSON('{a:1}')).toBe(false);
   });
-
-  it("빈 문자열을 false로 반환한다", () => {
-    expect(isJSON("")).toBe(false);
+  it("empty string returns false", () => {
+    expect(utils.isJSON("")).toBe(false);
   });
 });
 
@@ -28,10 +25,9 @@ describe("getJsonData", () => {
     vi.unstubAllGlobals();
   });
 
-  it("URL 파라미터가 없으면 initialData를 반환한다", () => {
+  it("returns initialData when no param", () => {
     stubLocationSearch("");
-    const result = getJsonData();
-    expect(result).toEqual([
+    expect(utils.getJsonData()).toEqual([
       { emoji: "📁", label: "Bookmarks", url: "" },
       { emoji: "🔍", label: "Google", url: "https://google.com" },
       { emoji: "💻", label: "GitHub", url: "https://github.com" },
@@ -40,36 +36,73 @@ describe("getJsonData", () => {
     ]);
   });
 
-  it("유효한 TBookmark[] 데이터를 파싱한다", () => {
-    const bookmarks = [{ emoji: "🍑", label: "Test", url: "https://test.com" }];
-    const encoded = encodeURIComponent(JSON.stringify(bookmarks));
-    stubLocationSearch(`?data=${encoded}`);
-    const result = getJsonData();
-    expect(result).toEqual(bookmarks);
+  it("returns initialData for invalid JSON string param", () => {
+    stubLocationSearch("?data=invalid-json");
+    expect(utils.getJsonData()[0].label).toBe("Bookmarks");
   });
 
-  it("레거시 튜플 형식을 TBookmark[]로 변환한다", () => {
-    const legacy = [["Google", "https://google.com"], ["GitHub", "https://github.com"]];
-    const encoded = encodeURIComponent(JSON.stringify(legacy));
-    stubLocationSearch(`?data=${encoded}`);
-    const result = getJsonData();
-    expect(result).toEqual([
-      { emoji: "", label: "Google", url: "https://google.com" },
-      { emoji: "", label: "GitHub", url: "https://github.com" },
+  it("parses valid TBookmark array from query param", () => {
+    const bookmarks = [{ emoji: "🍑", label: "Test", url: "https://test.com" }];
+    stubLocationSearch(`?data=${encodeURIComponent(JSON.stringify(bookmarks))}`);
+    expect(utils.getJsonData()).toEqual(bookmarks);
+  });
+
+  it("normalizes legacy tuple data from query param", () => {
+    stubLocationSearch(
+      `?data=${encodeURIComponent(JSON.stringify([["Docs", "https://example.com"]]))}`,
+    );
+
+    expect(utils.getJsonData()).toEqual([
+      { emoji: "", label: "Docs", url: "https://example.com" },
     ]);
   });
 
-  it("잘못된 JSON 데이터면 initialData를 반환한다", () => {
-    stubLocationSearch("?data=invalid-json");
-    const result = getJsonData();
-    expect(result[0].label).toBe("Bookmarks");
+  it("returns initialData for invalid-shape object param", () => {
+    stubLocationSearch(`?data=${encodeURIComponent(JSON.stringify({ foo: "bar" }))}`);
+    expect(utils.getJsonData()[0].label).toBe("Bookmarks");
   });
 
-  it("인코딩된 한글/이모지 데이터를 정상 파싱한다", () => {
-    const bookmarks = [{ emoji: "🌸", label: "네이버", url: "https://naver.com" }];
-    const encoded = encodeURIComponent(JSON.stringify(bookmarks));
-    stubLocationSearch(`?data=${encoded}`);
-    const result = getJsonData();
-    expect(result).toEqual(bookmarks);
+  it("returns initialData for primitive array param", () => {
+    stubLocationSearch(`?data=${encodeURIComponent(JSON.stringify([1, 2, 3]))}`);
+    expect(utils.getJsonData()[0].label).toBe("Bookmarks");
+  });
+
+  it("normalizes object data with urls property from query param", () => {
+    stubLocationSearch(
+      `?data=${encodeURIComponent(
+        JSON.stringify({
+          urls: [{ emoji: "🚀", label: "Test", url: "https://test.com" }],
+        }),
+      )}`,
+    );
+
+    expect(utils.getJsonData()).toEqual([
+      { emoji: "🚀", label: "Test", url: "https://test.com" },
+    ]);
+  });
+});
+
+describe("parseBookmarkData", () => {
+  it("normalizes object with urls property", () => {
+    const input = {
+      urls: [{ emoji: "🚀", label: "Test", url: "https://test.com" }],
+    };
+    expect(utils.parseBookmarkData(input)).toEqual([
+      { emoji: "🚀", label: "Test", url: "https://test.com" },
+    ]);
+  });
+
+  it("normalizes legacy tuple arrays", () => {
+    expect(utils.parseBookmarkData([["Docs", "https://example.com"]])).toEqual([
+      { emoji: "", label: "Docs", url: "https://example.com" },
+    ]);
+  });
+
+  it("returns null for primitive arrays", () => {
+    expect(utils.parseBookmarkData([1, 2, 3])).toBeNull();
+  });
+
+  it("returns null for plain objects", () => {
+    expect(utils.parseBookmarkData({ foo: "bar" })).toBeNull();
   });
 });

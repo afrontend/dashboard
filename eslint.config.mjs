@@ -31,6 +31,7 @@ export default [
       },
     },
     rules: {
+      "no-unused-vars": "off",
       "react/prop-types": "off",
       "@typescript-eslint/no-unused-vars": "error",
       "@typescript-eslint/no-explicit-any": "warn",

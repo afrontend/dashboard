@@ -5,7 +5,6 @@ import { fuzzyIncludes } from "../js/utils";
 
 interface SearchableBookmarkListProps {
   bookmarkAry: TBookmark[];
-  // eslint-disable-next-line no-unused-vars
   onReorder?: (reordered: TBookmark[]) => void;
 }
 

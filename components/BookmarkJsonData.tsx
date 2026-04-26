@@ -5,7 +5,6 @@ import { TBookmark } from "../types";
 interface BookmarkJsonDataProps {
   bookmarkAry: TBookmark[];
   searchTerm?: string;
-  // eslint-disable-next-line no-unused-vars
   onReorder?: (reordered: TBookmark[]) => void;
 }
 
@@ -71,7 +70,6 @@ function BookmarkItem({
   searchTerm?: string;
   draggable?: boolean;
   onDragStart?: () => void;
-  // eslint-disable-next-line no-unused-vars
   onDragOver?: (e: React.DragEvent) => void;
   onDrop?: () => void;
   onDragEnd?: () => void;

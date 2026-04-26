@@ -7,11 +7,10 @@ import React, {
 } from "react";
 import CodeMirror from "@uiw/react-codemirror";
 import { json } from "@codemirror/lang-json";
-import { getJsonData, isJSON } from "../js/utils";
+import { getJsonData, isJSON, parseBookmarkData } from "../js/utils";
 import { TBookmark } from "../types";
 
 interface BookmarksInURLProps {
-  // eslint-disable-next-line no-unused-vars
   onBookmarksChange: (data: TBookmark[]) => void;
   onSaveComplete?: () => void;
 }
@@ -26,25 +25,29 @@ export const BookmarksInURL = forwardRef<
   BookmarksInURLHandle,
   BookmarksInURLProps
 >(function BookmarksInURL({ onBookmarksChange, onSaveComplete }, ref) {
-  const jsonAry = getJsonData();
-  const [bookmarkAry, setBookmarkAry] = useState<TBookmark[]>(jsonAry);
+  const [bookmarkAry, setBookmarkAry] = useState<TBookmark[]>(getJsonData);
   const [bookmarkText, setBookmarkText] = useState<string>(
-    JSON.stringify(jsonAry, null, 2),
+    () => JSON.stringify(getJsonData(), null, 2),
   );
   const [msg, setMsg] = useState<string>("");
   const [errorMsg, setErrorMsg] = useState<string>("");
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    onBookmarksChange(jsonAry);
+    onBookmarksChange(bookmarkAry);
   }, []);
 
   function handleChange(text: string) {
     setBookmarkText(text);
     if (text && isJSON(text)) {
+      const parsed = parseBookmarkData(JSON.parse(text));
+      if (parsed === null) {
+        setMsg("");
+        setErrorMsg("Invalid format");
+        return;
+      }
       setMsg("Valid JSON");
       setErrorMsg("");
-      const parsed: TBookmark[] = JSON.parse(text);
       setBookmarkAry(parsed);
       onBookmarksChange(parsed);
       return;
@@ -60,14 +63,17 @@ export const BookmarksInURL = forwardRef<
     reader.onload = (event) => {
       const text = event.target?.result as string;
       if (text && isJSON(text)) {
-        const parsed = JSON.parse(text);
-        const urls = parsed.urls || parsed;
-        const formatted = JSON.stringify(urls, null, 2);
-        setBookmarkText(formatted);
-        setBookmarkAry(urls);
-        onBookmarksChange(urls);
-        setMsg("File imported");
-        setErrorMsg("");
+        const parsed = parseBookmarkData(JSON.parse(text));
+        if (parsed === null) {
+          setErrorMsg("Invalid format");
+          setMsg("");
+        } else {
+          setBookmarkText(JSON.stringify(parsed, null, 2));
+          setBookmarkAry(parsed);
+          onBookmarksChange(parsed);
+          setMsg("File imported");
+          setErrorMsg("");
+        }
       } else {
         setErrorMsg("Invalid JSON file");
         setMsg("");
@@ -95,9 +101,7 @@ export const BookmarksInURL = forwardRef<
     const { origin, pathname } = window.location;
     const url = origin + pathname + param;
     window.history.pushState({}, "", url);
-    if (onSaveComplete) {
-      onSaveComplete();
-    }
+    onSaveComplete?.();
   }
 
   useImperativeHandle(ref, () => ({
