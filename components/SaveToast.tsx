@@ -27,13 +27,13 @@ export function SaveToast({ visible, onClose }: SaveToastProps) {
       className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-3 bg-gray-800 text-white px-4 py-3 rounded-full shadow-lg"
     >
       <span className="text-sm whitespace-nowrap">
-        💾 URL에 저장되었습니다
+        💾 Saved to URL
       </span>
       <button
         onClick={handleCopy}
         className="text-xs bg-white text-gray-800 hover:bg-gray-100 px-3 py-1 rounded-full font-medium transition-colors whitespace-nowrap"
       >
-        {copied ? "복사됨 ✓" : "URL 복사"}
+        {copied ? "Copied ✓" : "Copy URL"}
       </button>
       <button
         onClick={onClose}
