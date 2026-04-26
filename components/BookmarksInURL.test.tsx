@@ -80,7 +80,7 @@ describe("BookmarksInURL", () => {
       editor!.dispatchEvent(new Event("input", { bubbles: true }));
     });
 
-    expect(container.textContent).toContain("Valid JSON");
+    expect(container.textContent).toContain("Valid");
     expect(onBookmarksChange).toHaveBeenLastCalledWith([
       { emoji: "🚀", label: "Test", url: "https://test.com" },
     ]);

@@ -46,7 +46,7 @@ export const BookmarksInURL = forwardRef<
         setErrorMsg("Invalid format");
         return;
       }
-      setMsg("Valid JSON");
+      setMsg("Valid");
       setErrorMsg("");
       setBookmarkAry(parsed);
       onBookmarksChange(parsed);
