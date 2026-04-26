@@ -65,7 +65,9 @@ export function SearchableBookmarkList({
         <div className="mb-4">
           <input
             ref={filterInputRef}
+            aria-label="Filter bookmarks"
             type="text"
+            autoComplete="off"
             placeholder="Filter bookmarks... (Press Escape to close)"
             value={filterText}
             onChange={(e) => setFilterText(e.target.value)}

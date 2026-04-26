@@ -25,12 +25,14 @@ function IconButton({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex flex-col items-center gap-0.5 cursor-pointer" onClick={onClick}>
-      <div className={iconBtnClass}>
-        {children}
-      </div>
+    <button
+      type="button"
+      className="flex flex-col items-center gap-0.5"
+      onClick={onClick}
+    >
+      <div className={iconBtnClass}>{children}</div>
       <span className="text-xs text-gray-600">{label}</span>
-    </div>
+    </button>
   );
 }
 
@@ -75,12 +77,20 @@ export function EditorApp() {
                 <span className="mr-2 text-sm font-medium text-gray-700">
                   Editor
                 </span>
-                <div className="relative" onClick={toggleEditor}>
+                <input
+                  type="checkbox"
+                  role="switch"
+                  className="sr-only"
+                  checked={editorVisible}
+                  onChange={() => toggleEditor()}
+                  aria-label="Toggle editor"
+                />
+                <div className="relative" aria-hidden="true">
                   <div
-                    className={`w-11 h-6 rounded-full transition-colors duration-200 ${editorVisible ? "bg-blue-500" : "bg-gray-400"}`}
+                    className={`w-11 h-6 rounded-full motion-safe:transition-colors duration-200 ${editorVisible ? "bg-blue-500" : "bg-gray-400"}`}
                   />
                   <div
-                    className={`absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform duration-200 ${editorVisible ? "translate-x-5" : "translate-x-0"}`}
+                    className={`absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow motion-safe:transition-transform duration-200 ${editorVisible ? "translate-x-5" : "translate-x-0"}`}
                   />
                 </div>
               </label>
@@ -104,8 +114,9 @@ export function EditorApp() {
                   >
                     💾
                   </IconButton>
-                  <a href="/">
-                    <IconButton label="Clear">✕</IconButton>
+                  <a href="/" className="flex flex-col items-center gap-0.5 no-underline">
+                    <div className={iconBtnClass}>✕</div>
+                    <span className="text-xs text-gray-600">Clear</span>
                   </a>
                 </div>
               )}

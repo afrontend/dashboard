@@ -158,9 +158,11 @@ export function BookmarkJsonData({
     return (
       <div key={gIdx} className="mb-2">
         {group.header.label && (
-          <div
+          <button
+            type="button"
             onClick={() => toggleGroup(gIdx)}
-            className={`flex items-center gap-1 cursor-pointer select-none mb-1 py-2 sm:py-0 ${onReorder ? "cursor-grab active:cursor-grabbing" : ""} ${dragOverIdx === headerFlatIdx && dragIdx !== headerFlatIdx ? "border-t-2 border-blue-400" : ""}`}
+            aria-expanded={!collapsed[gIdx]}
+            className={`flex items-center gap-1 w-full text-left select-none mb-1 py-2 sm:py-0 ${onReorder ? "cursor-grab active:cursor-grabbing" : "cursor-pointer"} ${dragOverIdx === headerFlatIdx && dragIdx !== headerFlatIdx ? "border-t-2 border-blue-400" : ""}`}
             draggable={!!onReorder}
             onDragStart={() => setDragIdx(headerFlatIdx)}
             onDragOver={(e) => { e.preventDefault(); setDragOverIdx(headerFlatIdx); }}
@@ -187,7 +189,7 @@ export function BookmarkJsonData({
             <span className="text-xs text-gray-400 ml-1">
               ({group.items.length})
             </span>
-          </div>
+          </button>
         )}
         {!collapsed[gIdx] &&
           group.items.map((b) => {

@@ -28,11 +28,17 @@ export function TextForCopy() {
     });
   }
 
-  if (textAry.length === 0) return "Loading...";
+  if (textAry.length === 0) return <span role="status">Loading...</span>;
 
   return textAry.map((text, index) => (
     <div style={{ marginBottom: "0.5rem" }} key={text.content + index}>
-      <a onClick={() => toClipboard(text.content)}>{text.content}</a>
+      <button
+          type="button"
+          onClick={() => toClipboard(text.content)}
+          className="cursor-pointer"
+        >
+          {text.content}
+        </button>
       &nbsp;
       {message === text.content && COPIED_MESSAGE}
     </div>
