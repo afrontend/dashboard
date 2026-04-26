@@ -164,6 +164,26 @@ npm run release        # Bump patch version, tag, and push — triggers npm publ
 
 ## Publishing to npm
 
+### Automated (recommended)
+
+`npm run release` handles the version bump, tagging, and push in one step.
+GitHub Actions then builds and publishes to npm automatically.
+
+```bash
+# Bump patch version, create tag, push — CI publishes to npm
+npm run release
+
+# For minor or major bumps, update the version manually first,
+# then push the tag yourself — do NOT run npm version again before release:
+npm version minor   # or major
+git push origin main --follow-tags
+```
+
+> **Warning:** Do not run `npm version patch` before `npm run release`.
+> `release` already runs `npm version patch` internally, so doing both bumps the version twice.
+
+### Manual (without CI)
+
 ```bash
 # 1. Bump version
 npm version patch   # or minor / major
