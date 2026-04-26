@@ -154,8 +154,13 @@ npm run lint           # Run ESLint
 npm run lint:fix       # Auto-fix ESLint issues
 npm run test           # Run unit tests
 npm run test:smoke     # Run smoke test against local build
-npm run deploy         # Deploy editor mode to GitHub Pages
+npm run deploy         # Deploy editor mode to GitHub Pages (gh-pages branch)
+npm run release        # Bump patch version, tag, and push — triggers npm publish via GitHub Actions
 ```
+
+> **`deploy` vs `release`**
+> - `deploy` — publishes the built `dist/` to **GitHub Pages** (the public web dashboard at your GitHub Pages URL).
+> - `release` — bumps the npm package version, creates a git tag (`vX.Y.Z`), and pushes to `origin`. GitHub Actions then builds and publishes the new version to the **npm registry** automatically.
 
 ## Publishing to npm
 
